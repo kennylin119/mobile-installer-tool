@@ -1,0 +1,13 @@
+/* Add CSS styles here! */
+body {
+  font-family: sans-serif;
+}
+
+.container-app {
+  max-width: 1248px;
+  margin: 0 auto;
+}
+
+#mfe-root {
+  border: 6px solid #f7f;
+}
