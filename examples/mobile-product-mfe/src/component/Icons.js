@@ -1,22 +1,40 @@
-import Icon from './Icon'
+import Icon from "./Icon";
 
 const Icons = ({ icons }) => {
-    console.log(icons)
+	console.log(icons);
 
-    return (
-        // Using a map function to render each icon
-        <div className='icons'>
-            <h3>Icons List: </h3>
-            {
-                Object.keys(icons).map(function(keyName, keyIndex) {
-                    // console.log(keyName + ", " + keyIndex)
+	// for (const key in icons) {
+	// 	// console.log(`${key}: ${icons[key]}`);
 
-                    // FIXME: this is not printing each icon's value
-                    <Icon key = {keyName} value = {keyIndex}></Icon>
-                })
-            }
-        </div>
-    )
-}
+	// 	return <Icon value={icons[key]}></Icon>;
+	// }
+	let task = [
+		{
+			key: 1,
+			text: "1 Button",
+			reminder: true,
+		},
+		{
+			key: 2,
+			text: "2 Button",
+			reminder: false,
+		},
+	];
 
-export default Icons
+	// console.log(task[0].key);
+
+	return (
+		// Using a map function to render each icon
+		<div className='icons'>
+			{/* {task.map((s) => {
+				<Icon key={s.key} value={s.value}></Icon>;
+			})} */}
+
+			{task.map((s, index) => {
+				<Icon key={index} value={s}></Icon>;
+			})}
+		</div>
+	);
+};
+
+export default Icons;
