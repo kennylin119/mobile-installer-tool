@@ -1,11 +1,14 @@
-const Icon = ({ key, value }) => {
-	<h3>{key}</h3>;
+const Icon = (props) => {
+	console.log(props)
+	const {icon} = props
 
 	return (
 		// <div className='icon'>
 		// 	<h3>{value}</h3>
 		// </div>
-		<div></div>
+		<div>
+			{icon}
+		</div>
 	);
 };
 
