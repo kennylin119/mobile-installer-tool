@@ -10,7 +10,7 @@ const Icons = (props) => {
 		<div>
 			{
 				icons.map(obj => (
-					<Icon icon_key={obj.KeyValue} icon_value={obj.Label} icon_image={obj.Image}></Icon>
+					<Icon key={obj.KeyValue} icon_key={obj.KeyValue} icon_value={obj.Label} icon_image={obj.Image}></Icon>
 				))
 			}
 		</div>
