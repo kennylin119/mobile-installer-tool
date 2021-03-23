@@ -1,13 +1,10 @@
 const Icon = (props) => {
 	console.log(props)
-	const {icon} = props
+	const {icon_key, icon_value} = props
 
 	return (
-		// <div className='icon'>
-		// 	<h3>{value}</h3>
-		// </div>
 		<div>
-			{icon}
+			{icon_value}
 		</div>
 	);
 };

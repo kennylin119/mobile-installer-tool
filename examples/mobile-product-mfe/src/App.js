@@ -169,8 +169,8 @@ const App = () => {
 
 	return (
 		<div className='container'>
+			{/* method parses a JSON string */}
 			<Icons icons={JSON.parse(product_icons)}></Icons>
-			{/* <Dropdown /> */}
 		</div>
 	);
 };
