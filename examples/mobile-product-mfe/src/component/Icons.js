@@ -23,26 +23,10 @@ const Icons = (props) => {
 
 	return (
 		<ul>
-
-			{/* <Icon icon_key={v[5]} icon_value={icons[v[5]]}/>
-
-			for (let {i = 0; i < v.length; i++) {
-				{ <Icon icon_key={v[i]} icon_value={icons[v[i]]}/> }
-			} */}
-
-			{
-				v.forEach(key => {
-					// console.log(key)
-					// console.log(icons[key])
-					return <Icon icon_key={key} icon_value={icons[key]}></Icon>
-					// <li>{key}</li>
-				})
-			}
-
-			{/* { arr.map(function(arrKey) {	
-				<p>{arrKey}</p>		
+			{ arr.map(arrKey=> (	
+				<li>{arrKey}</li>		
 				// <Icon icon_key={key} icon_value={icons[key]}/>
-			})}  */}
+			))} 
 		</ul>
 
 	)
