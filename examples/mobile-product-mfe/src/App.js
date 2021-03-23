@@ -9,7 +9,11 @@ import Dropdown from "./component/Dropdown";
 
 // import productFromProductAPI from "./ALISSE.js";
 
-const App = () => {
+const App = (props) => {
+	// Destructuring props
+	// data will contain the AUTHORIZATION TOKEN 
+	const {data} = props;
+
 	// State variables for the product
 	let [product, setProduct] = useState(null);				// Truthy object
 	let [error, setError] = useState(null);
@@ -26,8 +30,6 @@ const App = () => {
 		getProduct()
 	}, [])	// [] data dependency
 
-
-	// NOTE: THERE IS AN AUTORIZATION TOKEN THAT GETS PASSED IN AND WE WANT TO PARSE THAT
 
 	// function for interacting with the API, sets result and state variables
 	const fetchProduct = async(id) => {
@@ -86,31 +88,8 @@ const App = () => {
 					Cannot load
 				</div>
 			)
-		}
-
-		
+		}	
 	}
-
-
-
-	// Hard coding the JSON object loaded in from js file
-	// product = productFromProductAPI;
-	// console.log(product[0]);
-
-	// let product_icons;
-
-	// if (product != null) {
-	// 	product_icons = product[0].UserControls[3].OptionValues;
-	// } else {
-	// 	product_icons = null;
-	// 	console.log("product could not be loaded");
-	// }
-
-	// return (
-	// 	<div className='container'>
-	// 		<Icons icons={product_icons}></Icons>
-	// 	</div>
-	// );
 };
 
 export default App;

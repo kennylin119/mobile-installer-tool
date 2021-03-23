@@ -25,10 +25,10 @@ const renderTarget = mfeRoot || fallbackRoot;
 fancyConsoleLog(`setting final render target, it looks like we're running in ${runningMode} mode.`);
 
 // This method is called when we are running in standalone mode
-const renderFn = () => 
+const renderFn = (parameters) => 
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <App data={parameters}/>
     </React.StrictMode>,
 
     renderTarget
