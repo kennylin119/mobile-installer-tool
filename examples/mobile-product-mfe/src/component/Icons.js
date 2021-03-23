@@ -6,15 +6,11 @@ const Icons = (props) => {
 
 	console.log(icons)
 
-	
-	// Object.keys() method returns an array of a given object's own enumerable property names, iterated in the same order that a normal loop would
-	const v = Object.keys(icons)
-
 	return (
 		<div>
 			{
-				v.map(key => (
-					<Icon icon_key={key} icon_value={icons[key]}></Icon>
+				icons.map(obj => (
+					<Icon icon_key={obj.KeyValue} icon_value={obj.Label} icon_image={obj.Image}></Icon>
 				))
 			}
 		</div>
