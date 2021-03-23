@@ -1,5 +1,8 @@
+const myFavEmoji = '🥲';
+
 const renderMicroFrontend = () => {
-  window.renderTestMfe();
+  // Defined by the contained MFE
+  window.renderTestMfe(myFavEmoji);
 };
 
 /**

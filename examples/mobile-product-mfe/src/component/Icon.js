@@ -8,8 +8,8 @@ const Icon = (props) => {
 	// const image = require(`${icon_image}`)
 	let image = (`../${icon_image}`)
 
+	// Hardcoded path since we only have 1 image right now
 	image = require(`../toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_1,_1_Button.png`)
-	console.log(image)
 
 	return (
 		<div>
