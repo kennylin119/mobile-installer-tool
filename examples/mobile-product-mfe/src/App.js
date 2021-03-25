@@ -77,7 +77,7 @@ const App = (props) => {
 	}
 	// If the product has been loaded
 	else {
-		console.log(product)
+		// console.log(product)
 
 		if(product) {
 			let image_path = `./toolkit/${product[0].ProductIdentifier}/`

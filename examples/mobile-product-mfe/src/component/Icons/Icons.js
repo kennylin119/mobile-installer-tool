@@ -1,5 +1,9 @@
 import React from "react";
 import Icon from "./Icon";
+// import {generateDAO} from '../services/IconsDataAccessObject.js'
+
+
+
 
 const Icons = (props) => {
 	// fetch = fetchImage
@@ -12,7 +16,7 @@ const Icons = (props) => {
 			</div>
 			{
 				icons.map(obj => (
-					<Icon key={obj.KeyValue} cdn={cdn} icon_key={obj.KeyValue} icon_value={obj.Label} icon_image={obj.Image}></Icon>
+					<Icon key={obj.KeyValue} cdn={cdn} icon_key={obj.KeyValue} icon_value={obj.Label} icon_image={obj.Image} ></Icon>
 				))
 			}
 		</div>
