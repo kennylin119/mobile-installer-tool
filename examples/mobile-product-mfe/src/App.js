@@ -54,6 +54,7 @@ const App = (props) => {
 				}
 			)
 	}
+	
 
 	// If there was an error
 	if(error) {
