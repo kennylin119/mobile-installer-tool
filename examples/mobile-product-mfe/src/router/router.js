@@ -24,8 +24,4 @@ export const fetchProduct = async(PRODUCT_IDENTIFIER) => {
     return res;
 }
 
-export const plusSlides = (n) => {
-    console.log(n + 1);
-}
-
 export default router;

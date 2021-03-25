@@ -4,8 +4,8 @@ import "./App.css";
 import { useState, useEffect } from "react";
 
 // importing all the components
-import Icons from "./component/Icons";
-import Dropdown from "./component/Dropdown";
+import Icons from "./component/Icons/Icons";
+import Dropdown from "./component/Dropdowns/Dropdown";
 import { router, fetchProduct } from "./router/router";
 
 

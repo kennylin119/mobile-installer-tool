@@ -1,5 +1,5 @@
 // This default image is not required for now
-import default_img from '../toolkit/default_image.jpeg'
+import default_img from '../../toolkit/default_image.jpeg'
 
 const Icon = (props) => {
 	console.log(props)
@@ -9,7 +9,7 @@ const Icon = (props) => {
 	let image = (`../${icon_image}`)
 
 	// Hardcoded path since we only have 1 image right now
-	image = require(`../toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_1,_1_Button.png`)
+	image = require(`../../toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_1,_1_Button.png`)
 
 	return (
 		<div>
