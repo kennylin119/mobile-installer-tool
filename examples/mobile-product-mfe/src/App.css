@@ -28,6 +28,28 @@
   color: #61dafb;
 }
 
+.img-container {
+  width: auto;
+  height: 220px;
+  background-color: green;
+  padding-top: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#icon-box {
+  float: left;
+  width: 60px;
+  height: 60px;
+  background-color: white;
+}
+
+#icon {
+  float: center;
+  width: 58px;
+  height: 58px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

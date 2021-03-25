@@ -18,10 +18,9 @@ const Icon = (props) => {
 	}
 
 	return (
-		<div>
-			{icon_value}
+		<div id="icon-box">
 			{
-				<img src={image}  alt={"Image invalid"}></img>
+				<img id="icon" src={image} alt={"Image invalid"} ></img>
 			}
 		</div>
 	);
