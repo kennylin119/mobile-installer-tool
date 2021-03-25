@@ -1,9 +1,3 @@
-export const generateDAO = (props) => {
-    console.log("calling generateDAO")
-    console.log(props)
-};
-
-
 const IconsDataAccessObject = (props) => {
     // Destructure props
     const { } = props;
@@ -14,5 +8,10 @@ const IconsDataAccessObject = (props) => {
         </div>
     )
 }
+
+export const generateDAO = (props) => {
+    console.log("calling generateDAO")
+    console.log(props)
+};
 
 export default IconsDataAccessObject;
