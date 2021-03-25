@@ -22,8 +22,7 @@ export const fetchProduct = async(PRODUCT_IDENTIFIER) => {
 }
 
 /**
- * FIXME: this function does not work right now!!!
- * I don't know the proper session keys and Api Tokens to make this request
+ * TODO: we don't use this function anymore. should probably remove
  */
 export const fetchImage = async(PATH) => {
     const res = fetch(`${PATH}`, {

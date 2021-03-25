@@ -44,7 +44,7 @@ const App = (props) => {
 						setIsLoaded(true);
 						setProduct(result)
 						// extracting the cdn 
-						setCdnPrefix(result[0])
+						setCdnPrefix(result[0].CDNPrefix)
 					},
 					(error) => {
 						setIsLoaded(true);

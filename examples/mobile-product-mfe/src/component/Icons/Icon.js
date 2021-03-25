@@ -1,21 +1,27 @@
-// This default image is not required for now
 import default_img from '../../toolkit/default_image.jpeg'
 
 const Icon = (props) => {
 	console.log(props)
-	const {icon_key, icon_value, icon_image} = props
+	const {icon_key, cdn, icon_value, icon_image} = props
 
-	// const image = require(`${icon_image}`)
-	let image = (`../${icon_image}`)
+	let image; 
 
-	// Hardcoded path since we only have 1 image right now
-	image = require(`../../toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_1,_1_Button.png`)
+	console.log(cdn)
+
+
+	// Handle if there is an image or not
+	if(cdn && icon_image) {
+		image = `${cdn}${icon_image}`
+	}
+	else {
+		image = default_img
+	}
 
 	return (
 		<div>
 			{icon_value}
 			{
-				<img src={image.default}  alt={"Image invalid"}></img>
+				<img src={image}  alt={"Image invalid"}></img>
 			}
 		</div>
 	);
