@@ -1,10 +1,31 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import Icon from "./Icon";
 
 const Icons = (props) => {
-	const {icons} = props;
+	// fetch = fetchImage
+	const {icons, cdn, fetch} = props;
 
-	console.log(icons)
+	// Handle the load image here
+	icons.map(obj => {
+		fetch(`${cdn}${obj.image}`)
+			.then(res => {
+				console.log("returned image")
+				console.log(res)
+			})
+			// .then(
+			// 	(result) => {
+			// 		// save the image to local directory
+			// 		console.log(result)
+			// 	},
+			// 	(error) => {
+			// 		// set the image to be loaded as a default image
+			// 		console.log("fetching image error")
+			// 		console.log(error)
+			// 	}
+			// )
+	})
+
 
 	return (
 		<div>
