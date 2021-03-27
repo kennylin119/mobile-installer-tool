@@ -7,7 +7,7 @@ const IconsDataAccessObject = (props) => {
             calling IconsDataAccessObject            
         </div>
     )
-}
+};
 
 export const generateDAO = (props) => {
     console.log("calling generateDAO")

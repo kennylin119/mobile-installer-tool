@@ -1,12 +1,13 @@
 import default_img from '../../toolkit/default_image.jpeg'
+import {handleCallback} from './Icons'
 
 const handleOnClick = (event, key, value) => {
 	console.log('The link was clicked');
-	console.log(event);
-	console.log([key, value]);
 
 	// prevent browser reload/refresh
 	event.preventDefault();
+
+	handleCallback(event, key, value);
 }
 
 const Icon = (props) => {
@@ -26,6 +27,7 @@ const Icon = (props) => {
 			{
 				<img id="icon" src={image} alt={"Image invalid"} onClick={((e) => handleOnClick(e, icon_key, icon_value))}></img>
 			}
+			{icon_value}
 		</div>
 	);
 };
