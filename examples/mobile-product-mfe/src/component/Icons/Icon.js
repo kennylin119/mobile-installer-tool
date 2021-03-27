@@ -4,13 +4,17 @@ import {handleCallback} from './Icons'
 const handleOnClick = (event, key, value, selected) => {
 	console.log('The link was clicked');
 
+	console.log(key);
+	console.log(value);
+	console.log(selected);
+
 	// prevent browser reload/refresh
 	event.preventDefault();
 
-	handleCallback(event, key, value, selected);
+	handleCallback(key, value, selected);
 }
 
-const Icon = (props) => {
+const Icon = (props) => { 
 	const {icon_key, cdn, icon_value, icon_image, icon_selected} = props
 	let image; 
 

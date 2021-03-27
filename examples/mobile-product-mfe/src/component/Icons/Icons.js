@@ -5,21 +5,23 @@ import {generateDAO} from '../../services/IconsDataAccessObject'
 // Global level icons object that can be modified by Icon.js
 let renderIcons; 
 
-export const handleCallback = (event, key, value, selected) => {
+export const handleCallback = (key, value, selected) => {
 	console.log('inside handleCallback function');
 	console.log(selected);
 
 	// Alternate the user selection
-	console.log(renderIcons[key]);
-	// renderIcons[key].selected = !renderIcons[key].selected;
+	console.log(renderIcons[key]); 
+	renderIcons[key].selected = !renderIcons[key].selected;
+	console.log(renderIcons[key].selected);
 
-	// console.log(renderIcons[key].selected);
-
-
+	// Generate the JSON object to be passed into router
 	const conf = generateDAO(key, value);
+
+	// Call to router, handle the response from router
+	
 }
 
-
+// Function to parse an array into an object based on a key
 const convertArrayToObject = (array, key) => {
 	const initialValue = {};
 	return array.reduce((obj, item) => {
@@ -31,7 +33,7 @@ const convertArrayToObject = (array, key) => {
 };
 
 
-
+// Main function 
 const Icons = (props) => {
 	// fetch = fetchImage
 	const {icons, cdn, selected} = props;
@@ -59,9 +61,6 @@ const Icons = (props) => {
 		setIcons_obj(temp_icons);
 		setIsSet(true);
 	}
-
-	// console.log("printing")
-	// console.log(icons_obj)
 
 	if(!isSet) {
 		console.log("ICONS NOT LOADED YET");
