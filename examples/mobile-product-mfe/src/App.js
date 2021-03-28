@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import Icons from "./component/Icons/Icons"
 import Dropdown from "./component/Dropdowns/Dropdown"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
+import { zoomHandler } from "./router/router"
 
 const handleCallback = (props) => {
 	const { cmd, value } = props
@@ -13,6 +14,7 @@ const handleCallback = (props) => {
 	// Will contain a long list of commands that we can match on
 	if (cmd == "hIconClick") {
 		// call the router function to send data to Configurator API
+		// zoomHandler()
 	}
 }
 

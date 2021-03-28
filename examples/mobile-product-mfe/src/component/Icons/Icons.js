@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import Icon from "./Icon"
-// import { generateDAO } from "../../services/IconsDataAccessObject"
 import { handleCallback } from "../../App"
 
 // Global level icons object that can be modified by Icon.js
