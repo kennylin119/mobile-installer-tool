@@ -7,7 +7,14 @@ import Icons from "./component/Icons/Icons"
 import Dropdown from "./component/Dropdowns/Dropdown"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 
-// import productFromProductAPI from "./ALISSE.js";
+const handleCallback = (props) => {
+	const { cmd, value } = props
+
+	// Will contain a long list of commands that we can match on
+	if (cmd == "hIconClick") {
+		// call the router function to send data to Configurator API
+	}
+}
 
 const App = (props) => {
 	// Destructuring props
@@ -35,7 +42,7 @@ const App = (props) => {
 		QuotableTill: null,
 		MinPrice: 525.0,
 		MaxPrice: 525.0,
-	};
+	}
 
 	// Hard coded product name, will be whatever data is
 	let data2 = "ALISSE"
@@ -46,17 +53,19 @@ const App = (props) => {
 	let [isLoaded, setIsLoaded] = useState(false)
 	let [cdnPrefix, setCdnPrefix] = useState(null)
 
-	// Life cycle hook
+	// Life cycle hook to get and save the product on load
 	useEffect(() => {
 		// Gauranteed way to return a promise
 		const getProduct = async () => {
 			if (isLoaded && product) {
 				console.log("finished")
-				return;
+				return
 			}
 
 			// Getting the data from fetchProduct
 			// Handling the response if result or error
+
+			// ! Might not need this function since the parent page makes the calls, we can probably just get the data directly
 			await fetchProduct(data2)
 				.then((res) => res.json())
 				.then(
@@ -89,10 +98,10 @@ const App = (props) => {
 	// If the product has been loaded
 	else {
 		// Check if configure exists
-		if(configure_test) {
-			let configured_json = configure_test.ConfiguredJSON;
+		if (configure_test) {
+			let configured_json = configure_test.ConfiguredJSON
 
-			console.log("printing user configured json obj");
+			console.log("printing user configured json obj")
 			console.log(JSON.parse(configured_json))
 		}
 
@@ -102,13 +111,6 @@ const App = (props) => {
 			// extracting the product icons
 			let product_icons
 			product_icons = product[0].UserControls[3].OptionValues
-
-			// creating directory to store images
-			// if(!fse.existsSync(image_path)) {
-			// 	fse.mkdirSync(image_path, {
-			// 		recursive: true
-			// 	})
-			// }
 
 			return (
 				<div className='container'>
@@ -121,4 +123,5 @@ const App = (props) => {
 	}
 }
 
+export { handleCallback }
 export default App

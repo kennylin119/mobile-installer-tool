@@ -1,19 +1,15 @@
 const IconsDataAccessObject = (props) => {
-    // Destructure props
-    const { } = props;
+	// Destructure props
+	const {} = props
 
-    return (
-        <div>
-            calling IconsDataAccessObject            
-        </div>
-    )
-};
+	return <div>calling IconsDataAccessObject</div>
+}
 
 export const generateDAO = (props) => {
-    // Destructuring props
-    const {key, value} = props;
+	// Destructuring props
+	const { key, value } = props
 
-    
-};
+	let zoom = {}
+}
 
-export default IconsDataAccessObject;
+export default IconsDataAccessObject
