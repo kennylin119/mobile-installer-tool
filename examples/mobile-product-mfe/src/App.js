@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 // importing all the components
 import Icons from "./component/Icons/Icons";
+import ProductImage from "./component/ProductImage/ProductImage";
 import Dropdown from "./component/Dropdowns/Dropdown";
 import { router, fetchProduct, fetchImage } from "./router/router";		// Note: fetchProduct is a singleton
 
@@ -96,6 +97,7 @@ const App = (props) => {
 	
 			return (
 				<div className='container'>
+					<ProductImage cdn={cdnPrefix} path="toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"></ProductImage>
 					<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
 				</div>
 			)
