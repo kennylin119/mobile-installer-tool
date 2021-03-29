@@ -1,5 +1,6 @@
 
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useState, useEffect } from "react";
 
@@ -97,6 +98,7 @@ const App = (props) => {
 			return (
 				<div className='container'>
 					<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
+					<Dropdown dropdown></Dropdown>
 				</div>
 			)
 		} else {
