@@ -116,7 +116,16 @@ const App = (props) => {
 
 			return (
 				<div className='container'>
-					<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
+					<div className='row'>
+						<div className='col-1'></div>
+						<div className='col-4'>
+							<ProductImage cdn={cdnPrefix} path="toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"></ProductImage>
+						</div>
+						<div className='col-6'>
+							<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
+						</div>
+						<div className='col-1'></div>
+					</div>
 				</div>
 			)
 		} else {
