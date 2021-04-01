@@ -29,10 +29,10 @@ fancyConsoleLog(
 );
 
 // wrap the render function in *another* function so that we can control when it's called
-const renderFn = () =>
+const renderFn = (parameter) =>
   ReactDOM.render(
     <React.StrictMode>
-      <App />
+      <App data={parameter} />
     </React.StrictMode>,
     // use the renderTarget that actually exists, whichever it is
     renderTarget
