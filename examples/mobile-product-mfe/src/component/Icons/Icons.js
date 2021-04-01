@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { Product } from "../../product-context"
 import Icon from "./Icon"
 import { handleCallback } from "../../App"
 
@@ -28,8 +29,15 @@ const convertArrayToObject = (array, key) => {
 // Main function
 const Icons = (props) => {
 	// fetch = fetchImage
-	const { icons, cdn, selected } = props
-	let selected_test = 2
+	const { fetch } = props
+	let selected_test = 3
+
+	// getting the context object, extracting the product
+	const context = useContext(Product)
+	const product = context.product
+
+	let icons = product.UserControls[3].OptionValues
+	let cdn = product.CDNPrefix
 
 	// State variables
 	let [icons_obj, setIcons_obj] = useState(null)
@@ -39,6 +47,7 @@ const Icons = (props) => {
 		// Temporary variable to store icons array
 		let temp_icons = []
 
+		// Map over the array
 		icons.map((obj) => {
 			temp_icons.push({
 				icon_key: obj.KeyValue,
@@ -58,6 +67,7 @@ const Icons = (props) => {
 		return <div className='container-loading'>Loading Icons...</div>
 	} else {
 		if (icons_obj) {
+			// TODO: change this to icons_obj then get rid of renderIcons
 			renderIcons = convertArrayToObject(icons_obj, "icon_key")
 
 			console.log("render icons")
