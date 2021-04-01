@@ -14,6 +14,7 @@ const handleOnClick = (event, key, value, selected, updateProduct) => {
 	// prevent browser reload/refresh
 	event.preventDefault()
 
+	// TODO: START HERE
 	// handleIconCallback(key, value, selected)
 }
 

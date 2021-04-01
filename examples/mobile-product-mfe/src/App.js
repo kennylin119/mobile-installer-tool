@@ -147,9 +147,11 @@ const App = (props) => {
 					<div className='container'>
 						<div className='row'>
 							<div className='col-1'></div>
-							<div className='col-4'>{/* Fill in the product Image */}</div>
+							<div className='col-4'>
+								<ProductImage />
+							</div>
 							<div className='col-6'>
-								<Icons fetch={fetchImage} />
+								<Icons />
 							</div>
 						</div>
 					</div>
@@ -160,10 +162,10 @@ const App = (props) => {
 				// 		<div className='row'>
 				// 			<div className='col-1'></div>
 				// 			<div className='col-4'>
-				// 				<ProductImage cdn={cdnPredix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
+				// <ProductImage cdn={cdnPredix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
 				// 			</div>
 				// 			<div className='col-6'>
-				// 				<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
+				// <Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
 				// 			</div>
 				// 			<div className='col-1'></div>
 				// 		</div>
