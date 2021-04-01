@@ -1,10 +1,15 @@
 import "./App.css"
 
-import { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
+
+// importing the context API
+import { Product } from "./product-context"
 
 // importing all the components
 import Icons from "./component/Icons/Icons"
 import Dropdown from "./component/Dropdowns/Dropdown"
+import ProductImage from "./component/ProductImage/ProductImage"
+import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 import { zoomHandler } from "./router/router"
 
@@ -55,6 +60,17 @@ const App = (props) => {
 	let [isLoaded, setIsLoaded] = useState(false)
 	let [cdnPrefix, setCdnPrefix] = useState(null)
 
+	// TODO: Still need to create this updateProduct function to be added to context API
+	// define the context API updateProduct function
+	// this.updateProduct = (object) => {
+	// 	console.log("[inside updateProduct]")
+	// 	console.log(object)
+
+	// 	this.setState((state) => ({
+	// 		product: object,
+	// 	}))
+	// }
+
 	// Life cycle hook to get and save the product on load
 	useEffect(() => {
 		// Gauranteed way to return a promise
@@ -73,9 +89,10 @@ const App = (props) => {
 				.then(
 					(result) => {
 						setIsLoaded(true)
-						setProduct(result)
-						// extracting the cdn
-						setCdnPrefix(result[0].CDNPrefix)
+						setProduct(result[0])
+
+						// Product.product = result
+						// this.updateProduct(result)
 					},
 					(error) => {
 						setIsLoaded(true)
@@ -103,36 +120,85 @@ const App = (props) => {
 		if (configure_test) {
 			let configured_json = configure_test.ConfiguredJSON
 
-			console.log("printing user configured json obj")
-			console.log(JSON.parse(configured_json))
+			// console.log("printing user configured json obj")
+			// console.log(JSON.parse(configured_json))
 		}
 
+		// New method using Context API
 		if (product) {
-			let image_path = `./toolkit/${product[0].ProductIdentifier}/`
+			// let product_icons
+			// product_icons = product[0].UserControls[3].OptionValues
+			// product_icons = Product2.UserControls[3].OptionValues
 
-			// extracting the product icons
-			let product_icons
-			product_icons = product[0].UserControls[3].OptionValues
+			// setCdnPrefix(Product2.CDNPrefix)
+
+			// building the context API object
+			let state = {
+				product: product,
+				// FIXME: this is dummy function for now. will be replaced with this.updateProduct
+				updateProduct: () => {
+					console.log("[called updateProduct from App]")
+				},
+			}
 
 			return (
-				<div className='container'>
-					<div className='row'>
-						<div className='col-1'></div>
-						<div className='col-4'>
-							<ProductImage cdn={cdnPrefix} path="toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"></ProductImage>
+				// Context API, passing the state in
+				<Product.Provider value={state}>
+					<div className='container'>
+						<div className='row'>
+							<div className='col-1'></div>
+							<div className='col-4'>{/* Fill in the product Image */}</div>
+							<div className='col-6'>
+								<Icons fetch={fetchImage} />
+							</div>
 						</div>
-						<div className='col-6'>
-							<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
-						</div>
-						<div className='col-1'></div>
 					</div>
-				</div>
+				</Product.Provider>
+
+				// <div className='container'>
+				// 	<Product2.Provider>
+				// 		<div className='row'>
+				// 			<div className='col-1'></div>
+				// 			<div className='col-4'>
+				// 				<ProductImage cdn={cdnPredix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
+				// 			</div>
+				// 			<div className='col-6'>
+				// 				<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
+				// 			</div>
+				// 			<div className='col-1'></div>
+				// 		</div>
+				// 	</Product2.Provider>
+				// </div>
 			)
 		} else {
 			return <div className='container-product-error'>Cannot load</div>
 		}
+
+		// if (product) {
+		// 	let image_path = `./toolkit/${product[0].ProductIdentifier}/`
+
+		// 	// extracting the product icons
+		// 	let product_icons
+		// 	product_icons = product[0].UserControls[3].OptionValues
+
+		// 	return (
+		// 		<div className='container'>
+		// 			<div className='row'>
+		// 				<div className='col-1'></div>
+		// 				<div className='col-4'>
+		// 					<ProductImage cdn={cdnPrefix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
+		// 				</div>
+		// 				<div className='col-6'>
+		// 					<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
+		// 				</div>
+		// 				<div className='col-1'></div>
+		// 			</div>
+		// 		</div>
+		// 	)
+		// } else {
+		// 	return <div className='container-product-error'>Cannot load</div>
+		// }
 	}
 }
-
 export { handleCallback }
 export default App
