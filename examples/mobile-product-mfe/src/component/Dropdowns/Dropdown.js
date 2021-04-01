@@ -20,12 +20,14 @@ const Dropdown = (props) => {
 	}
 
 	return (
-        <DropdownButton id="dropdown-item-button" title="Dropdown button">
-            <Dropdown.Item as="button">
-                <img id="icon" src={image} alt={"Image invalid"} onClick={((e) => handleOnClick(e, icon_key, icon_value))}></img>
-                Here is custom option!
-            </Dropdown.Item>
-        </DropdownButton>
+		<div>
+        <label htmlFor="image-selector">Select an option:</label>
+        <select name="image-selector" id="image-selector">
+          <option value="Option 1">Option 1</option>
+          <option value="Option 2">Option 2</option>
+          <option value="Option 3">Option 3</option>
+        </select>
+      </div>
 	);
 };
 
