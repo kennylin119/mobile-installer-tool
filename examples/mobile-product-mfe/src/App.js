@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react"
 
 // importing the context API
 import { Product } from "./product-context"
+import { Zoom } from "./zoom-context"
 
 // importing all the components
 import Icons from "./component/Icons/Icons"
@@ -11,7 +12,32 @@ import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
-import { zoomHandler } from "./router/router"
+
+const initializeZoom = (product) => {
+	if (product) {
+		console.log("[building initial zoom with product]")
+	} else {
+		console.log("[building empty initial zoom]")
+
+		return {
+			AccessLevels: null,
+			AdditionalAttributes: [],
+			AdditionalWarnings: null,
+			ConfigurationStatus: null,
+			CustomModelNumber: null,
+			Errors: [],
+			FGID: null,
+			Features: {},
+			GenericModelNumber: null,
+			IsFullyConfigured: null,
+			ModelType: null,
+			Number: null,
+			Product: null,
+			UsedElevatedAccess: null,
+			Warnings: null,
+		}
+	}
+}
 
 const handleCallback = (props) => {
 	const { cmd, value } = props
@@ -126,12 +152,6 @@ const App = (props) => {
 
 		// New method using Context API
 		if (product) {
-			// let product_icons
-			// product_icons = product[0].UserControls[3].OptionValues
-			// product_icons = Product2.UserControls[3].OptionValues
-
-			// setCdnPrefix(Product2.CDNPrefix)
-
 			// building the context API object
 			let state = {
 				product: product,
@@ -141,65 +161,34 @@ const App = (props) => {
 				},
 			}
 
+			let zoom_state = {
+				zoom: initializeZoom(product),
+				updateZoom: () => {
+					console.log("[called updateZoom from App]")
+				},
+			}
+
 			return (
 				// Context API, passing the state in
 				<Product.Provider value={state}>
-					<div className='container'>
-						<div className='row'>
-							<div className='col-1'></div>
-							<div className='col-4'>
-								<ProductImage />
-							</div>
-							<div className='col-6'>
-								<Icons />
+					<Zoom.Provider value={zoom_state}>
+						<div className='container'>
+							<div className='row'>
+								<div className='col-1'></div>
+								<div className='col-4'>
+									<ProductImage />
+								</div>
+								<div className='col-6'>
+									<Icons />
+								</div>
 							</div>
 						</div>
-					</div>
+					</Zoom.Provider>
 				</Product.Provider>
-
-				// <div className='container'>
-				// 	<Product2.Provider>
-				// 		<div className='row'>
-				// 			<div className='col-1'></div>
-				// 			<div className='col-4'>
-				// <ProductImage cdn={cdnPredix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
-				// 			</div>
-				// 			<div className='col-6'>
-				// <Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
-				// 			</div>
-				// 			<div className='col-1'></div>
-				// 		</div>
-				// 	</Product2.Provider>
-				// </div>
 			)
 		} else {
 			return <div className='container-product-error'>Cannot load</div>
 		}
-
-		// if (product) {
-		// 	let image_path = `./toolkit/${product[0].ProductIdentifier}/`
-
-		// 	// extracting the product icons
-		// 	let product_icons
-		// 	product_icons = product[0].UserControls[3].OptionValues
-
-		// 	return (
-		// 		<div className='container'>
-		// 			<div className='row'>
-		// 				<div className='col-1'></div>
-		// 				<div className='col-4'>
-		// 					<ProductImage cdn={cdnPrefix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
-		// 				</div>
-		// 				<div className='col-6'>
-		// 					<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
-		// 				</div>
-		// 				<div className='col-1'></div>
-		// 			</div>
-		// 		</div>
-		// 	)
-		// } else {
-		// 	return <div className='container-product-error'>Cannot load</div>
-		// }
 	}
 }
 export { handleCallback }
