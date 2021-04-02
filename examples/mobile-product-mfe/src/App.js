@@ -13,9 +13,84 @@ import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 
-const initializeZoom = (product) => {
+const initializeZoom = (product, configure) => {
 	if (product) {
 		console.log("[building initial zoom with product]")
+
+		if (configure) {
+			configure = JSON.parse(configure)
+
+			console.log("[and user configurations]")
+			console.log(configure)
+		}
+
+		// Using optional chaining ?.
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+		// TODO: Need to double check this!!!!
+		// TODO: familiarize with what each of these attributes mean
+		// ! Not every zoom variable has all of these attributes. Are there other attributes that we missed?
+
+		let _warnings = []
+		let _features = {}
+		let _additionalAttributes = []
+
+		if (product?.UserControls) {
+			product.UserControls.map((obj) => {
+				let key = obj?.Variable
+				let config_key = configure?.Selections[key] // configure.Selections.SYSTEM => HW
+				// let config_label = configure.SelectionValues["SYSTEM"]
+				let obj_OptionValues = obj?.OptionValues
+
+				let _validKeys = []
+
+				// console.log(`[${key}]`)
+				// console.log(config_label)
+
+				obj_OptionValues.map((option) => {
+					let _keyValue = option?.KeyValue
+
+					if (_keyValue) {
+						_validKeys.push(_keyValue)
+					}
+				})
+
+				// Setting object at the key
+				_features[key] = {
+					ValidKeys: _validKeys,
+					InvalidKeys: [],
+					CurrentValue: config_key,
+				}
+			})
+		}
+
+		if (configure?.Warnings) {
+			_warnings = configure?.Warnings
+		}
+
+		// ! Are there other additionalAttributes other than from ResultantValue?
+		if (configure?.ResultantValue) {
+			_additionalAttributes.push(configure?.ResultantValue)
+		}
+
+		// TODO: need to go over this zoom object again
+		return {
+			AccessLevels: null,
+			AdditionalAttributes: _additionalAttributes,
+			AdditionalWarnings: null,
+			ConfigurationStatus: "Valid",
+			CustomModelNumber: product?.SubtitleTemplate[0]?.Keys[0] + "-N",
+			Errors: [],
+			FGID: null, // ! What is FGID??
+			Features: _features,
+			GenericModelNumber: product?.SubtitleTemplate[0]?.Keys[0],
+			IsConfigured: configure?.IsConfigured ? true : false,
+			IsFullyConfigured: false,
+			ModelType: configure?.ModelType,
+			Number: null,
+			Product: product?.ProductIdentifier,
+			UsedElevatedAccess: false,
+			Warnings: _warnings,
+		}
 	} else {
 		console.log("[building empty initial zoom]")
 
@@ -142,14 +217,6 @@ const App = (props) => {
 	}
 	// If the product has been loaded
 	else {
-		// Check if configure exists
-		if (configure_test) {
-			let configured_json = configure_test.ConfiguredJSON
-
-			// console.log("printing user configured json obj")
-			// console.log(JSON.parse(configured_json))
-		}
-
 		// New method using Context API
 		if (product) {
 			// building the context API object
@@ -162,7 +229,7 @@ const App = (props) => {
 			}
 
 			let zoom_state = {
-				zoom: initializeZoom(product),
+				zoom: initializeZoom(product, configure_test.ConfiguredJSON),
 				updateZoom: () => {
 					console.log("[called updateZoom from App]")
 				},
