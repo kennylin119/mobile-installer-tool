@@ -13,6 +13,14 @@ import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 
+/**
+ * This function takes in product and configure and parses both objects to build out
+ * a zoom object to return.
+ *
+ * @param {*} product == UITemplate
+ * @param {*} configure == user configurations
+ * @returns == zoom object
+ */
 const initializeZoom = (product, configure) => {
 	if (product) {
 		console.log("[building initial zoom with product]")
