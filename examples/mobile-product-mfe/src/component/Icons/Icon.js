@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { Product } from "../../product-context"
 import { Zoom } from "../../zoom-context"
 
-import { zoomHandler } from "../../services/IconsDataAccessObject"
+import { zoomHandler } from "../../services/ZoomHandler"
 import default_img from "../../toolkit/default_image.jpeg"
 import { handleIconCallback } from "./Icons"
 
@@ -23,7 +23,8 @@ const handleOnClick = (event, key, value, selected, product, updateProduct, zoom
 	// prevent browser reload/refresh
 	event.preventDefault()
 
-	// modify the products before passing into zoom handler
+	// TODO: START HERE
+	// modify the zoom before passing into zoom handler
 	// call zoom handler
 	// zoom handler sends the zoom object
 	// get the response from zoom handler
@@ -33,9 +34,6 @@ const handleOnClick = (event, key, value, selected, product, updateProduct, zoom
 	// else
 	// don't update the function
 	// printout the appropriate error messages to user
-
-	// const res = zoomHandler(zoom)
-	// if(res.)
 }
 
 const Icon = (props) => {
