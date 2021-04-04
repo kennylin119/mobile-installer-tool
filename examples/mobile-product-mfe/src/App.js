@@ -167,7 +167,6 @@ const App = (props) => {
 	let [product, setProduct] = useState(null) // Truthy object
 	let [error, setError] = useState(null)
 	let [isLoaded, setIsLoaded] = useState(false)
-	let [cdnPrefix, setCdnPrefix] = useState(null)
 
 	// TODO: Still need to create this updateProduct function to be added to context API
 	// define the context API updateProduct function

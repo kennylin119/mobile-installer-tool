@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { Product } from "../../product-context"
 import { Zoom } from "../../zoom-context"
 
-import { zoomHandler } from "../../services/ZoomHandler"
+import ZoomHandler from "../../services/ZoomHandler"
 import default_img from "../../toolkit/default_image.jpeg"
 import { handleIconCallback } from "./Icons"
 
@@ -28,6 +28,9 @@ const handleOnClick = (event, key, value, selected, product, updateProduct, zoom
 	// call zoom handler
 	// zoom handler sends the zoom object
 	// get the response from zoom handler
+	// ! NOTE: ZoomHanlder calls an async function. How do I await for ZoomHandler to finish, then print the result using log
+	const res = ZoomHandler(zoom)
+	console.log(res)
 
 	// if zoom response is valid
 	// call updateProduct function

@@ -1,36 +1,49 @@
-import React, { useContext } from "react"
-import router from "../router/router"
-import { Zoom } from "../zoom-context"
+import React from "react"
+import router, { fetchZoom } from "../router/router"
 
 /**
  * Main logical layer function that:
  * 1. builds the zoom object
  * 2. sends the zoom object using fetch()
  * 3. handles the response from the configurator
+ * ! For now, we pass in the zoom instead of using the zoom-context in here
  */
-const zoomHandler = (props) => {
-	// Destructuring props
-	const { key, value } = props
-
+const ZoomHandler = (zoom) => {
 	console.log("[zoomHandler]")
+	console.log(zoom)
 
-	// Build the zoom object
-	let zoom = {}
-
-	// Send the zoom object
-	fetch(` https://services.mylutron.com/productservicesorchestrator/v1/zoom`, {
-		method: "POST",
-		body: JSON.stringify(zoom),
-		headers: { "Content-Type": "application.json" },
-	})
+	fetchZoom(zoom)
 		.then((response) => {
 			// Handle the response
+			console.log("[configurator API OK response]")
+			console.log(response)
 			return response.json()
 		})
 		.catch((err) => {
+			console.log("[configurator API ERR response]")
+			console.log(err)
 			return err
 		})
-	// ! should we add anything else here?
+
+	// Send the zoom object
+	// fetch(`https://services.mylutron.com/productservicesorchestrator/v1/zoom`, {
+	// 	method: "POST",
+	// 	body: JSON.stringify(zoom),
+	// 	headers: { "Content-Type": "application.json" },
+	// })
+	// 	.then((response) => {
+	// 		// Handle the response
+	// 		console.log("[configurator API OK response]")
+	// 		console.log(response)
+	// 		return response.json()
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log("[configurator API ERR response]")
+	// 		console.log(err)
+	// 		return err
+	// 	})
+
+	// ! Should we updateZoom here?
 }
 
-export default zoomHandler
+export default ZoomHandler
