@@ -16,8 +16,11 @@ const ZoomHandler = (zoom) => {
 		.then((response) => {
 			// Handle the response
 			console.log("[configurator API OK response]")
-			console.log(response)
 			return response.json()
+		})
+		.then((data) => {
+			console.log(data)
+			return data
 		})
 		.catch((err) => {
 			console.log("[configurator API ERR response]")
