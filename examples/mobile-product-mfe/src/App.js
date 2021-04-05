@@ -13,6 +13,8 @@ import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 import { zoomHandler } from "./router/router"
 
+import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
+
 const handleCallback = (props) => {
 	const { cmd, value } = props
 
@@ -153,6 +155,9 @@ const App = (props) => {
 							<div className='col-6'>
 								<Icons />
 							</div>
+						</div>
+						<div>
+							<SelectionSlider />
 						</div>
 					</div>
 				</Product.Provider>
