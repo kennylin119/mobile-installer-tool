@@ -255,6 +255,7 @@ const App = (props) => {
 								<div className='col-6'>
 									<Icons />
 								</div>
+								<div className='col-1'></div>
 							</div>
 						</div>
 					</Zoom.Provider>

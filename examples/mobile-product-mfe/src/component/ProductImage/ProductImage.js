@@ -1,19 +1,28 @@
 import React, { useContext } from "react"
 import { Product } from "../../product-context"
 import PropTypes from "prop-types"
+import { Zoom } from "../../zoom-context"
 
 const ProductImage = (props) => {
+	//product context
 	const context = useContext(Product)
 	const product = context.product
 
+	//zoom context
+	const zoom = useContext(Zoom).zoom
+
+	// console.log('zoom:')
+	// console.log(zoom)
+
+
 	const cdn = product.CDNPrefix
-	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"
+	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_"+zoom.AdditionalAttributes[0].PSTORE_MODEL+".png"
 
 	const link = cdn + path
 
 	return (
 		<div>
-			<p>This Is where ProductImage should be</p>
+			{/* <p>This Is where ProductImage should be</p> */}
 			<img src={link} className='productImage'></img>
 		</div>
 	)
