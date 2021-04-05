@@ -81,22 +81,29 @@ const initializeZoom = (product, configure) => {
 
 		// TODO: need to go over this zoom object again
 		return {
-			AccessLevels: null,
-			AdditionalAttributes: _additionalAttributes,
-			AdditionalWarnings: null,
-			ConfigurationStatus: "Valid",
-			CustomModelNumber: product?.SubtitleTemplate[0]?.Keys[0] + "-N",
-			Errors: [],
-			FGID: null, // ! What is FGID??
-			Features: _features,
-			GenericModelNumber: product?.SubtitleTemplate[0]?.Keys[0],
-			IsConfigured: configure?.IsConfigured ? true : false,
-			IsFullyConfigured: false,
-			ModelType: configure?.ModelType,
-			Number: null,
-			Product: product?.ProductIdentifier,
-			UsedElevatedAccess: false,
-			Warnings: _warnings,
+			// AccessLevels: null,
+			// AdditionalAttributes: _additionalAttributes,
+			// AdditionalWarnings: null,
+			// ConfigurationStatus: "Valid",
+			// CustomModelNumber: product?.SubtitleTemplate[0]?.Keys[0] + "-N",
+			// Errors: [],
+			// FGID: null, // ! What is FGID??
+			// Features: _features,
+			// GenericModelNumber: product?.SubtitleTemplate[0]?.Keys[0],
+			// IsConfigured: configure?.IsConfigured ? true : false,
+			// IsFullyConfigured: false,
+			// ModelType: configure?.ModelType,
+			// Number: null,
+			// Product: product?.ProductIdentifier,
+			// UsedElevatedAccess: false,
+			// Warnings: _warnings,
+
+			ZoomInput: {
+				AccessLevel: null,
+			},
+			OverrideSelections: {},
+			FeatureDependencies: {},
+			IsQuoted: false,
 		}
 	} else {
 		console.log("[building empty initial zoom]")
@@ -118,16 +125,6 @@ const initializeZoom = (product, configure) => {
 			UsedElevatedAccess: null,
 			Warnings: null,
 		}
-	}
-}
-
-const handleCallback = (props) => {
-	const { cmd, value } = props
-
-	// Will contain a long list of commands that we can match on
-	if (cmd == "hIconClick") {
-		// call the router function to send data to Configurator API
-		// zoomHandler()
 	}
 }
 
@@ -264,5 +261,5 @@ const App = (props) => {
 		}
 	}
 }
-export { handleCallback }
+
 export default App

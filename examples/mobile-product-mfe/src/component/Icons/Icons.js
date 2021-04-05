@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react"
 import { Product } from "../../product-context"
 import Icon from "./Icon"
-import { handleCallback } from "../../App"
 
 // Global level icons object that can be modified by Icon.js
 let renderIcons
@@ -12,7 +11,7 @@ export const handleIconCallback = (key, value, selected) => {
 	renderIcons[key].selected = !renderIcons[key].selected
 	console.log(renderIcons[key].selected)
 
-	handleCallback({ cmd: "hIconClick", value: { key, value } })
+	// handleCallback({ cmd: "hIconClick", value: { key, value } })
 }
 
 // Function to parse an array into an object based on a key
