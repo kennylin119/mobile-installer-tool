@@ -34,7 +34,6 @@ const initializeZoom = (product, configure) => {
 
 		// Using optional chaining ?.
 		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-		// TODO: Need to double check this!!!!
 		// TODO: familiarize with what each of these attributes mean
 		// ! Not every zoom variable has all of these attributes. Are there other attributes that we missed?
 

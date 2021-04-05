@@ -10,43 +10,21 @@ import router, { fetchZoom } from "../router/router"
  */
 const ZoomHandler = (zoom) => {
 	console.log("[zoomHandler]")
-	console.log(zoom)
+	// console.log(zoom)
 
-	fetchZoom(zoom)
+	return fetchZoom(zoom)
 		.then((response) => {
 			// Handle the response
 			console.log("[configurator API OK response]")
 			return response.json()
 		})
 		.then((data) => {
-			console.log(data)
 			return data
 		})
 		.catch((err) => {
 			console.log("[configurator API ERR response]")
-			console.log(err)
 			return err
 		})
-
-	// Send the zoom object
-	// fetch(`https://services.mylutron.com/productservicesorchestrator/v1/zoom`, {
-	// 	method: "POST",
-	// 	body: JSON.stringify(zoom),
-	// 	headers: { "Content-Type": "application.json" },
-	// })
-	// 	.then((response) => {
-	// 		// Handle the response
-	// 		console.log("[configurator API OK response]")
-	// 		console.log(response)
-	// 		return response.json()
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log("[configurator API ERR response]")
-	// 		console.log(err)
-	// 		return err
-	// 	})
-
-	// ! Should we updateZoom here?
 }
 
 export default ZoomHandler

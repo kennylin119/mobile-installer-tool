@@ -23,20 +23,27 @@ const handleOnClick = (event, key, value, selected, product, updateProduct, zoom
 	// prevent browser reload/refresh
 	event.preventDefault()
 
+	let res_obj
+
 	// TODO: START HERE
 	// modify the zoom before passing into zoom handler
 	// call zoom handler
 	// zoom handler sends the zoom object
 	// get the response from zoom handler
 	// ! NOTE: ZoomHanlder calls an async function. How do I await for ZoomHandler to finish, then print the result using log
-	const res = ZoomHandler(zoom)
-	console.log(res)
+	ZoomHandler(zoom)
+		.then((response) => {
+			console.log(response)
 
-	// if zoom response is valid
-	// call updateProduct function
-	// else
-	// don't update the function
-	// printout the appropriate error messages to user
+			// if zoom response is valid
+			// call updateProduct function
+			// else
+			// don't update the function
+			// printout the appropriate error messages to user
+		})
+		.catch((err) => {
+			// Do something with the error
+		})
 }
 
 const Icon = (props) => {
