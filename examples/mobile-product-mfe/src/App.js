@@ -271,6 +271,7 @@ const App = (props) => {
 			ZoomHandler(zoom_request_state.zoom).then((response) => {
 				console.log(ZoomResponse)
 				console.log(response)
+				// FIXME: CANNOT UPDATE ZOOM_RESPONSE_STATE
 				zoom_response_state.updateZoom(response)
 				console.log(zoom_response_state.zoom)
 			})
