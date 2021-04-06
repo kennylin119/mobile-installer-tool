@@ -1,6 +1,11 @@
 import React from "react"
 
-export const Zoom = React.createContext({
+export const ZoomRequest = React.createContext({
+	zoom: null,
+	updateZoom: (object) => {},
+})
+
+export const ZoomResponse = React.createContext({
 	zoom: null,
 	updateZoom: (object) => {},
 })

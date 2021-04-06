@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from "react"
 
 // importing the context API
 import { Product } from "./product-context"
-import { Zoom } from "./zoom-context"
+import { ZoomRequest, ZoomResponse } from "./zoom-context"
 
 // importing all the components
 import Icons from "./component/Icons/Icons"
@@ -12,6 +12,9 @@ import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
+
+// importing routing functions
+import ZoomHandler from "./services/ZoomHandler"
 
 /**
  * This function takes in product and configure and parses both objects to build out
@@ -24,6 +27,7 @@ import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetc
 const initializeZoom = (product, configure) => {
 	if (product) {
 		console.log("[building initial zoom with product]")
+		console.log(product)
 
 		if (configure) {
 			configure = JSON.parse(configure)
@@ -81,6 +85,7 @@ const initializeZoom = (product, configure) => {
 
 		// TODO: need to go over this zoom object again
 		return {
+			// RESPONSE
 			// AccessLevels: null,
 			// AdditionalAttributes: _additionalAttributes,
 			// AdditionalWarnings: null,
@@ -98,12 +103,21 @@ const initializeZoom = (product, configure) => {
 			// UsedElevatedAccess: false,
 			// Warnings: _warnings,
 
+			// REQUEST
 			ZoomInput: {
-				AccessLevel: null,
+				ShipToNumber: 709323,
+				LutronSellingCompany: "00101",
+				Product: product?.ProductIdentifier,
+				Selections: configure?.Selections,
+				AccessLevels: 1,
 			},
-			OverrideSelections: {},
-			FeatureDependencies: {},
-			IsQuoted: false,
+			OverrideSelections: configure?.ResultantValue,
+			FeatureDependencies: {
+				COLUMNS: ["BUTTON_ARRAY"],
+				FACEPLATE_FINISH: ["CUSTCOLOR_FACEPLATE"],
+				ENGRAVING_SPECIFIED: ["PERSONALIZATION_ID"],
+			},
+			IsQuoted: configure?.IsQuoted,
 		}
 	} else {
 		console.log("[building empty initial zoom]")
@@ -222,8 +236,10 @@ const App = (props) => {
 	else {
 		// New method using Context API
 		if (product) {
-			// building the context API object
-			let state = {
+			// We build the context API values before rendering
+
+			// Context for Product
+			let product_state = {
 				product: product,
 				// FIXME: this is dummy function for now. will be replaced with this.updateProduct
 				updateProduct: () => {
@@ -231,29 +247,53 @@ const App = (props) => {
 				},
 			}
 
-			let zoom_state = {
+			// Context for zoom request
+			let zoom_request_state = {
 				zoom: initializeZoom(product, configure_test.ConfiguredJSON),
 				updateZoom: () => {
 					console.log("[called updateZoom from App]")
 				},
 			}
 
+			// Context for zoom response
+			let zoom_response_state = {
+				zoom: null,
+				updateZoom: (_zoom) => {
+					// this.zoom = _zoom // ! This line might not work!
+					console.log("[inside updateZoom]")
+					console.log(_zoom)
+				},
+			}
+
+			// Since we already have the zoom request, we make a call to the configurator API before rendering
+			console.log("[populating initial]")
+			// Call the ZoomHandler and set the response into ZoomResponse
+			ZoomHandler(zoom_request_state.zoom).then((response) => {
+				console.log(ZoomResponse)
+				console.log(response)
+				zoom_response_state.updateZoom(response)
+				console.log(zoom_response_state.zoom)
+			})
+
+			// Render the DOM
 			return (
 				// Context API, passing the state in
-				<Product.Provider value={state}>
-					<Zoom.Provider value={zoom_state}>
-						<div className='container'>
-							<div className='row'>
-								<div className='col-1'></div>
-								<div className='col-4'>
-									<ProductImage />
-								</div>
-								<div className='col-6'>
-									<Icons />
+				<Product.Provider value={product_state}>
+					<ZoomRequest.Provider value={zoom_request_state}>
+						<ZoomResponse.Provider value={zoom_response_state}>
+							<div className='container'>
+								<div className='row'>
+									<div className='col-1'></div>
+									<div className='col-4'>
+										<ProductImage />
+									</div>
+									<div className='col-6'>
+										<Icons />
+									</div>
 								</div>
 							</div>
-						</div>
-					</Zoom.Provider>
+						</ZoomResponse.Provider>
+					</ZoomRequest.Provider>
 				</Product.Provider>
 			)
 		} else {

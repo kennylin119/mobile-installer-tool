@@ -1,7 +1,7 @@
 import React, { useContext } from "react"
 
 import { Product } from "../../product-context"
-import { Zoom } from "../../zoom-context"
+import { ZoomRequest, ZoomResponse } from "../../zoom-context"
 
 import ZoomHandler from "../../services/ZoomHandler"
 import default_img from "../../toolkit/default_image.jpeg"
@@ -34,12 +34,7 @@ const handleOnClick = (event, key, value, selected, product, updateProduct, zoom
 	ZoomHandler(zoom)
 		.then((response) => {
 			console.log(response)
-
-			// if zoom response is valid
-			// call updateProduct function
-			// else
-			// don't update the function
-			// printout the appropriate error messages to user
+			//update the ZoomResponse
 		})
 		.catch((err) => {
 			// Do something with the error
@@ -54,9 +49,9 @@ const Icon = (props) => {
 	const product = product_context.product
 	const _updateProduct = product_context.updateProduct
 
-	const zoom_context = useContext(Zoom)
-	const zoom = zoom_context.zoom
-	const _updateZoom = zoom_context.updateZoom
+	const zoom_request_context = useContext(ZoomRequest)
+	const zoom = zoom_request_context.zoom
+	const _updateZoom = zoom_request_context.updateZoom
 
 	let image
 
