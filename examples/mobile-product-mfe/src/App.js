@@ -286,15 +286,23 @@ const App = (props) => {
 								<div className='row'>
 									<div className='col-1'></div>
 									<div className='col-4'>
+										{/* Only Product Image goes in this div */}
 										<ProductImage />
 									</div>
 									<div className='col-6'>
+										{/* Put all other components in this div */}
 										<Icons />
+										<div>
+											< SelectionSlider />
+										</div>
+
+
+
+
+
+										
 									</div>
-									
-								</div>
-								<div>
-									< SelectionSlider />
+									<div className='col-1'></div>
 								</div>
 							</div>
 						</ZoomResponse.Provider>

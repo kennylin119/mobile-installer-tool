@@ -61,7 +61,7 @@
 
 *{
   box-sizing:border-box;
-  border: 1px solid #1e54c0;/*This is the blue border stuff*/
+  /*border: 1px solid #1e54c0;*//*This is the blue border stuff*/
 }
 
 .row::after{
