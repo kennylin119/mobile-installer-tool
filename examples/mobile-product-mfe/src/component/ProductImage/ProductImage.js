@@ -1,7 +1,19 @@
 import React, { useContext } from "react"
+import styled from "styled-components"
+
 import { Product } from "../../product-context"
 import PropTypes from "prop-types"
-import { ZoomRequest,ZoomResponse } from "../../zoom-context"
+import { ZoomRequest, ZoomResponse } from "../../zoom-context"
+
+const RenderImage = styled.img`
+	height: 65%;
+	width: 65%;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+`
 
 import ZoomHandler from "../../services/ZoomHandler"
 
@@ -41,7 +53,7 @@ const ProductImage = (props) => {
 	return (
 		<div>
 			{/* <p>This Is where ProductImage should be</p> */}
-			<img src={link} className='productImage'></img>
+			<RenderImage src={link}></RenderImage>
 		</div>
 	)
 }
