@@ -12,9 +12,9 @@ import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
-
 // importing routing functions
 import ZoomHandler from "./services/ZoomHandler"
+import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
 
 /**
  * This function takes in product and configure and parses both objects to build out
@@ -291,6 +291,10 @@ const App = (props) => {
 									<div className='col-6'>
 										<Icons />
 									</div>
+									
+								</div>
+								<div>
+									< SelectionSlider />
 								</div>
 							</div>
 						</ZoomResponse.Provider>
