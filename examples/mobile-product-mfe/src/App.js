@@ -122,16 +122,6 @@ const initializeZoom = (product, configure) => {
 	}
 }
 
-const handleCallback = (props) => {
-	const { cmd, value } = props
-
-	// Will contain a long list of commands that we can match on
-	if (cmd == "hIconClick") {
-		// call the router function to send data to Configurator API
-		// zoomHandler()
-	}
-}
-
 const App = (props) => {
 	// Destructuring props
 	// data will contain the AUTHORIZATION TOKEN

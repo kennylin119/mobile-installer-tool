@@ -13,17 +13,17 @@ const ZoomHandler = (zoom) => {
 	console.log(zoom)
 
 	fetchZoom(zoom)
-		.then((response) => {
-			// Handle the response
-			console.log("[configurator API OK response]")
-			console.log(response)
-			return response.json()
-		})
-		.catch((err) => {
-			console.log("[configurator API ERR response]")
-			console.log(err)
-			return err
-		})
+	.then((response) => {
+		// Handle the response
+		console.log("[configurator API OK response]")
+		console.log(response)
+		return response.json()
+	})
+	.catch((err) => {
+		console.log("[configurator API ERR response]")
+		console.log(err)
+		return err
+	})
 
 	// Send the zoom object
 	// fetch(`https://services.mylutron.com/productservicesorchestrator/v1/zoom`, {

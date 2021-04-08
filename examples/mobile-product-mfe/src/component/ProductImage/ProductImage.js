@@ -13,10 +13,13 @@ const ProductImage = (props) => {
 
 	// console.log('zoom:')
 	// console.log(zoom)
-
+	let model;
+	if(zoom?.AdditionalAttributes[0]?.PSTORE_MODEL){
+		model = zoom.AdditionalAttributes[0].PSTORE_MODEL;
+	}
 
 	const cdn = product.CDNPrefix
-	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_"+zoom.AdditionalAttributes[0].PSTORE_MODEL+".png"
+	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_"+model+".png"
 
 	const link = cdn + path
 
