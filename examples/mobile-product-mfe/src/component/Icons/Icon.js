@@ -1,4 +1,5 @@
 import React, { useContext } from "react"
+import styled from "styled-components"
 
 import { Product } from "../../product-context"
 import { ZoomRequest, ZoomResponse } from "../../zoom-context"
@@ -6,6 +7,19 @@ import { ZoomRequest, ZoomResponse } from "../../zoom-context"
 import ZoomHandler from "../../services/ZoomHandler"
 import default_img from "../../toolkit/default_image.jpeg"
 import { handleIconCallback } from "./Icons"
+
+const RenderIcon = styled.div`
+	float: left;
+	width: 60px;
+	height: 60px;
+	background-color: white;
+`
+
+const MyIcon = styled.img`
+	float: center;
+	width: 58px;
+	height: 58px;
+`
 
 // ! This is where we will call updateProduct through the context. No need to pass data back anymore :)
 const handleOnClick = (event, key, value, selected, product, updateProduct, zoom, updateZoom) => {
@@ -63,10 +77,11 @@ const Icon = (props) => {
 	}
 
 	return (
-		<div id='icon-box'>
-			{<img id='icon' src={image} alt={"Image invalid"} onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, product, _updateProduct, zoom, _updateZoom)}></img>}
+		<RenderIcon>
+			{<MyIcon src={image} alt={"Image invalid"} onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, product, _updateProduct, zoom, _updateZoom)}></MyIcon>}
+			{/* {<img id='icon' src={image} alt={"Image invalid"} onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, product, _updateProduct, zoom, _updateZoom)}></img>} */}
 			{icon_value}
-		</div>
+		</RenderIcon>
 	)
 }
 
