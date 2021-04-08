@@ -28,7 +28,22 @@ const x = [
 			{ Keys: ["NPKP"], Values: [[{ Prefix: "Alisse", Variable: "" }], [{ Variable: "SYSTEM" }], [{ Variable: "COLUMNS" }, { Variable: "BUTTON_ARRAY" }, { Variable: "FACEPLATE_FINISH" }], [{ Prefix: "Custom Engraving:", Variable: "ENGRAVING_SPECIFIED" }, { Variable: "COMPONENTS" }]] },
 		],
 		UserControls: [
-			{ Variable: "SYSTEM", ControlType: "SelectionList", Label: "System", DefinitionType: "Provided", IsDisplayed: true, IsShowSingleOptionValue: true, Column: 1, Row: 1, OptionValues: [{ KeyValue: "HW", Label: "HomeWorks (QSX)" }] },
+			{
+				Variable: "SYSTEM",
+				ControlType: "SelectionList",
+				Label: "System",
+				DefinitionType: "Provided",
+				IsDisplayed: true,
+				IsShowSingleOptionValue: true,
+				Column: 1,
+				Row: 1,
+				OptionValues: [
+					{
+						KeyValue: "HW",
+						Label: "HomeWorks (QSX)",
+					},
+				],
+			},
 			{
 				Variable: "WALLBOX_SHAPE",
 				ControlType: "ImageSelector",
@@ -40,8 +55,16 @@ const x = [
 				Row: 2,
 				FeatureText: "",
 				OptionValues: [
-					{ KeyValue: "R", Image: "toolkit/ALISSE/Toolkit_Definition_Value_Image_WALLBOX_SHAPE_Round_Backbox.jpg", Label: "Round Backbox" },
-					{ KeyValue: "S", Image: "toolkit/ALISSE/Toolkit_Definition_Value_Image_WALLBOX_SHAPE_Square_Backbox.jpg", Label: "Square Backbox" },
+					{
+						KeyValue: "R",
+						Image: "toolkit/ALISSE/Toolkit_Definition_Value_Image_WALLBOX_SHAPE_Round_Backbox.jpg",
+						Label: "Round Backbox",
+					},
+					{
+						KeyValue: "S",
+						Image: "toolkit/ALISSE/Toolkit_Definition_Value_Image_WALLBOX_SHAPE_Square_Backbox.jpg",
+						Label: "Square Backbox",
+					},
 				],
 			},
 			{

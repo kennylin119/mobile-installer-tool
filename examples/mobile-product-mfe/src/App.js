@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react"
 
 // importing the context API
 import { Product } from "./product-context"
+import { ZoomRequest, ZoomResponse } from "./zoom-context"
 
 // importing all the components
 import Icons from "./component/Icons/Icons"
@@ -11,17 +12,133 @@ import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
-import { zoomHandler } from "./router/router"
-
+// importing routing functions
+import ZoomHandler from "./services/ZoomHandler"
 import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
 
-const handleCallback = (props) => {
-	const { cmd, value } = props
+/**
+ * This function takes in product and configure and parses both objects to build out
+ * a zoom object to return.
+ *
+ * @param {*} product == UITemplate
+ * @param {*} configure == user configurations
+ * @returns == zoom object
+ */
+const initializeZoom = (product, configure) => {
+	if (product) {
+		console.log("[building initial zoom with product]")
+		console.log(product)
 
-	// Will contain a long list of commands that we can match on
-	if (cmd == "hIconClick") {
-		// call the router function to send data to Configurator API
-		// zoomHandler()
+		if (configure) {
+			configure = JSON.parse(configure)
+
+			console.log("[and user configurations]")
+			console.log(configure)
+		}
+
+		// Using optional chaining ?.
+		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+		// TODO: familiarize with what each of these attributes mean
+		// ! Not every zoom variable has all of these attributes. Are there other attributes that we missed?
+
+		let _warnings = []
+		let _features = {}
+		let _additionalAttributes = []
+
+		if (product?.UserControls) {
+			product.UserControls.map((obj) => {
+				let key = obj?.Variable
+				let config_key = configure?.Selections[key] // configure.Selections.SYSTEM => HW
+				// let config_label = configure.SelectionValues["SYSTEM"]
+				let obj_OptionValues = obj?.OptionValues
+
+				let _validKeys = []
+
+				// console.log(`[${key}]`)
+				// console.log(config_label)
+
+				obj_OptionValues.map((option) => {
+					let _keyValue = option?.KeyValue
+
+					if (_keyValue) {
+						_validKeys.push(_keyValue)
+					}
+				})
+
+				// Setting object at the key
+				_features[key] = {
+					ValidKeys: _validKeys,
+					InvalidKeys: [],
+					CurrentValue: config_key,
+				}
+			})
+		}
+
+		if (configure?.Warnings) {
+			_warnings = configure?.Warnings
+		}
+
+		// ! Are there other additionalAttributes other than from ResultantValue?
+		if (configure?.ResultantValue) {
+			_additionalAttributes.push(configure?.ResultantValue)
+		}
+
+		// TODO: need to go over this zoom object again
+		return {
+			// RESPONSE
+			// AccessLevels: null,
+			// AdditionalAttributes: _additionalAttributes,
+			// AdditionalWarnings: null,
+			// ConfigurationStatus: "Valid",
+			// CustomModelNumber: product?.SubtitleTemplate[0]?.Keys[0] + "-N",
+			// Errors: [],
+			// FGID: null, // ! What is FGID??
+			// Features: _features,
+			// GenericModelNumber: product?.SubtitleTemplate[0]?.Keys[0],
+			// IsConfigured: configure?.IsConfigured ? true : false,
+			// IsFullyConfigured: false,
+			// ModelType: configure?.ModelType,
+			// Number: null,
+			// Product: product?.ProductIdentifier,
+			// UsedElevatedAccess: false,
+			// Warnings: _warnings,
+
+			// REQUEST
+			ZoomInput: {
+				ShipToNumber: 709323,
+				LutronSellingCompany: "00101",
+				Product: product?.ProductIdentifier,
+				Selections: configure?.Selections,
+				AccessLevels: 1,
+			},
+			OverrideSelections: configure?.ResultantValue,
+			FeatureDependencies: {
+				COLUMNS: ["BUTTON_ARRAY"],
+				FACEPLATE_FINISH: ["CUSTCOLOR_FACEPLATE"],
+				ENGRAVING_SPECIFIED: ["PERSONALIZATION_ID"],
+			},
+			IsQuoted: configure?.IsQuoted,
+		}
+	} else {
+		console.log("[building empty initial zoom]")
+
+		return {
+			AccessLevels: null,
+			AdditionalAttributes: [],
+			AdditionalWarnings: null,
+			ConfigurationStatus: null,
+			CustomModelNumber: null,
+			Errors: [],
+			FGID: null,
+			Features: {},
+			GenericModelNumber: null,
+			IsFullyConfigured: null,
+			ModelType: null,
+			Number: null,
+			Product: null,
+			UsedElevatedAccess: null,
+			Warnings: null,
+		}
 	}
 }
 
@@ -60,7 +177,6 @@ const App = (props) => {
 	let [product, setProduct] = useState(null) // Truthy object
 	let [error, setError] = useState(null)
 	let [isLoaded, setIsLoaded] = useState(false)
-	let [cdnPrefix, setCdnPrefix] = useState(null)
 
 	// TODO: Still need to create this updateProduct function to be added to context API
 	// define the context API updateProduct function
@@ -118,24 +234,12 @@ const App = (props) => {
 	}
 	// If the product has been loaded
 	else {
-		// Check if configure exists
-		if (configure_test) {
-			let configured_json = configure_test.ConfiguredJSON
-
-			// console.log("printing user configured json obj")
-			// console.log(JSON.parse(configured_json))
-		}
-
 		// New method using Context API
 		if (product) {
-			// let product_icons
-			// product_icons = product[0].UserControls[3].OptionValues
-			// product_icons = Product2.UserControls[3].OptionValues
+			// We build the context API values before rendering
 
-			// setCdnPrefix(Product2.CDNPrefix)
-
-			// building the context API object
-			let state = {
+			// Context for Product
+			let product_state = {
 				product: product,
 				// FIXME: this is dummy function for now. will be replaced with this.updateProduct
 				updateProduct: () => {
@@ -143,69 +247,64 @@ const App = (props) => {
 				},
 			}
 
+			// Context for zoom request
+			let zoom_request_state = {
+				zoom: initializeZoom(product, configure_test.ConfiguredJSON),
+				updateZoom: () => {
+					console.log("[called updateZoom from App]")
+				},
+			}
+
+			// Context for zoom response
+			let zoom_response_state = {
+				zoom: null,
+				updateZoom: (_zoom) => {
+					// this.zoom = _zoom // ! This line might not work!
+					console.log("[inside updateZoom]")
+					console.log(_zoom)
+				},
+			}
+
+			// Since we already have the zoom request, we make a call to the configurator API before rendering
+			console.log("[populating initial]")
+			// Call the ZoomHandler and set the response into ZoomResponse
+			ZoomHandler(zoom_request_state.zoom).then((response) => {
+				console.log(ZoomResponse)
+				console.log(response)
+				// FIXME: CANNOT UPDATE ZOOM_RESPONSE_STATE
+				zoom_response_state.updateZoom(response)
+				console.log(zoom_response_state.zoom)
+			})
+
+			// Render the DOM
 			return (
 				// Context API, passing the state in
-				<Product.Provider value={state}>
-					<div className='container'>
-						<div className='row'>
-							<div className='col-1'></div>
-							<div className='col-4'>
-								<ProductImage />
+				<Product.Provider value={product_state}>
+					<ZoomRequest.Provider value={zoom_request_state}>
+						<ZoomResponse.Provider value={zoom_response_state}>
+							<div className='container'>
+								<div className='row'>
+									<div className='col-1'></div>
+									<div className='col-4'>
+										<ProductImage />
+									</div>
+									<div className='col-6'>
+										<Icons />
+									</div>
+									
+								</div>
+								<div>
+									< SelectionSlider />
+								</div>
 							</div>
-							<div className='col-6'>
-								<Icons />
-							</div>
-						</div>
-						<div>
-							<SelectionSlider />
-						</div>
-					</div>
+						</ZoomResponse.Provider>
+					</ZoomRequest.Provider>
 				</Product.Provider>
-
-				// <div className='container'>
-				// 	<Product2.Provider>
-				// 		<div className='row'>
-				// 			<div className='col-1'></div>
-				// 			<div className='col-4'>
-				// <ProductImage cdn={cdnPredix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
-				// 			</div>
-				// 			<div className='col-6'>
-				// <Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
-				// 			</div>
-				// 			<div className='col-1'></div>
-				// 		</div>
-				// 	</Product2.Provider>
-				// </div>
 			)
 		} else {
 			return <div className='container-product-error'>Cannot load</div>
 		}
-
-		// if (product) {
-		// 	let image_path = `./toolkit/${product[0].ProductIdentifier}/`
-
-		// 	// extracting the product icons
-		// 	let product_icons
-		// 	product_icons = product[0].UserControls[3].OptionValues
-
-		// 	return (
-		// 		<div className='container'>
-		// 			<div className='row'>
-		// 				<div className='col-1'></div>
-		// 				<div className='col-4'>
-		// 					<ProductImage cdn={cdnPrefix} path='toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png'></ProductImage>
-		// 				</div>
-		// 				<div className='col-6'>
-		// 					<Icons icons={product_icons} cdn={cdnPrefix} fetch={fetchImage}></Icons>
-		// 				</div>
-		// 				<div className='col-1'></div>
-		// 			</div>
-		// 		</div>
-		// 	)
-		// } else {
-		// 	return <div className='container-product-error'>Cannot load</div>
-		// }
 	}
 }
-export { handleCallback }
+
 export default App
