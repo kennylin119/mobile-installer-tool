@@ -3,17 +3,28 @@ import { Product } from "../../product-context"
 import PropTypes from "prop-types"
 import { ZoomRequest,ZoomResponse } from "../../zoom-context"
 
+import ZoomHandler from "../../services/ZoomHandler"
+
 const ProductImage = (props) => {
 	//product context
 	const context = useContext(Product)
 	const product = context.product
 
 	//zoom context
-	const zoom = useContext(ZoomRequest)
+	const zoomReq = useContext(ZoomRequest).zoom
+
+	const ZoomRescontext = useContext(ZoomResponse).zoom
+
+	let res = ZoomHandler(zoomReq)
+
+	console.log("ZOOOOOM")
+
+	console.log(res)
+
+		
 
 	
-	console.log("Zoom:response:")
-	console.log(zoom)
+	//console.log(zoom)
 
 	// console.log('zoom:')
 	// console.log(zoom)
