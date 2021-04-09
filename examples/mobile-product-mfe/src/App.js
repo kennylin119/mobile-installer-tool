@@ -295,12 +295,12 @@ const App = (props) => {
 										<div>
 											< SelectionSlider />
 										</div>
+										<Dropdown></Dropdown>
 
 
 
 
 
-										
 									</div>
 									<div className='col-1'></div>
 								</div>

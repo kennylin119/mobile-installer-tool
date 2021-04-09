@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Product } from "../../product-context"
 import PropTypes from "prop-types"
 import { ZoomRequest, ZoomResponse } from "../../zoom-context"
+import ZoomHandler from "../../services/ZoomHandler"
 
 const RenderImage = styled.img`
 	height: 65%;
@@ -15,7 +16,7 @@ const RenderImage = styled.img`
 	display: block;
 `
 
-import ZoomHandler from "../../services/ZoomHandler"
+
 
 const ProductImage = (props) => {
 	//product context
