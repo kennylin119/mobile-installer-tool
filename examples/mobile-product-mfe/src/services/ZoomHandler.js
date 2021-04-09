@@ -15,7 +15,7 @@ const ZoomHandler = async (zoom) => {
 		var response = await fetchZoom(zoom);
 		var data = await response.json();
 		return data;
-	}catch(e){
+	} catch(e){
 		console.log("[configurator API ERR response]")
 	}
 	

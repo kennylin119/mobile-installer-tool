@@ -254,40 +254,47 @@ const App = (props) => {
 			}
 
 			//Context for zoom request
-			let zoom_request_state = {
-				zoom: initializeZoom(product, configure_test.ConfiguredJSON),
-				updateZoom: () => {
-					console.log("[called updateZoom from App]")
-				},
-			}
+			// let zoom_request_state = {
+			// 	zoom: initializeZoom(product, configure_test.ConfiguredJSON),
+			// 	updateZoom: () => {
+			// 		console.log("[called updateZoom from App]")
+			// 	},
+			// }
+			setZoomReq(initializeZoom(product, configure_test.ConfiguredJSON))
 
-			//let zoom_request_state = initializeZoom(product,configure_test.ConfiguredJSON)
 
-			//Context for zoom response
-			let zoom_response_state = {
-				zoom: null,
-				updateZoom: (_zoom) => {
-					// this.zoom = _zoom // ! This line might not work!
-					console.log("[inside updateZoom]")
-					console.log(_zoom)
-				},
-			}
+			// //let zoom_request_state = initializeZoom(product,configure_test.ConfiguredJSON)
+
+			// //Context for zoom response
+			// let zoom_response_state = {
+			// 	zoom: null,
+			// 	updateZoom: (_zoom) => {
+			// 		// this.zoom = _zoom // ! This line might not work!
+			// 		console.log("[inside updateZoom]")
+			// 		console.log(_zoom)
+			// 	},
+			// }
 
 			//let zoom_response_state = null
 
 			// Since we already have the zoom request, we make a call to the configurator API before rendering
-			console.log("[populating initial]")
-			// Call the ZoomHandler and set the response into ZoomResponse
-			ZoomHandler(zoom_request_state.zoom).then((response) => {
-				console.log(ZoomResponse)
+			// console.log("[populating initial]")
+			// // Call the ZoomHandler and set the response into ZoomResponse
+			// ZoomHandler(zoom_request_state.zoom).then((response) => {
+			// 	console.log(ZoomResponse)
+			// 	console.log(response)
+			// 	// FIXME: CANNOT UPDATE ZOOM_RESPONSE_STATE
+			// 	zoom_response_state.updateZoom(response)
+			// 	console.log(zoom_response_state.zoom)
+			// })
+
+			// Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
+			ZoomHandler(zoomReqVal).then((response) => {
 				console.log(response)
-				// FIXME: CANNOT UPDATE ZOOM_RESPONSE_STATE
-				zoom_response_state.updateZoom(response)
-				console.log(zoom_response_state.zoom)
+				setZoomRes(response)
+				console.log(zoomResVal)
 			})
-
 			
-
 			// Render the DOM
 			return (
 				// Context API, passing the state in
@@ -308,11 +315,6 @@ const App = (props) => {
 											< SelectionSlider />
 										</div>
 										<Dropdown></Dropdown>
-
-
-
-
-
 									</div>
 									<div className='col-1'></div>
 								</div>
