@@ -178,6 +178,12 @@ const App = (props) => {
 	let [error, setError] = useState(null)
 	let [isLoaded, setIsLoaded] = useState(false)
 
+	//set up access points for the zoom contexts
+	const [zoomReqVal,setZoomReq] = useState(null)
+	const [zoomResVal,setZoomRes] = useState(null)
+
+
+
 	// TODO: Still need to create this updateProduct function to be added to context API
 	// define the context API updateProduct function
 	// this.updateProduct = (object) => {
@@ -247,7 +253,7 @@ const App = (props) => {
 				},
 			}
 
-			// Context for zoom request
+			//Context for zoom request
 			let zoom_request_state = {
 				zoom: initializeZoom(product, configure_test.ConfiguredJSON),
 				updateZoom: () => {
@@ -255,7 +261,9 @@ const App = (props) => {
 				},
 			}
 
-			// Context for zoom response
+			//let zoom_request_state = initializeZoom(product,configure_test.ConfiguredJSON)
+
+			//Context for zoom response
 			let zoom_response_state = {
 				zoom: null,
 				updateZoom: (_zoom) => {
@@ -264,6 +272,8 @@ const App = (props) => {
 					console.log(_zoom)
 				},
 			}
+
+			//let zoom_response_state = null
 
 			// Since we already have the zoom request, we make a call to the configurator API before rendering
 			console.log("[populating initial]")
@@ -276,12 +286,14 @@ const App = (props) => {
 				console.log(zoom_response_state.zoom)
 			})
 
+			
+
 			// Render the DOM
 			return (
 				// Context API, passing the state in
 				<Product.Provider value={product_state}>
-					<ZoomRequest.Provider value={zoom_request_state}>
-						<ZoomResponse.Provider value={zoom_response_state}>
+					<ZoomRequest.Provider value={{zoomReqVal,setZoomReq}}>
+						<ZoomResponse.Provider value={{zoomResVal,setZoomRes}}>
 							<div className='container'>
 								<div className='row'>
 									<div className='col-1'></div>
