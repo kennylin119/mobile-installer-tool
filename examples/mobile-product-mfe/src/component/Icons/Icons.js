@@ -1,6 +1,17 @@
 import React, { useState, useContext } from "react"
+import styled from "styled-components"
+
 import { Product } from "../../product-context"
 import Icon from "./Icon"
+
+const ImageContainer = styled.div`
+	width: auto;
+	height: 220px;
+	background-color: #41b3a3;
+	padding-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+`
 
 // Global level icons object that can be modified by Icon.js
 let renderIcons
@@ -73,10 +84,10 @@ const Icons = (props) => {
 			console.log(renderIcons)
 
 			return (
-				<div className='img-container'>
+				<ImageContainer>
 					<div className='img-container-title'>Icons</div>
 					{Object.entries(renderIcons).map((_obj) => (_obj[1].active ? <Icon key={_obj[1].icon_key} cdn={cdn} icon_key={_obj[1].icon_key} icon_value={_obj[1].icon_value} icon_image={_obj[1].icon_image} icon_selected={_obj[1].selected}></Icon> : null))}
-				</div>
+				</ImageContainer>
 			)
 		} else {
 			return <div className='container-product-error'>Cannot load icons</div>

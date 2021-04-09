@@ -33,36 +33,7 @@ export const fetchImage = async (PATH) => {
 }
 
 // ! Note: this function works
-// ! However, our zoom object isn't in the correct format so we get a error 400 Bad Request
 export const fetchZoom = async (ZOOM) => {
-	// ZOOM = {
-	// 	ZoomInput: {
-	// 		ShipToNumber: 709323,
-	// 		LutronSellingCompany: "00101",
-	// 		Product: "Alisse",
-	// 		Selections: {
-	// 			SYSTEM: "HW",
-	// 			WALLBOX_SHAPE: "S",
-	// 			COLUMNS: "2",
-	// 			BUTTON_ARRAY: "22",
-	// 			FACEPLATE_FINISH: "AZ",
-	// 			ENGRAVING_SPECIFIED: "N",
-	// 			COUNTRY: "US",
-	// 			COMPONENTS: "KB",
-	// 		},
-	// 		AccessLevel: 1,
-	// 	},
-	// 	OverrideSelections: {
-	// 		PSTORE_MODEL: "HW-S-AZ-S-01010-01010-AZ-E",
-	// 	},
-	// 	FeatureDependencies: {
-	// 		COLUMNS: ["BUTTON_ARRAY"],
-	// 		FACEPLATE_FINISH: ["CUSTCOLOR_FACEPLATE"],
-	// 		ENGRAVING_SPECIFIED: ["PERSONALIZATION_ID"],
-	// 	},
-	// 	IsQuoted: false,
-	// }
-
 	const res = await fetch(`https://ams-test-saltmarsh-services.azure-api.net/qa/productservicesorchestrator/v1/zoom`, {
 		method: "POST",
 		body: JSON.stringify(ZOOM),
