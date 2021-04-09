@@ -22,8 +22,24 @@ const ProductImage = (props) => {
 	const product = context.product
 
 	//zoom context
-	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
-	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
+	const zoomReq = useContext(ZoomRequest).zoom
+
+	const ZoomRescontext = useContext(ZoomResponse).zoom
+
+	let res = ZoomHandler(zoomReq)
+
+	console.log("ZOOOOOM")
+
+	console.log(res)
+
+	//console.log(zoom)
+
+	// console.log('zoom:')
+	// console.log(zoom)
+	// let model;
+	// if(zoom?.AdditionalAttributes[0]?.PSTORE_MODEL){
+	// 	model = zoom.AdditionalAttributes[0].PSTORE_MODEL;
+	// }
 
 	const cdn = product.CDNPrefix
 	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AZ-S-10101-10101-AZ-E.png"

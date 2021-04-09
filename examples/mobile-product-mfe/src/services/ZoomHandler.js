@@ -10,16 +10,28 @@ import router, { fetchZoom } from "../router/router"
  */
 const ZoomHandler = (zoom) => {
 	console.log("[zoomHandler]")
-	// console.log(zoom)
-	try {
-		// Make call to configurator API, passing in the input zoom object
-		var response = await fetchZoom(zoom)
-		var data = await response.json()
-		console.log("[configurator API OK response]")
-		return data
-	} catch (e) {
-		console.log("[configurator API ERR response]")
-	}
+
+	// try{
+	// 	var response = await fetchZoom(zoom);
+	// 	var data = await response.json();
+	// 	return data;
+	// }catch(e){
+	// 	console.log("[configurator API ERR response]")
+	// }
+
+	return fetchZoom(zoom)
+		.then((response) => {
+			// Handle the response
+			console.log("[configurator API OK response]")
+			return response.json()
+		})
+		.then((data) => {
+			return data
+		})
+		.catch((err) => {
+			console.log("[configurator API ERR response]")
+			return err
+		})
 }
 
 export default ZoomHandler
