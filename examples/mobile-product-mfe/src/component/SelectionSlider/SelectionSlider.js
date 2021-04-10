@@ -22,7 +22,7 @@ const SelectionSlider = () => {
   let selectionLists = [];
   let searchComponent = "SelectionList";
   for (let i = 0; i < product.UserControls.length; i++) {
-    if (product.UserControls[i].ControlType.includes(searchComponent)) {
+    if (product.UserControls[i].ControlType === searchComponent) {
       selectionLists.push(product.UserControls[i]);
     }
   }
@@ -33,8 +33,8 @@ const SelectionSlider = () => {
   console.log("[Printing Option Values]");
   console.log(selectionLists[0].OptionValues);
 
-  // const { zoomReqVal, setZoomReq } = useContext(zoomRequest);
-  // const { zoomResVal, setZoomRes } = useContext(zoomResponse);
+  const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
+  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
   // console.log("[printing zoomReqVal");
   // console.log(zoomReqVal);
