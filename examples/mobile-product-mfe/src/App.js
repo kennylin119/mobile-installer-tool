@@ -171,7 +171,7 @@ const App = (props) => {
 	}
 
 	// Hard coded product name, will be whatever data is
-	let data2 = "ALISSE"
+	let PRODUCT_IDENTIFIER = "ALISSE"
 
 	// State variables for the product
 	let [product, setProduct] = useState(null) // Truthy object
@@ -195,7 +195,7 @@ const App = (props) => {
 			// Handling the response if result or error
 
 			// ! Might not need this function since the parent page makes the calls, we can probably just get the data directly
-			await fetchProduct(data2)
+			await fetchProduct(PRODUCT_IDENTIFIER)
 				.then((res) => res.json())
 				.then(
 					(result) => {
