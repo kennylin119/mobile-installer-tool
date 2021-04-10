@@ -40,7 +40,7 @@ const convertArrayToObject = (array, key) => {
 const Icons = (props) => {
 	// fetch = fetchImage
 	const { fetch } = props
-	let selected_test = 3
+	let selected_test = 2
 
 	// getting the context object, extracting the product
 	const context = useContext(Product)

@@ -8,7 +8,7 @@ import router, { fetchZoom } from "../router/router"
  * 3. handles the response from the configurator
  * ! For now, we pass in the zoom instead of using the zoom-context in here
  */
-const ZoomHandler = (zoom) => {
+const ZoomHandler = async (zoom) => {
 	console.log("[zoomHandler]")
 	// console.log(zoom)
 	try {

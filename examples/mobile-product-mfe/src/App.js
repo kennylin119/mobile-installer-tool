@@ -21,6 +21,7 @@ import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
  * a zoom object to return.
  *
  * @param {*} product == UITemplate
+ * @param {*} dpm == Default product model
  * @param {*} configure == user configurations
  * @returns == zoom object
  */
@@ -201,9 +202,6 @@ const App = (props) => {
 					(result) => {
 						setIsLoaded(true)
 						setProduct(result[0])
-
-						// Product.product = result
-						// this.updateProduct(result)
 					},
 					(error) => {
 						setIsLoaded(true)
@@ -232,13 +230,12 @@ const App = (props) => {
 			// We build the context API values before rendering
 
 			// Context for Product
-			let product_state = {
-				product: product,
-				// FIXME: this is dummy function for now. will be replaced with this.updateProduct
-				updateProduct: () => {
-					console.log("[called updateProduct from App]")
-				},
-			}
+			// let product_state = {
+			// 	product: product,
+			// 	updateProduct: () => {
+			// 		console.log("[called updateProduct from App]")
+			// 	},
+			// }
 
 			// Building input zoom object using UI template and user configurations
 			if (zoomReqVal == null) {
