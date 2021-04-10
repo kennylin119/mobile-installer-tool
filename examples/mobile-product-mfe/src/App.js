@@ -171,23 +171,16 @@ const App = (props) => {
 	}
 
 	// Hard coded product name, will be whatever data is
-	let data2 = "ALISSE"
+	let PRODUCT_IDENTIFIER = "ALISSE"
 
 	// State variables for the product
 	let [product, setProduct] = useState(null) // Truthy object
 	let [error, setError] = useState(null)
 	let [isLoaded, setIsLoaded] = useState(false)
 
-	// TODO: Still need to create this updateProduct function to be added to context API
-	// define the context API updateProduct function
-	// this.updateProduct = (object) => {
-	// 	console.log("[inside updateProduct]")
-	// 	console.log(object)
-
-	// 	this.setState((state) => ({
-	// 		product: object,
-	// 	}))
-	// }
+	//set up access points for the zoom contexts
+	const [zoomReqVal, setZoomReq] = useState(null)
+	const [zoomResVal, setZoomRes] = useState(null)
 
 	// Life cycle hook to get and save the product on load
 	useEffect(() => {
@@ -202,7 +195,7 @@ const App = (props) => {
 			// Handling the response if result or error
 
 			// ! Might not need this function since the parent page makes the calls, we can probably just get the data directly
-			await fetchProduct(data2)
+			await fetchProduct(PRODUCT_IDENTIFIER)
 				.then((res) => res.json())
 				.then(
 					(result) => {
@@ -247,41 +240,24 @@ const App = (props) => {
 				},
 			}
 
-			// Context for zoom request
-			let zoom_request_state = {
-				zoom: initializeZoom(product, configure_test.ConfiguredJSON),
-				updateZoom: () => {
-					console.log("[called updateZoom from App]")
-				},
+			// Building input zoom object using UI template and user configurations
+			if (zoomReqVal == null) {
+				setZoomReq(initializeZoom(product, configure_test.ConfiguredJSON)) // re-render the page
 			}
-
-			// Context for zoom response
-			let zoom_response_state = {
-				zoom: null,
-				updateZoom: (_zoom) => {
-					// this.zoom = _zoom // ! This line might not work!
-					console.log("[inside updateZoom]")
-					console.log(_zoom)
-				},
+			if (zoomReqVal && zoomResVal == null) {
+				// Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
+				ZoomHandler(zoomReqVal).then((response) => {
+					console.log(response)
+					setZoomRes(response) // re-render the page
+				})
 			}
-
-			// Since we already have the zoom request, we make a call to the configurator API before rendering
-			console.log("[populating initial]")
-			// Call the ZoomHandler and set the response into ZoomResponse
-			ZoomHandler(zoom_request_state.zoom).then((response) => {
-				console.log(ZoomResponse)
-				console.log(response)
-				// FIXME: CANNOT UPDATE ZOOM_RESPONSE_STATE
-				zoom_response_state.updateZoom(response)
-				console.log(zoom_response_state.zoom)
-			})
 
 			// Render the DOM
 			return (
 				// Context API, passing the state in
-				<Product.Provider value={product_state}>
-					<ZoomRequest.Provider value={zoom_request_state}>
-						<ZoomResponse.Provider value={zoom_response_state}>
+				<Product.Provider value={{ product, setProduct }}>
+					<ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
+						<ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
 							<div className='container'>
 								<div className='row'>
 									<div className='col-1'></div>
@@ -293,14 +269,9 @@ const App = (props) => {
 										{/* Put all other components in this div */}
 										<Icons />
 										<div>
-											< SelectionSlider />
+											<SelectionSlider />
 										</div>
 										<Dropdown></Dropdown>
-
-
-
-
-
 									</div>
 									<div className='col-1'></div>
 								</div>
