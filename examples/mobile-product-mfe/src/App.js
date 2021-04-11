@@ -7,7 +7,7 @@ import { Product } from "./product-context"
 
 // importing all the components
 import Icons from "./component/Icons/Icons"
-import Dropdown from "./component/Dropdowns/Dropdown"
+import NativeDropdown from "./component/Dropdowns/NativeDropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
 import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
@@ -153,6 +153,10 @@ const App = (props) => {
 							<div className='col-6'>
 								<Icons />
 							</div>
+							<div className='col-6'>
+								<NativeDropdown />
+							</div>
+		
 						</div>
 					</div>
 				</Product.Provider>
