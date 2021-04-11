@@ -26,9 +26,10 @@ import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
  * @returns == zoom object
  */
 const initializeZoom = (uitemplate, dpm, configure) => {
-	if (uitemplate) {
-		console.log("[building initial zoom with uitemplate]")
+	if (uitemplate && dpm) {
+		console.log("[building initial zoom with uitemplate and DPM]")
 		console.log(uitemplate)
+		console.log(dpm)
 
 		if (configure) {
 			configure = JSON.parse(configure)
@@ -45,6 +46,7 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 		let _warnings = []
 		let _features = {}
 		let _additionalAttributes = []
+		let _featureDependencies = {}
 
 		if (uitemplate?.UserControls) {
 			uitemplate.UserControls.map((obj) => {
@@ -55,9 +57,6 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 
 				let _validKeys = []
 
-				// console.log(`[${key}]`)
-				// console.log(config_label)
-
 				obj_OptionValues.map((option) => {
 					let _keyValue = option?.KeyValue
 
@@ -67,22 +66,41 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 				})
 
 				// Setting object at the key
-				_features[key] = {
-					ValidKeys: _validKeys,
-					InvalidKeys: [],
-					CurrentValue: config_key,
+				// _features[key] = {
+				// 	ValidKeys: _validKeys,
+				// 	InvalidKeys: [],
+				// 	CurrentValue: config_key,
+				// }
+
+				// Handle the feature dependencies if there are any
+				let tempObj = dpm.Features[key]
+
+				if (tempObj) {
+					let dependantFeatures = tempObj?.DependentFeatures
+
+					// If a dependant feature exists
+					if (dependantFeatures && dependantFeatures.length > 0) {
+						// Map over each dependantFeature
+						{
+							dependantFeatures.map((val) => {
+								_featureDependencies[val] = key
+							})
+						}
+					}
 				}
 			})
 		}
 
-		if (configure?.Warnings) {
-			_warnings = configure?.Warnings
-		}
+		// console.log("[feature dependencies]")
+		// console.log(_featureDependencies)
 
-		// ! Are there other additionalAttributes other than from ResultantValue?
-		if (configure?.ResultantValue) {
-			_additionalAttributes.push(configure?.ResultantValue)
-		}
+		// if (configure?.Warnings) {
+		// 	_warnings = configure?.Warnings
+		// }
+
+		// if (configure?.ResultantValue) {
+		// 	_additionalAttributes.push(configure?.ResultantValue)
+		// }
 
 		// TODO: need to go over this zoom object again
 		return {
@@ -112,16 +130,12 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 				Selections: configure?.Selections,
 				AccessLevels: 1,
 			},
-			OverrideSelections: configure?.ResultantValue,
-			FeatureDependencies: {
-				COLUMNS: ["BUTTON_ARRAY"],
-				FACEPLATE_FINISH: ["CUSTCOLOR_FACEPLATE"],
-				ENGRAVING_SPECIFIED: ["PERSONALIZATION_ID"],
-			},
+			OverrideSelections: configure?.ResultantValue, // there might be other additionalAttributes other than ResultantValue
+			FeatureDependencies: _featureDependencies,
 			IsQuoted: configure?.IsQuoted,
 		}
 	} else {
-		console.log("[building empty initial zoom]")
+		console.log("[error with UI-template or DPM]")
 	}
 }
 
