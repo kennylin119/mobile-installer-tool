@@ -11,7 +11,7 @@ import Icons from "./component/Icons/Icons"
 import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import TestComponent from "./component/Test-Component/TestComponent"
-import { router, fetchProduct, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
+import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 // importing routing functions
 import ZoomHandler from "./services/ZoomHandler"
 import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
@@ -20,15 +20,15 @@ import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
  * This function takes in product and configure and parses both objects to build out
  * a zoom object to return.
  *
- * @param {*} product == UITemplate
+ * @param {*} uitemplate == UITemplate
  * @param {*} dpm == Default product model
  * @param {*} configure == user configurations
  * @returns == zoom object
  */
-const initializeZoom = (product, configure) => {
-	if (product) {
-		console.log("[building initial zoom with product]")
-		console.log(product)
+const initializeZoom = (uitemplate, dpm, configure) => {
+	if (uitemplate) {
+		console.log("[building initial zoom with uitemplate]")
+		console.log(uitemplate)
 
 		if (configure) {
 			configure = JSON.parse(configure)
@@ -46,8 +46,8 @@ const initializeZoom = (product, configure) => {
 		let _features = {}
 		let _additionalAttributes = []
 
-		if (product?.UserControls) {
-			product.UserControls.map((obj) => {
+		if (uitemplate?.UserControls) {
+			uitemplate.UserControls.map((obj) => {
 				let key = obj?.Variable
 				let config_key = configure?.Selections[key] // configure.Selections.SYSTEM => HW
 				// let config_label = configure.SelectionValues["SYSTEM"]
@@ -91,16 +91,16 @@ const initializeZoom = (product, configure) => {
 			// AdditionalAttributes: _additionalAttributes,
 			// AdditionalWarnings: null,
 			// ConfigurationStatus: "Valid",
-			// CustomModelNumber: product?.SubtitleTemplate[0]?.Keys[0] + "-N",
+			// CustomModelNumber: uitemplate?.SubtitleTemplate[0]?.Keys[0] + "-N",
 			// Errors: [],
 			// FGID: null, // ! What is FGID??
 			// Features: _features,
-			// GenericModelNumber: product?.SubtitleTemplate[0]?.Keys[0],
+			// GenericModelNumber: uitemplate?.SubtitleTemplate[0]?.Keys[0],
 			// IsConfigured: configure?.IsConfigured ? true : false,
 			// IsFullyConfigured: false,
 			// ModelType: configure?.ModelType,
 			// Number: null,
-			// Product: product?.ProductIdentifier,
+			// Product: uitemplate?.ProductIdentifier,
 			// UsedElevatedAccess: false,
 			// Warnings: _warnings,
 
@@ -108,7 +108,7 @@ const initializeZoom = (product, configure) => {
 			ZoomInput: {
 				ShipToNumber: 709323,
 				LutronSellingCompany: "00101",
-				Product: product?.ProductIdentifier,
+				Product: uitemplate?.ProductIdentifier,
 				Selections: configure?.Selections,
 				AccessLevels: 1,
 			},
@@ -122,24 +122,6 @@ const initializeZoom = (product, configure) => {
 		}
 	} else {
 		console.log("[building empty initial zoom]")
-
-		return {
-			AccessLevels: null,
-			AdditionalAttributes: [],
-			AdditionalWarnings: null,
-			ConfigurationStatus: null,
-			CustomModelNumber: null,
-			Errors: [],
-			FGID: null,
-			Features: {},
-			GenericModelNumber: null,
-			IsFullyConfigured: null,
-			ModelType: null,
-			Number: null,
-			Product: null,
-			UsedElevatedAccess: null,
-			Warnings: null,
-		}
 	}
 }
 
@@ -175,9 +157,11 @@ const App = (props) => {
 	let PRODUCT_IDENTIFIER = "ALISSE"
 
 	// State variables for the product
-	let [product, setProduct] = useState(null) // Truthy object
+	let [product, setProduct] = useState(null)
+	let [DPM, setDPM] = useState(null)
 	let [error, setError] = useState(null)
 	let [isLoaded, setIsLoaded] = useState(false)
+	let [isLoadedDPM, setIsLoadedDPM] = useState(false)
 
 	//set up access points for the zoom contexts
 	const [zoomReqVal, setZoomReq] = useState(null)
@@ -195,8 +179,8 @@ const App = (props) => {
 			// Getting the data from fetchProduct
 			// Handling the response if result or error
 
-			// ! Might not need this function since the parent page makes the calls, we can probably just get the data directly
-			await fetchProduct(PRODUCT_IDENTIFIER)
+			// fetch the UI template and handle response
+			await fetchUITemplate(PRODUCT_IDENTIFIER)
 				.then((res) => res.json())
 				.then(
 					(result) => {
@@ -205,6 +189,20 @@ const App = (props) => {
 					},
 					(error) => {
 						setIsLoaded(true)
+						setError(error)
+					}
+				)
+
+			// fetch the DPM and handle response
+			await fetchDPM(PRODUCT_IDENTIFIER)
+				.then((res) => res.json())
+				.then(
+					(result) => {
+						setIsLoadedDPM(true)
+						setDPM(result)
+					},
+					(error) => {
+						setIsLoadedDPM(true)
 						setError(error)
 					}
 				)
@@ -219,27 +217,19 @@ const App = (props) => {
 		return <div className='container-fetch-error'>Error: {error.message}</div>
 	}
 	// If the product hasn't loaded yet
-	else if (!isLoaded) {
+	else if (!isLoaded || !isLoadedDPM) {
 		console.log("NOT LOADED YET")
 		return <div className='container-loading'>Loading...</div>
 	}
 	// If the product has been loaded
 	else {
 		// New method using Context API
-		if (product) {
+		if (product && DPM) {
 			// We build the context API values before rendering
-
-			// Context for Product
-			// let product_state = {
-			// 	product: product,
-			// 	updateProduct: () => {
-			// 		console.log("[called updateProduct from App]")
-			// 	},
-			// }
 
 			// Building input zoom object using UI template and user configurations
 			if (zoomReqVal == null) {
-				setZoomReq(initializeZoom(product, configure_test.ConfiguredJSON)) // re-render the page
+				setZoomReq(initializeZoom(product, DPM, configure_test.ConfiguredJSON)) // re-render the page
 			}
 			if (zoomReqVal && zoomResVal == null) {
 				// Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
