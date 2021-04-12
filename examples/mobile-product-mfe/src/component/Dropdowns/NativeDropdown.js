@@ -2,6 +2,7 @@ import default_img from '../../toolkit/default_image.jpeg';
 import { Product } from "../../product-context";
 import React, { useContext } from "react";
 import { View, Text, Picker, StyleSheet, Image } from 'react-native'
+import {Container, Row, Col} from 'react-bootstrap/DropdownButton'; 
 
 class NativeDropdown extends React.Component {
 
@@ -46,6 +47,7 @@ NativeDropdown = (props) => {
    
 
    // View that is returned
+   // TODO: When a color is selected, only display the coresponding image
    return (
       <View>
          <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: aged_brass_url}}/>
