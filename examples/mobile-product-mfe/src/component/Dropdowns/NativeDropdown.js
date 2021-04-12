@@ -31,11 +31,35 @@ NativeDropdown = (props) => {
    const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"
    const link = cdn + path
 
+   // Image color URLs
+   const aged_brass_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Aged_Brass.jpg";
+   const aged_bronze_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Aged_Bronze.jpg";
+   const brushed_brass_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Brushed_Brass.jpg";
+   const graphite_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Graphite.jpg";
+   const champagne_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Champagne.jpg";
+   const satin_nickel_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Satin_Nickel.jpg";
+   const bright_chrome_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Bright_Chrome.jpg";
+   const brilliant_white_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Brilliant_White.jpg";
+   const snow_white = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Snow_White.jpg";
+   const archetectural_white_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Archetectural_White.jpg";
+   const matte_black_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Matte_Black.jpg";
+   
+
    // View that is returned
-   // XXX: Picker.Item param "label" only accepts Strings, so image cannot be rendered
    return (
       <View>
-         <Image square style={{width: 30, height: 20, marginTop: 5}} source={{uri: link}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: aged_brass_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: aged_bronze_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: brushed_brass_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: graphite_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: champagne_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: satin_nickel_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: bright_chrome_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: brilliant_white_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: snow_white}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: archetectural_white_url}}/>
+         <Image square style={{width: 30, height: 20, marginTop: 2, marginBottom: 2}} source={{uri: matte_black_url}}/>
+
          <Picker>
             <Picker.Item label = "Aged Brass" value = "Aged Brass"/>
             <Picker.Item label = "Aged Bronze" value = "Aged Bronze"/>
