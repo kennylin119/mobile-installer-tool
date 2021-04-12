@@ -25,8 +25,11 @@ const ProductImage = (props) => {
 	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
 	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
 
+	console.log("ZOOOOM RES:")
+	console.log(zoomResVal)
+
 	const cdn = product.CDNPrefix
-	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AZ-S-10101-10101-AZ-E.png"
+	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_"+zoomResVal?.AdditionalAttributes[0]?.Name+"_"+zoomResVal?.AdditionalAttributes[0]?.Value+".png"
 
 	const link = cdn + path
 
