@@ -37,7 +37,17 @@ NativeDropdown = (props) => {
       <View>
          <Image square style={{width: 30, height: 20, marginTop: 5}} source={{uri: link}}/>
          <Picker>
-            <Picker.Item label = {<Image square style={{width: 30, height: 20, marginTop: 5}} source={{uri: link}}/>}/>
+            <Picker.Item label = "Aged Brass" value = "Aged Brass"/>
+            <Picker.Item label = "Aged Bronze" value = "Aged Bronze"/>
+            <Picker.Item label = "Brushed Brass" value = "Brushed Brass"/>
+            <Picker.Item label = "Graphite" value = "Graphite"/>
+            <Picker.Item label = "Champagne" value = "Champagne"/>
+            <Picker.Item label = "Satin Nickel" value = "Satin Nickel"/>
+            <Picker.Item label = "Bright Chrome" value = "Bright Chrome"/>
+            <Picker.Item label = "Brilliant White" value = "Brilliant White"/>
+            <Picker.Item label = "Snow White" value = "Snow White"/>
+            <Picker.Item label = "Architectural White" value = "Architectural White"/>
+            <Picker.Item label = "Matte Black" value = "Matte Black"/>
          </Picker>
 
       </View>
