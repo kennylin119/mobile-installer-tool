@@ -57,13 +57,13 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 
 				let _validKeys = []
 
-				obj_OptionValues.map((option) => {
-					let _keyValue = option?.KeyValue
+				// obj_OptionValues.map((option) => {
+				// 	let _keyValue = option?.KeyValue
 
-					if (_keyValue) {
-						_validKeys.push(_keyValue)
-					}
-				})
+				// 	if (_keyValue) {
+				// 		_validKeys.push(_keyValue)
+				// 	}
+				// })
 
 				// Setting object at the key
 				// _features[key] = {
