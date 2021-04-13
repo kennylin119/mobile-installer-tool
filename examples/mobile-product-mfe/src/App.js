@@ -83,7 +83,7 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 						// Map over each dependantFeature
 						{
 							dependantFeatures.map((val) => {
-								_featureDependencies[val] = key
+								_featureDependencies[val] = [key]
 							})
 						}
 					}
