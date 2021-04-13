@@ -16,7 +16,7 @@ const RenderImage = styled.img`
 	display: block;
 `
 
-const ProductImage = (props) => {
+const ProductImage = () => {
 	//product context
 	const context = useContext(Product)
 	const product = context.product
@@ -25,16 +25,17 @@ const ProductImage = (props) => {
 	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
 	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
 
-	console.log("ZOOOOM RES:")
-	console.log(zoomResVal)
-
+	//variables
+	const name = zoomResVal?.AdditionalAttributes[0]?.Name
+	const value = zoomResVal?.AdditionalAttributes[0]?.Value
 	const cdn = product.CDNPrefix
-	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_"+zoomResVal?.AdditionalAttributes[0]?.Name+"_"+zoomResVal?.AdditionalAttributes[0]?.Value+".png"
+	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_" + name + "_" + value + ".png"
 
+	//combine for final link
 	const link = cdn + path
 
 
-	if(zoomResVal){
+	if(name&&value){
 		return (
 			<div>
 				{/* This Is where ProductImage should be */}
@@ -46,12 +47,9 @@ const ProductImage = (props) => {
 		return(
 			<div>
 				{/* Don't load anything since we don't have zoom response yet */}
-				<RenderImage></RenderImage>
 			</div>
 		)
 	}
 }
-
-ProductImage.propTypes = {}
 
 export default ProductImage
