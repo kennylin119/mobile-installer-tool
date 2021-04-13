@@ -33,16 +33,23 @@ const ProductImage = (props) => {
 
 	const link = cdn + path
 
-	return (
-		<div>
-			<p>This Is where ProductImage should be</p>
-			<RenderImage src={link}></RenderImage>
-			{/* <h2>{zoomResVal}</h2> */}
-			{/* <button onClick={() => setZoomRes("Testing Request")}>Click to change zoomRes</button> */}
-			{/* <h2>{zoomReqVal}</h2> */}
-			{/* <button onClick={() => setZoomReq("Testing Response")}>Click to change zoomReq</button> */}
-		</div>
-	)
+
+	if(zoomResVal){
+		return (
+			<div>
+				{/* This Is where ProductImage should be */}
+				<RenderImage src={link}></RenderImage>
+			</div>
+		)
+	}
+	else{
+		return(
+			<div>
+				{/* Don't load anything since we don't have zoom response yet */}
+				<RenderImage></RenderImage>
+			</div>
+		)
+	}
 }
 
 ProductImage.propTypes = {}
