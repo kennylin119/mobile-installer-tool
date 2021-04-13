@@ -1,6 +1,7 @@
 import "./App.css"
 
 import React, { useState, useEffect, useContext } from "react"
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from "react-html-parser"
 
 // importing the context API
 import { Product } from "./product-context"
@@ -10,11 +11,22 @@ import { ZoomRequest, ZoomResponse } from "./zoom-context"
 import Icons from "./component/Icons/Icons"
 import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
-import TestComponent from "./component/Test-Component/TestComponent"
+import { TestComponent } from "./component/Test-Component/TestComponent"
+import testcomponents from "./component/Test-Component/testcomponents"
 import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 // importing routing functions
 import ZoomHandler from "./services/ZoomHandler"
 import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
+
+const componentMapper = {
+	SYSTEM: "SYSTEM",
+	WALLBOX_SHAPE: "WALLBOX_SHAPE",
+	COLUMNS: "COLUMNS",
+	BUTTON_ARRAY: "Icons",
+	FACEPLATE_FINISH: "FACEPLATE_FINISH",
+	CUSTCOLOR_FACEPLATE: "CUSTCOLOR_FACEPLATE",
+	ENGRAVING_SPECIFIED: "ENGRAVING_SPECIFIED",
+}
 
 /**
  * This function takes in product and configure and parses both objects to build out
@@ -139,6 +151,33 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 	}
 }
 
+/**
+ * This function takes in product and parses the Layout to product an array of divs to be rendered
+ * @param {*} uitemplate == UITempalte
+ */
+const parseUITemplate = (uitemplate) => {
+	const rows = uitemplate?.Layouts[0]?.Rows
+	let res = []
+
+	{
+		rows.map((obj) => {
+			const controls = obj?.Controls[0]
+			const controlVar = controls?.Variable
+			const componentName = componentMapper[controlVar]
+			console.log(controls)
+
+			// If the component exists in our componentMapper
+			if (componentName) {
+				console.log("here" + componentName)
+				const _div = `<${componentName} />`
+				res.push(_div)
+			}
+		})
+	}
+
+	return res
+}
+
 const App = (props) => {
 	// Destructuring props
 	// data will contain the AUTHORIZATION TOKEN
@@ -253,6 +292,11 @@ const App = (props) => {
 				})
 			}
 
+			// Setup for React-HTML-Parser
+			const renderLayout = parseUITemplate(product)
+			console.log(renderLayout)
+			const tempComponent = `<testcomponents></testcomponents>`
+
 			// Render the DOM
 			return (
 				// Context API, passing the state in
@@ -268,11 +312,21 @@ const App = (props) => {
 									</div>
 									<div className='col-6'>
 										{/* Put all other components in this div */}
-										<Icons />
+										{/* <Icons />
 										<div>
 											<SelectionSlider />
 										</div>
-										<Dropdown></Dropdown>
+										<Dropdown></Dropdown> */}
+
+										{/* {renderLayout.map((component) => {
+											if (component == "<Icons />") {
+												{
+													ReactHtmlParser(component)
+												}
+											}
+										})} */}
+
+										{ReactHtmlParser(tempComponent)}
 									</div>
 									<div className='col-1'></div>
 								</div>
