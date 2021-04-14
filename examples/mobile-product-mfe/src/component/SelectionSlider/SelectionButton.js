@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+
 const Button = styled.button`
   display: inline-block;
   border-radius: 3px;
@@ -13,8 +14,15 @@ const Button = styled.button`
   text-align: center;
 `;
 
-const SelectionButton = () => {
-  return <Button> Hello it's me </Button>;
+const handleOnClick = (event) => {
+  console.log("[handleOnClick]");
+
+  // prevents broswer refresh
+  event.preventDefault();
+};
+
+const SelectionButton = (props) => {
+  return <Button> {props.label} </Button>;
 };
 
 export default SelectionButton;
