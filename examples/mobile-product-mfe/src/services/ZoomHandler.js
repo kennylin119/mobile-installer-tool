@@ -10,7 +10,7 @@ import router, { fetchZoom } from "../router/router"
  */
 const ZoomHandler = async (zoom) => {
 	console.log("[zoomHandler]")
-	console.log(zoom)
+	// console.log(zoom)
 	try {
 		// Make call to configurator API, passing in the input zoom object
 		var response = await fetchZoom(zoom)

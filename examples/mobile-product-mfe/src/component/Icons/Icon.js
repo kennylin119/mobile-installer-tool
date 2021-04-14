@@ -2,12 +2,10 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 
 // Import context api
-import { Product } from "../../product-context"
 import { ZoomRequest, ZoomResponse } from "../../zoom-context"
 
 import ZoomHandler from "../../services/ZoomHandler"
 import default_img from "../../toolkit/default_image.jpeg"
-import { handleIconCallback } from "./Icons"
 
 const RenderIcon = styled.div`
 	float: left;
@@ -23,49 +21,38 @@ const MyIcon = styled.img`
 `
 
 // ! This is where we will call updateProduct through the context. No need to pass data back anymore :)
-const handleOnClick = (event, icon_key, icon_value, icon_selected, zoomResVal, setZoomRes, zoomReqVal, setZoomReq) => {
+const handleOnClick = async (event, icon_key, icon_value, icon_selected, zoomReqVal, setZoomReq, zoomResVal, setZoomRes, componentName) => {
+	event.preventDefault()
 	console.log("[handleOnClick]")
+
 	console.log(icon_key)
 	console.log(icon_value)
 	console.log(icon_selected)
 
-	console.log(zoomResVal)
-	console.log(setZoomRes)
+	if (icon_selected != icon_key) {
+		// Modifying the zoom request
+		await setZoomReq((prevState) => {
+			// First, modify the prevState
+			prevState.ZoomInput.Selections[componentName] = icon_key
 
-	console.log(zoomReqVal)
-	console.log(setZoomReq)
+			// Then, spread the prevState into set function
+			return {
+				...prevState,
+			}
+		})
 
-	// prevent browser reload/refresh
-	event.preventDefault()
-
-	// TODO: START HERE
-	// modify the zoomReqVal before passing into zoom handler
-	// call zoom handler
-	// zoom handler sends the zoomResVal object
-	// ! NOTE: ZoomHanlder calls an async function. How do I await for ZoomHandler to finish, then print the result using log
-	// ZoomHandler(zoomReqVal)
-	// 	.then((response) => {
-	// 		console.log(response)
-	// 		//update the ZoomResponse
-	// 	})
-	// 	.catch((err) => {
-	// 		// Do something with the error
-	// 	})
+		// call zoom handler and set the response
+		let _response = await ZoomHandler(zoomReqVal)
+		setZoomRes(_response)
+	}
 }
 
 const Icon = (props) => {
-	// pass handleIconCallback function through props
-	const { icon_key, cdn, icon_value, icon_image, icon_selected } = props
-
-	const product_context = useContext(Product)
-	const product = product_context.product
-	const _updateProduct = product_context.updateProduct
+	// destructuring the props
+	const { icon_key, cdn, icon_value, icon_image, icon_selected, componentName } = props
 
 	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
 	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
-
-	console.log("[printing zoomResVal]")
-	console.log(zoomResVal)
 
 	let image
 
@@ -78,7 +65,7 @@ const Icon = (props) => {
 
 	return (
 		<RenderIcon>
-			{<MyIcon src={image} alt={"Image invalid"} onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, zoomResVal, setZoomRes, zoomReqVal, setZoomReq)}></MyIcon>}
+			{<MyIcon src={image} alt={"Image invalid"} onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, zoomReqVal, setZoomReq, zoomResVal, setZoomRes, componentName)}></MyIcon>}
 			{icon_value}
 		</RenderIcon>
 	)
