@@ -320,6 +320,9 @@ const App = (props) => {
 				if (RenderLayout == null) {
 					setRenderLayout(parseUITemplate(product, UserControlsObj))
 				} else {
+					console.log(RenderLayout)
+					console.log(UserControlsObj)
+
 					if (zoomResVal) {
 						// console.log(zoomResVal)
 

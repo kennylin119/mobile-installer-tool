@@ -13,15 +13,6 @@ const ImageContainer = styled.div`
 	padding-right: 15px;
 `
 
-// export const handleIconCallback = (key, value, selected) => {
-// 	// Alternate the boolean value on the icon that the user selected
-// 	console.log(renderIcons[key])
-// 	renderIcons[key].selected = !renderIcons[key].selected
-// 	console.log(renderIcons[key].selected)
-
-// 	// handleCallback({ cmd: "hIconClick", value: { key, value } })
-// }
-
 // Function to parse an array into an object based on a key
 const convertArrayToObject = (array, key) => {
 	const initialValue = {}
