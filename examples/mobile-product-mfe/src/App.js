@@ -1,7 +1,7 @@
 import "./App.css"
 
 import React, { useState, useEffect, useContext } from "react"
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from "react-html-parser"
+// import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from "react-html-parser"
 
 // importing the context API
 import { Product } from "./product-context"
@@ -12,20 +12,28 @@ import Icons from "./component/Icons/Icons"
 import Dropdown from "./component/Dropdowns/Dropdown"
 import ProductImage from "./component/ProductImage/ProductImage"
 import { TestComponent } from "./component/Test-Component/TestComponent"
-import testcomponents from "./component/Test-Component/testcomponents"
 import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 // importing routing functions
 import ZoomHandler from "./services/ZoomHandler"
 import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
 
+// Maps Lutron componentTypes to our componentTypes
+// ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
-	SYSTEM: "SYSTEM",
-	WALLBOX_SHAPE: "WALLBOX_SHAPE",
-	COLUMNS: "COLUMNS",
-	BUTTON_ARRAY: "Icons",
-	FACEPLATE_FINISH: "FACEPLATE_FINISH",
-	CUSTCOLOR_FACEPLATE: "CUSTCOLOR_FACEPLATE",
-	ENGRAVING_SPECIFIED: "ENGRAVING_SPECIFIED",
+	SelectionList: "SelectionSlider",
+	ImageSelectionList: "Icons",
+	ImageSelector: "Icons",
+	ProductImage: "ProductImage",
+	// Engraving: "Engraving",
+	MetalColor: "SelectionSlider",
+	// Number: "Double",			// Figure out what Number should be
+	Double: "Value",
+	String: "Value",
+	int: "Value",
+	// Fabric: "Fabric",			// Fabric should be a grouped component that imports SelectionSlider and Icons
+	// Grouped: "Grouped",			// TBD
+	// HorizontalLine: "HorizontalLine",
+	// RowGroup: "RowGroup",
 }
 
 /**
@@ -114,7 +122,6 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 		// 	_additionalAttributes.push(configure?.ResultantValue)
 		// }
 
-		// TODO: need to go over this zoom object again
 		return {
 			// RESPONSE
 			// AccessLevels: null,
@@ -136,11 +143,11 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 
 			// REQUEST
 			ZoomInput: {
-				ShipToNumber: 709323,
-				LutronSellingCompany: "00101",
+				ShipToNumber: 709323, // Lutron account number
+				LutronSellingCompany: "00101", // Where country exists
 				Product: uitemplate?.ProductIdentifier,
 				Selections: configure?.Selections,
-				AccessLevels: 1,
+				AccessLevels: 1, // Place holder (level 1: full access to all selection options)
 			},
 			OverrideSelections: configure?.ResultantValue, // there might be other additionalAttributes other than ResultantValue
 			FeatureDependencies: _featureDependencies,
@@ -152,10 +159,12 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 }
 
 /**
- * This function takes in product and parses the Layout to product an array of divs to be rendered
+ * This function takes in product and parses the Layout to produce an an array of objects {Variable, RenderType}
  * @param {*} uitemplate == UITempalte
  */
-const parseUITemplate = (uitemplate) => {
+const parseUITemplate = (uitemplate, UserControlsObj) => {
+	console.log("[parseUITemplate]")
+	// console.log(UserControlsObj)
 	const rows = uitemplate?.Layouts[0]?.Rows
 	let res = []
 
@@ -163,19 +172,25 @@ const parseUITemplate = (uitemplate) => {
 		rows.map((obj) => {
 			const controls = obj?.Controls[0]
 			const controlVar = controls?.Variable
-			const componentName = componentMapper[controlVar]
-			console.log(controls)
 
-			// If the component exists in our componentMapper
-			if (componentName) {
-				console.log("here" + componentName)
-				const _div = `<${componentName} />`
-				res.push(_div)
-			}
+			res.push({
+				Variable: controlVar,
+				RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
+			})
 		})
 	}
 
 	return res
+}
+
+const convertArrayToObject = (array, key) => {
+	const initialValue = {}
+	return array.reduce((obj, item) => {
+		return {
+			...obj,
+			[item[key]]: item,
+		}
+	}, initialValue)
 }
 
 const App = (props) => {
@@ -219,6 +234,10 @@ const App = (props) => {
 	//set up access points for the zoom contexts
 	const [zoomReqVal, setZoomReq] = useState(null)
 	const [zoomResVal, setZoomRes] = useState(null)
+
+	// UITemplate UserControls converted into a hash map
+	const [UserControlsObj, setUserControlsObj] = useState(null)
+	const [RenderLayout, setRenderLayout] = useState(null)
 
 	// Life cycle hook to get and save the product on load
 	useEffect(() => {
@@ -292,51 +311,62 @@ const App = (props) => {
 				})
 			}
 
-			// Setup for React-HTML-Parser
-			const renderLayout = parseUITemplate(product)
-			console.log(renderLayout)
-			const tempComponent = `<testcomponents></testcomponents>`
+			if (UserControlsObj == null) {
+				console.log("[product]")
+				console.log(product)
+				setUserControlsObj(convertArrayToObject(product.UserControls, "Variable"))
+			} else {
+				// Setup for Render
+				if (RenderLayout == null) {
+					setRenderLayout(parseUITemplate(product, UserControlsObj))
+				} else {
+					if (zoomResVal) {
+						// console.log(zoomResVal)
 
-			// Render the DOM
-			return (
-				// Context API, passing the state in
-				<Product.Provider value={{ product, setProduct }}>
-					<ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
-						<ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
-							<div className='container'>
-								<div className='row'>
-									<div className='col-1'></div>
-									<div className='col-4'>
-										{/* Only Product Image goes in this div */}
-										<ProductImage />
-									</div>
-									<div className='col-6'>
-										{/* Put all other components in this div */}
-										{/* <Icons />
-										<div>
-											<SelectionSlider />
-										</div>
-										<Dropdown></Dropdown> */}
-
-										{/* {renderLayout.map((component) => {
-											if (component == "<Icons />") {
-												{
-													ReactHtmlParser(component)
-												}
-											}
-										})} */}
-
-										{ReactHtmlParser(tempComponent)}
-									</div>
-									<div className='col-1'></div>
+						// Render the DOM
+						return (
+							// Context API, passing the state in
+							<Product.Provider value={{ product, setProduct }}>
+								<ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
+									<ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
+										<div className='container'>
+											<div className='row'>
+												<div className='col-1'></div>
+												<div className='col-4'>
+													{/* Only Product Image goes in this div */}
+													<ProductImage />
+												</div>
+												<div className='col-6'>
+													{/* Put all other components in this div */}
+													{/* <Icons />
+								<div>
+									<SelectionSlider />
 								</div>
-							</div>
-						</ZoomResponse.Provider>
-					</ZoomRequest.Provider>
-				</Product.Provider>
-			)
+								<Dropdown></Dropdown> */}
+
+													{RenderLayout.map(
+														({ Variable, RenderType }) =>
+															({
+																Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
+																SelectionSlider: <SelectionSlider variable={Variable} data={UserControlsObj[Variable]} />,
+																Dropdown: <Dropdown variable={Variable} data={UserControlsObj[Variable]} />,
+															}[RenderType])
+													)}
+												</div>
+												<div className='col-1'></div>
+											</div>
+										</div>
+									</ZoomResponse.Provider>
+								</ZoomRequest.Provider>
+							</Product.Provider>
+						)
+					} else {
+						return <div>Awaiting from Configurator API...</div>
+					}
+				}
+			}
 		} else {
-			return <div className='container-product-error'>Cannot load</div>
+			return <div className='container-product-error'>Cannot load...</div>
 		}
 	}
 }
