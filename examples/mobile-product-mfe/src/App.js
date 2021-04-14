@@ -338,11 +338,6 @@ const App = (props) => {
 												</div>
 												<div className='col-6'>
 													{/* Put all other components in this div */}
-													{/* <Icons />
-								<div>
-									<SelectionSlider />
-								</div>
-								<Dropdown></Dropdown> */}
 
 													{RenderLayout.map(
 														({ Variable, RenderType }) =>

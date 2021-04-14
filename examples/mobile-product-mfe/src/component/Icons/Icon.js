@@ -2,7 +2,6 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 
 // Import context api
-import { Product } from "../../product-context"
 import { ZoomRequest, ZoomResponse } from "../../zoom-context"
 
 import ZoomHandler from "../../services/ZoomHandler"
