@@ -32,18 +32,20 @@ NativeDropdown = (props) => {
    const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"
    const link = cdn + path
 
+   var base_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_";
+
    // Image color URLs
-   const aged_brass_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Aged_Brass.jpg";
-   const aged_bronze_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Aged_Bronze.jpg";
-   const brushed_brass_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Brushed_Brass.jpg";
-   const graphite_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Graphite.jpg";
-   const champagne_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Champagne.jpg";
-   const satin_nickel_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Satin_Nickel.jpg";
-   const bright_chrome_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Bright_Chrome.jpg";
-   const brilliant_white_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Brilliant_White.jpg";
-   const snow_white = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Snow_White.jpg";
-   const archetectural_white_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Archetectural_White.jpg";
-   const matte_black_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_Matte_Black.jpg";
+   const aged_brass_url = base_url + "Aged_Brass.jpg";
+   const aged_bronze_url = base_url + "Aged_Bronze.jpg";
+   const brushed_brass_url = base_url + "Brushed_Brass.jpg";
+   const graphite_url = base_url + "Graphite.jpg";
+   const champagne_url = base_url + "Champagne.jpg";
+   const satin_nickel_url = base_url + "Satin_Nickel.jpg";
+   const bright_chrome_url = base_url + "Bright_Chrome.jpg";
+   const brilliant_white_url = base_url + "Brilliant_White.jpg";
+   const snow_white = base_url + "Snow_White.jpg";
+   const archetectural_white_url = base_url + "Archetectural_White.jpg";
+   const matte_black_url = base_url + "Matte_Black.jpg";
    
 
    // View that is returned
