@@ -1,0 +1,2766 @@
+[
+	{
+		"ProductIdentifier": "LINEARS",
+		"Layouts": [
+			{
+				"Name": "Default",
+				"Rows": [
+					{
+						"ContainerType": "Simple",
+						"Label": "Product Details",
+						"Controls": [
+							{
+								"Variable": "ProductDetails",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Component",
+						"Controls": [
+							{
+								"Variable": "COMPONENT",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Grouped",
+						"Label": "Run",
+						"Variable": "SECTIONXLENGTH",
+						"Rows": [
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION1LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION2LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION3LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION4LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION5LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION6LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION7LENGTH",
+										"ShowLabel": true
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Controls": [
+									{
+										"Variable": "SECTION8LENGTH",
+										"ShowLabel": true
+									}
+								]
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Segment Length",
+						"Controls": [
+							{
+								"Variable": "SEGMENTLENGTH",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Length",
+						"Controls": [
+							{
+								"Variable": "LENGTH",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Style",
+						"Controls": [
+							{
+								"Variable": "LENS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Lumens",
+						"Controls": [
+							{
+								"Variable": "LUMENS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Finish",
+						"Controls": [
+							{
+								"Variable": "COLOR",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Mounting",
+						"Controls": [
+							{
+								"Variable": "MOUNTING",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Input",
+						"Controls": [
+							{
+								"Variable": "INPUT_CONNECTION",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Output",
+						"Controls": [
+							{
+								"Variable": "OUTPUT_CONNECTION",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Beam Angle",
+						"Controls": [
+							{
+								"Variable": "BEAM_ANGLE",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Fixture Color",
+						"Controls": [
+							{
+								"Variable": "FIXTURE_COLOR",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Power Suppy Bundle",
+						"Controls": [
+							{
+								"Variable": "PSBUNDLE",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Configuration",
+						"Controls": [
+							{
+								"Variable": "CONFIG",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Run Length",
+						"Controls": [
+							{
+								"Variable": "RUNLENGTH",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 1 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION1SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 2 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION2SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 3 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION3SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 4 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION4SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 5 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION5SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 6 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION6SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 7 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION7SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Section 8 Split(s)",
+						"Controls": [
+							{
+								"Variable": "SECTION8SPLITS",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Model Number",
+						"Controls": [
+							{
+								"Variable": "KETRA_MODEL_NUM",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Run Length Used",
+						"Controls": [
+							{
+								"Variable": "RUN_LENGTH_USED",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "Run Length Remaining",
+						"Controls": [
+							{
+								"Variable": "RUN_LENGTH_REMAINING",
+								"ShowLabel": false
+							}
+						]
+					},
+					{
+						"ContainerType": "Simple",
+						"Label": "",
+						"Controls": [
+							{
+								"Variable": "PRODUCT_IMAGE_CODE",
+								"ShowLabel": false
+							}
+						]
+					}
+				],
+				"Containers": null
+			}
+		],
+		"SubtitleTemplate": [
+			{
+				"Keys": ["SLRN"],
+				"Values": [
+					[
+						{
+							"Prefix": "Linears",
+							"Variable": ""
+						}
+					],
+					[
+						{
+							"Variable": "ProductDetails"
+						}
+					],
+					[
+						{
+							"Variable": "SECTIONXLENGTH",
+							"Suffix": ""
+						},
+						{
+							"Variable": "LENS"
+						},
+						{
+							"Variable": "COLOR"
+						}
+					],
+					[
+						{
+							"Variable": "LUMENS"
+						}
+					]
+				]
+			},
+			{
+				"Keys": ["SLSG"],
+				"Values": [
+					[
+						{
+							"Prefix": "Linears",
+							"Variable": ""
+						}
+					],
+					[
+						{
+							"Variable": "ProductDetails"
+						}
+					],
+					[
+						{
+							"Variable": "SEGMENTLENGTH",
+							"Suffix": ""
+						},
+						{
+							"Variable": "LENS"
+						},
+						{
+							"Variable": "COLOR"
+						}
+					],
+					[
+						{
+							"Variable": "LUMENS"
+						}
+					]
+				]
+			},
+			{
+				"Keys": ["LINEAR-G2"],
+				"Values": [
+					[
+						{
+							"Prefix": "Linears",
+							"Variable": ""
+						}
+					],
+					[
+						{
+							"Variable": "ProductDetails"
+						}
+					],
+					[
+						{
+							"Variable": "LUMENS",
+							"Suffix": "lumens / foot"
+						},
+						{
+							"Variable": "BEAM_ANGLE"
+						}
+					]
+				]
+			},
+			{
+				"Keys": ["LINEAR-L3I", "LINEAR-L4R"],
+				"Values": [
+					[
+						{
+							"Prefix": "Linears",
+							"Variable": ""
+						}
+					],
+					[
+						{
+							"Variable": "ProductDetails"
+						}
+					],
+					[
+						{
+							"Variable": "LUMENS",
+							"Suffix": "lumens / foot"
+						}
+					]
+				]
+			}
+		],
+		"UserControls": [
+			{
+				"Variable": "CONTROL_FAMILY",
+				"ControlType": "SelectionList",
+				"Label": "Product Line",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "HW",
+						"Label": "Residential (Homeworks compatible)"
+					},
+					{
+						"KeyValue": "CM",
+						"Label": "Commercial"
+					}
+				]
+			},
+			{
+				"Variable": "MODEL",
+				"ControlType": "SelectionList",
+				"Label": "Model",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "G2",
+						"Label": "G Series 12€ Linear Accent"
+					},
+					{
+						"KeyValue": "L3I",
+						"Label": "Linear 3 in Wide Indirect Pendant"
+					},
+					{
+						"KeyValue": "L4R",
+						"Label": "Linear 4 in Wide Recessed"
+					}
+				]
+			},
+			{
+				"Variable": "LENGTH",
+				"ControlType": "SelectionList",
+				"Label": "Length",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 5,
+				"OptionValues": [
+					{
+						"KeyValue": "0001",
+						"Label": "1 foot (12 inch)"
+					},
+					{
+						"KeyValue": "0002",
+						"Label": "2 ft"
+					},
+					{
+						"KeyValue": "0003",
+						"Label": "3 ft"
+					},
+					{
+						"KeyValue": "0004",
+						"Label": "4 ft"
+					},
+					{
+						"KeyValue": "0006",
+						"Label": "6 ft"
+					},
+					{
+						"KeyValue": "0008",
+						"Label": "8 ft"
+					},
+					{
+						"KeyValue": "0010",
+						"Label": "10 ft"
+					},
+					{
+						"KeyValue": "0012",
+						"Label": "12 ft"
+					}
+				]
+			},
+			{
+				"Variable": "LUMENS",
+				"ControlType": "SelectionList",
+				"Label": "Lumens",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 7,
+				"FeatureImage": "toolkit/LINEARS/Toolkit_Definition_Image_LUMENS_.png",
+				"FeatureText": "",
+				"OptionValues": [
+					{
+						"KeyValue": "020",
+						"Label": "200 Lumens Per Foot (656 Lumens Per Meter)"
+					},
+					{
+						"KeyValue": "035",
+						"Label": "350 Lumens Per Foot (1148 Lumens Per Meter)"
+					},
+					{
+						"KeyValue": "04",
+						"Label": "400"
+					},
+					{
+						"KeyValue": "06",
+						"Label": "600"
+					},
+					{
+						"KeyValue": "07",
+						"Label": "700"
+					},
+					{
+						"KeyValue": "08",
+						"Label": "800"
+					},
+					{
+						"KeyValue": "10",
+						"Label": "1000"
+					}
+				]
+			},
+			{
+				"Variable": "BEAM_ANGLE",
+				"ControlType": "SelectionList",
+				"Label": "Beam Angle",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 12,
+				"OptionValues": [
+					{
+						"KeyValue": "FL",
+						"Label": "Flood (60 X 60°)"
+					},
+					{
+						"KeyValue": "GR",
+						"Label": "Graze (10 X 60°)"
+					},
+					{
+						"KeyValue": "NFL",
+						"Label": "Narrow Flood (30 X 45°)"
+					},
+					{
+						"KeyValue": "WFL",
+						"Label": "Wide Flood (120 X 120°)"
+					}
+				]
+			},
+			{
+				"Variable": "VOLTAGE",
+				"ControlType": "SelectionList",
+				"Label": "Voltage",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "12",
+						"Label": "North America, 277VAC 60Hz"
+					},
+					{
+						"KeyValue": "11",
+						"Label": "North America, 120VAC 60Hz"
+					}
+				]
+			},
+			{
+				"Variable": "INTERFACE",
+				"ControlType": "SelectionList",
+				"Label": "Interface",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "A",
+						"Label": "Leader Cable"
+					}
+				]
+			},
+			{
+				"Variable": "HOUSING_COLOR",
+				"ControlType": "ImageSelectionList",
+				"Label": "Housing Color",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "WH",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_HOUSING_COLOR_White.jpg",
+						"Label": "White"
+					},
+					{
+						"KeyValue": "BK",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_HOUSING_COLOR_Black.jpg",
+						"Label": "Black"
+					}
+				]
+			},
+			{
+				"Variable": "COUNTRY",
+				"ControlType": "SelectionList",
+				"Label": "Job Location (Country)",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "AO",
+						"Label": "Angola"
+					},
+					{
+						"KeyValue": "AZ",
+						"Label": "Azerbaijan"
+					},
+					{
+						"KeyValue": "CO",
+						"Label": "Colombia"
+					},
+					{
+						"KeyValue": "CZ",
+						"Label": "Czech Republic"
+					},
+					{
+						"KeyValue": "GS",
+						"Label": "South Georgia and the South Sandwich Islands"
+					},
+					{
+						"KeyValue": "HU",
+						"Label": "Hungary"
+					},
+					{
+						"KeyValue": "IN",
+						"Label": "India"
+					},
+					{
+						"KeyValue": "JO",
+						"Label": "Jordan"
+					},
+					{
+						"KeyValue": "ME",
+						"Label": "Montenegro"
+					},
+					{
+						"KeyValue": "NG",
+						"Label": "Nigeria"
+					},
+					{
+						"KeyValue": "OM",
+						"Label": "Oman"
+					},
+					{
+						"KeyValue": "AN",
+						"Label": "Netherlands Antilles"
+					},
+					{
+						"KeyValue": "BF",
+						"Label": "Burkina Faso"
+					},
+					{
+						"KeyValue": "BJ",
+						"Label": "Benin"
+					},
+					{
+						"KeyValue": "CH",
+						"Label": "Switzerland"
+					},
+					{
+						"KeyValue": "FR",
+						"Label": "France"
+					},
+					{
+						"KeyValue": "GQ",
+						"Label": "Equatorial Guinea"
+					},
+					{
+						"KeyValue": "LA",
+						"Label": "Laos"
+					},
+					{
+						"KeyValue": "LR",
+						"Label": "Liberia"
+					},
+					{
+						"KeyValue": "MH",
+						"Label": "Marshall Islands"
+					},
+					{
+						"KeyValue": "NA",
+						"Label": "Namibia"
+					},
+					{
+						"KeyValue": "NR",
+						"Label": "Nauru"
+					},
+					{
+						"KeyValue": "AE",
+						"Label": "United Arab Emirates"
+					},
+					{
+						"KeyValue": "BE",
+						"Label": "Belgium"
+					},
+					{
+						"KeyValue": "BO",
+						"Label": "Bolivia"
+					},
+					{
+						"KeyValue": "BZ",
+						"Label": "Belize"
+					},
+					{
+						"KeyValue": "DK",
+						"Label": "Denmark"
+					},
+					{
+						"KeyValue": "DM",
+						"Label": "Dominica"
+					},
+					{
+						"KeyValue": "EE",
+						"Label": "Estonia"
+					},
+					{
+						"KeyValue": "GI",
+						"Label": "Gibraltar"
+					},
+					{
+						"KeyValue": "JE",
+						"Label": "Jersey"
+					},
+					{
+						"KeyValue": "KG",
+						"Label": "Kyrgyzstan"
+					},
+					{
+						"KeyValue": "KW",
+						"Label": "Kuwait"
+					},
+					{
+						"KeyValue": "LC",
+						"Label": "Saint Lucia"
+					},
+					{
+						"KeyValue": "MQ",
+						"Label": "Martinique"
+					},
+					{
+						"KeyValue": "PL",
+						"Label": "Poland"
+					},
+					{
+						"KeyValue": "AF",
+						"Label": "Afghanistan"
+					},
+					{
+						"KeyValue": "CF",
+						"Label": "Central African Republic"
+					},
+					{
+						"KeyValue": "CN",
+						"Label": "China"
+					},
+					{
+						"KeyValue": "GE",
+						"Label": "Georgia"
+					},
+					{
+						"KeyValue": "IT",
+						"Label": "Italy"
+					},
+					{
+						"KeyValue": "KH",
+						"Label": "Cambodia"
+					},
+					{
+						"KeyValue": "KN",
+						"Label": "Saint Kitts and Nevis"
+					},
+					{
+						"KeyValue": "MF",
+						"Label": "Saint Martin"
+					},
+					{
+						"KeyValue": "MN",
+						"Label": "Mongolia"
+					},
+					{
+						"KeyValue": "NP",
+						"Label": "Nepal"
+					},
+					{
+						"KeyValue": "BG",
+						"Label": "Bulgaria"
+					},
+					{
+						"KeyValue": "BW",
+						"Label": "Botswana"
+					},
+					{
+						"KeyValue": "CC",
+						"Label": "Cocos (Keeling) Islands"
+					},
+					{
+						"KeyValue": "EG",
+						"Label": "Egypt"
+					},
+					{
+						"KeyValue": "FI",
+						"Label": "Finland"
+					},
+					{
+						"KeyValue": "GM",
+						"Label": "Gambia"
+					},
+					{
+						"KeyValue": "HK",
+						"Label": "Hong Kong"
+					},
+					{
+						"KeyValue": "HT",
+						"Label": "Haiti"
+					},
+					{
+						"KeyValue": "LS",
+						"Label": "Lesotho"
+					},
+					{
+						"KeyValue": "MC",
+						"Label": "Monaco"
+					},
+					{
+						"KeyValue": "MU",
+						"Label": "Mauritius"
+					},
+					{
+						"KeyValue": "PK",
+						"Label": "Pakistan"
+					},
+					{
+						"KeyValue": "PM",
+						"Label": "Saint Pierre and Miquelon"
+					},
+					{
+						"KeyValue": "AS",
+						"Label": "American Samoa"
+					},
+					{
+						"KeyValue": "BU",
+						"Label": "Burma/Myanmar"
+					},
+					{
+						"KeyValue": "CI",
+						"Label": "Ivory Coast"
+					},
+					{
+						"KeyValue": "ES",
+						"Label": "Spain"
+					},
+					{
+						"KeyValue": "FK",
+						"Label": "Falkland Islands"
+					},
+					{
+						"KeyValue": "FM",
+						"Label": "Micronesia"
+					},
+					{
+						"KeyValue": "GL",
+						"Label": "Greenland"
+					},
+					{
+						"KeyValue": "IQ",
+						"Label": "Iraq"
+					},
+					{
+						"KeyValue": "LB",
+						"Label": "Lebanon"
+					},
+					{
+						"KeyValue": "NI",
+						"Label": "Nicaragua"
+					},
+					{
+						"KeyValue": "BA",
+						"Label": "Bosnia and Herzegovina"
+					},
+					{
+						"KeyValue": "BR",
+						"Label": "Brazil"
+					},
+					{
+						"KeyValue": "GU",
+						"Label": "Guam"
+					},
+					{
+						"KeyValue": "KE",
+						"Label": "Kenya"
+					},
+					{
+						"KeyValue": "KZ",
+						"Label": "Kazakhstan"
+					},
+					{
+						"KeyValue": "MO",
+						"Label": "Macao"
+					},
+					{
+						"KeyValue": "MZ",
+						"Label": "Mozambique"
+					},
+					{
+						"KeyValue": "NF",
+						"Label": "Norfolk Island"
+					},
+					{
+						"KeyValue": "BI",
+						"Label": "Burundi"
+					},
+					{
+						"KeyValue": "CK",
+						"Label": "Cook Islands"
+					},
+					{
+						"KeyValue": "CM",
+						"Label": "Cameroon"
+					},
+					{
+						"KeyValue": "CV",
+						"Label": "Cape Verde"
+					},
+					{
+						"KeyValue": "GN",
+						"Label": "Guinea"
+					},
+					{
+						"KeyValue": "JP",
+						"Label": "Japan"
+					},
+					{
+						"KeyValue": "KM",
+						"Label": "Comoros"
+					},
+					{
+						"KeyValue": "LY",
+						"Label": "Libya"
+					},
+					{
+						"KeyValue": "MK",
+						"Label": "Macedonia"
+					},
+					{
+						"KeyValue": "MM",
+						"Label": "Myanmar"
+					},
+					{
+						"KeyValue": "MT",
+						"Label": "Malta"
+					},
+					{
+						"KeyValue": "MV",
+						"Label": "Maldives"
+					},
+					{
+						"KeyValue": "NC",
+						"Label": "New Caledonia"
+					},
+					{
+						"KeyValue": "PF",
+						"Label": "French Polynesia"
+					},
+					{
+						"KeyValue": "AM",
+						"Label": "Armenia"
+					},
+					{
+						"KeyValue": "AT",
+						"Label": "Austria"
+					},
+					{
+						"KeyValue": "BB",
+						"Label": "Barbados"
+					},
+					{
+						"KeyValue": "BT",
+						"Label": "Bhutan"
+					},
+					{
+						"KeyValue": "ET",
+						"Label": "Ethiopia"
+					},
+					{
+						"KeyValue": "GH",
+						"Label": "Ghana"
+					},
+					{
+						"KeyValue": "HN",
+						"Label": "Honduras"
+					},
+					{
+						"KeyValue": "JM",
+						"Label": "Jamaica"
+					},
+					{
+						"KeyValue": "KY",
+						"Label": "Cayman Islands"
+					},
+					{
+						"KeyValue": "MY",
+						"Label": "Malaysia"
+					},
+					{
+						"KeyValue": "PG",
+						"Label": "Papua New Guinea"
+					},
+					{
+						"KeyValue": "AI",
+						"Label": "Anguilla"
+					},
+					{
+						"KeyValue": "BS",
+						"Label": "Bahamas"
+					},
+					{
+						"KeyValue": "GF",
+						"Label": "French Guiana"
+					},
+					{
+						"KeyValue": "KP",
+						"Label": "North Korea"
+					},
+					{
+						"KeyValue": "LK",
+						"Label": "Sri Lanka"
+					},
+					{
+						"KeyValue": "LT",
+						"Label": "Lithuania"
+					},
+					{
+						"KeyValue": "LV",
+						"Label": "Latvia"
+					},
+					{
+						"KeyValue": "MP",
+						"Label": "Northern Mariana Islands"
+					},
+					{
+						"KeyValue": "NU",
+						"Label": "Niue"
+					},
+					{
+						"KeyValue": "PH",
+						"Label": "Philippines"
+					},
+					{
+						"KeyValue": "AL",
+						"Label": "Albania"
+					},
+					{
+						"KeyValue": "BD",
+						"Label": "Bangladesh"
+					},
+					{
+						"KeyValue": "BL",
+						"Label": "Saint Barthelemy"
+					},
+					{
+						"KeyValue": "BY",
+						"Label": "Belarus"
+					},
+					{
+						"KeyValue": "DE",
+						"Label": "Germany"
+					},
+					{
+						"KeyValue": "DZ",
+						"Label": "Algeria"
+					},
+					{
+						"KeyValue": "HR",
+						"Label": "Croatia"
+					},
+					{
+						"KeyValue": "PE",
+						"Label": "Peru"
+					},
+					{
+						"KeyValue": "AR",
+						"Label": "Argentina"
+					},
+					{
+						"KeyValue": "BH",
+						"Label": "Bahrain"
+					},
+					{
+						"KeyValue": "CA",
+						"Label": "Canada"
+					},
+					{
+						"KeyValue": "CR",
+						"Label": "Costa Rica"
+					},
+					{
+						"KeyValue": "ER",
+						"Label": "Eritrea"
+					},
+					{
+						"KeyValue": "FO",
+						"Label": "Faroe Islands"
+					},
+					{
+						"KeyValue": "MA",
+						"Label": "Morocco"
+					},
+					{
+						"KeyValue": "AU",
+						"Label": "Australia"
+					},
+					{
+						"KeyValue": "CU",
+						"Label": "Cuba"
+					},
+					{
+						"KeyValue": "DJ",
+						"Label": "Djibouti"
+					},
+					{
+						"KeyValue": "EC",
+						"Label": "Ecuador"
+					},
+					{
+						"KeyValue": "GD",
+						"Label": "Grenada"
+					},
+					{
+						"KeyValue": "GY",
+						"Label": "Guyana"
+					},
+					{
+						"KeyValue": "HM",
+						"Label": "Heard Island and McDonald Island"
+					},
+					{
+						"KeyValue": "IE",
+						"Label": "Ireland"
+					},
+					{
+						"KeyValue": "IO",
+						"Label": "British Indian Ocean Territory"
+					},
+					{
+						"KeyValue": "KI",
+						"Label": "Kiribati"
+					},
+					{
+						"KeyValue": "LI",
+						"Label": "Liechtenstein"
+					},
+					{
+						"KeyValue": "MS",
+						"Label": "Montserrat"
+					},
+					{
+						"KeyValue": "PA",
+						"Label": "Panama"
+					},
+					{
+						"KeyValue": "AD",
+						"Label": "Andorra"
+					},
+					{
+						"KeyValue": "AX",
+						"Label": "Aland Islands"
+					},
+					{
+						"KeyValue": "BM",
+						"Label": "Bermuda"
+					},
+					{
+						"KeyValue": "BV",
+						"Label": "Bouvet Island"
+					},
+					{
+						"KeyValue": "CD",
+						"Label": "Democratic Republic of the Congo"
+					},
+					{
+						"KeyValue": "CL",
+						"Label": "Chile"
+					},
+					{
+						"KeyValue": "CX",
+						"Label": "Christmas Island"
+					},
+					{
+						"KeyValue": "CY",
+						"Label": "Cyprus"
+					},
+					{
+						"KeyValue": "DO",
+						"Label": "Dominican Republic"
+					},
+					{
+						"KeyValue": "FJ",
+						"Label": "Fiji"
+					},
+					{
+						"KeyValue": "GA",
+						"Label": "Gabon"
+					},
+					{
+						"KeyValue": "GR",
+						"Label": "Greece"
+					},
+					{
+						"KeyValue": "IS",
+						"Label": "Iceland"
+					},
+					{
+						"KeyValue": "MD",
+						"Label": "Moldova"
+					},
+					{
+						"KeyValue": "ML",
+						"Label": "Mali"
+					},
+					{
+						"KeyValue": "MX",
+						"Label": "Mexico"
+					},
+					{
+						"KeyValue": "NL",
+						"Label": "Netherlands"
+					},
+					{
+						"KeyValue": "AG",
+						"Label": "Antigua and Barbuda"
+					},
+					{
+						"KeyValue": "AQ",
+						"Label": "Antarctica"
+					},
+					{
+						"KeyValue": "AW",
+						"Label": "Aruba"
+					},
+					{
+						"KeyValue": "BQ",
+						"Label": "Bonaire"
+					},
+					{
+						"KeyValue": "CG",
+						"Label": "Congo"
+					},
+					{
+						"KeyValue": "CW",
+						"Label": "Curacao"
+					},
+					{
+						"KeyValue": "GB",
+						"Label": "United Kingdom"
+					},
+					{
+						"KeyValue": "GP",
+						"Label": "Guadeloupe"
+					},
+					{
+						"KeyValue": "GT",
+						"Label": "Guatemala"
+					},
+					{
+						"KeyValue": "IR",
+						"Label": "Iran"
+					},
+					{
+						"KeyValue": "LU",
+						"Label": "Luxembourg"
+					},
+					{
+						"KeyValue": "MG",
+						"Label": "Madagascar"
+					},
+					{
+						"KeyValue": "MW",
+						"Label": "Malawi"
+					},
+					{
+						"KeyValue": "NE",
+						"Label": "Niger"
+					},
+					{
+						"KeyValue": "NO",
+						"Label": "Norway"
+					},
+					{
+						"KeyValue": "NZ",
+						"Label": "New Zealand"
+					},
+					{
+						"KeyValue": "BN",
+						"Label": "Brunei"
+					},
+					{
+						"KeyValue": "EH",
+						"Label": "Western Sahara"
+					},
+					{
+						"KeyValue": "GG",
+						"Label": "Guernsey"
+					},
+					{
+						"KeyValue": "GW",
+						"Label": "Guinea-Bissau"
+					},
+					{
+						"KeyValue": "ID",
+						"Label": "Indonesia"
+					},
+					{
+						"KeyValue": "IL",
+						"Label": "Israel"
+					},
+					{
+						"KeyValue": "KR",
+						"Label": "South Korea"
+					},
+					{
+						"KeyValue": "MR",
+						"Label": "Mauritania"
+					},
+					{
+						"KeyValue": "SI",
+						"Label": "Slovenia"
+					},
+					{
+						"KeyValue": "SS",
+						"Label": "South Sudan"
+					},
+					{
+						"KeyValue": "TR",
+						"Label": "Turkey"
+					},
+					{
+						"KeyValue": "RE",
+						"Label": "Reunion"
+					},
+					{
+						"KeyValue": "RO",
+						"Label": "Romania"
+					},
+					{
+						"KeyValue": "SD",
+						"Label": "Sudan"
+					},
+					{
+						"KeyValue": "SL",
+						"Label": "Sierra Leone"
+					},
+					{
+						"KeyValue": "SX",
+						"Label": "Saint Maarten"
+					},
+					{
+						"KeyValue": "SY",
+						"Label": "Syria"
+					},
+					{
+						"KeyValue": "TG",
+						"Label": "Togo"
+					},
+					{
+						"KeyValue": "TW",
+						"Label": "Taiwan"
+					},
+					{
+						"KeyValue": "VE",
+						"Label": "Venezuela"
+					},
+					{
+						"KeyValue": "YT",
+						"Label": "Mayotte"
+					},
+					{
+						"KeyValue": "RS",
+						"Label": "Serbia"
+					},
+					{
+						"KeyValue": "SA",
+						"Label": "Saudi Arabia"
+					},
+					{
+						"KeyValue": "TK",
+						"Label": "Tokelau"
+					},
+					{
+						"KeyValue": "TT",
+						"Label": "Trinidad and Tobago"
+					},
+					{
+						"KeyValue": "TV",
+						"Label": "Tuvalu"
+					},
+					{
+						"KeyValue": "VI",
+						"Label": "US Virgin Islands"
+					},
+					{
+						"KeyValue": "ZW",
+						"Label": "Zimbabwe"
+					},
+					{
+						"KeyValue": "RW",
+						"Label": "Rwanda"
+					},
+					{
+						"KeyValue": "SJ",
+						"Label": "Svalbard and Jan Mayen"
+					},
+					{
+						"KeyValue": "SN",
+						"Label": "Senegal"
+					},
+					{
+						"KeyValue": "VC",
+						"Label": "Saint Vincent and the Grenadines"
+					},
+					{
+						"KeyValue": "WS",
+						"Label": "Samoa"
+					},
+					{
+						"KeyValue": "TM",
+						"Label": "Turkmenistan"
+					},
+					{
+						"KeyValue": "UZ",
+						"Label": "Uzbekistan"
+					},
+					{
+						"KeyValue": "PT",
+						"Label": "Portugal"
+					},
+					{
+						"KeyValue": "SB",
+						"Label": "Solomon Islands"
+					},
+					{
+						"KeyValue": "VA",
+						"Label": "Vatican City"
+					},
+					{
+						"KeyValue": "PS",
+						"Label": "Palestinian Territory"
+					},
+					{
+						"KeyValue": "TH",
+						"Label": "Thailand"
+					},
+					{
+						"KeyValue": "US",
+						"Label": "United States"
+					},
+					{
+						"KeyValue": "VN",
+						"Label": "Vietnam"
+					},
+					{
+						"KeyValue": "ZM",
+						"Label": "Zambia"
+					},
+					{
+						"KeyValue": "PN",
+						"Label": "Pitcairn"
+					},
+					{
+						"KeyValue": "TC",
+						"Label": "Turks and Caicos Islands"
+					},
+					{
+						"KeyValue": "VG",
+						"Label": "British Virgin Islands"
+					},
+					{
+						"KeyValue": "ZA",
+						"Label": "South Africa"
+					},
+					{
+						"KeyValue": "PW",
+						"Label": "Palau"
+					},
+					{
+						"KeyValue": "UG",
+						"Label": "Uganda"
+					},
+					{
+						"KeyValue": "WF",
+						"Label": "Wallis and Futuna Islands"
+					},
+					{
+						"KeyValue": "PR",
+						"Label": "Puerto Rico"
+					},
+					{
+						"KeyValue": "SH",
+						"Label": "Saint Helena, Ascension and Tristan"
+					},
+					{
+						"KeyValue": "VU",
+						"Label": "Vanuatu"
+					},
+					{
+						"KeyValue": "SE",
+						"Label": "Sweden"
+					},
+					{
+						"KeyValue": "SO",
+						"Label": "Somalia"
+					},
+					{
+						"KeyValue": "SZ",
+						"Label": "Swaziland"
+					},
+					{
+						"KeyValue": "TD",
+						"Label": "Chad"
+					},
+					{
+						"KeyValue": "TL",
+						"Label": "Timor-Leste"
+					},
+					{
+						"KeyValue": "SC",
+						"Label": "Seychelles"
+					},
+					{
+						"KeyValue": "TN",
+						"Label": "Tunisia"
+					},
+					{
+						"KeyValue": "QA",
+						"Label": "Qatar"
+					},
+					{
+						"KeyValue": "UY",
+						"Label": "Uruguay"
+					},
+					{
+						"KeyValue": "SG",
+						"Label": "Singapore"
+					},
+					{
+						"KeyValue": "TF",
+						"Label": "French Southern Territories"
+					},
+					{
+						"KeyValue": "TJ",
+						"Label": "Tajikistan"
+					},
+					{
+						"KeyValue": "YE",
+						"Label": "Yemen"
+					},
+					{
+						"KeyValue": "PY",
+						"Label": "Paraguay"
+					},
+					{
+						"KeyValue": "SK",
+						"Label": "Slovakia"
+					},
+					{
+						"KeyValue": "SM",
+						"Label": "San Marino"
+					},
+					{
+						"KeyValue": "ST",
+						"Label": "Sao Tome and Principe"
+					},
+					{
+						"KeyValue": "SV",
+						"Label": "El Salvador"
+					},
+					{
+						"KeyValue": "TO",
+						"Label": "Tonga"
+					},
+					{
+						"KeyValue": "TZ",
+						"Label": "Tanzania"
+					},
+					{
+						"KeyValue": "UM",
+						"Label": "United States Minor Outlying Islands"
+					},
+					{
+						"KeyValue": "RU",
+						"Label": "Russia"
+					},
+					{
+						"KeyValue": "SR",
+						"Label": "Suriname"
+					},
+					{
+						"KeyValue": "UA",
+						"Label": "Ukraine"
+					}
+				]
+			},
+			{
+				"Variable": "PLATFORM_CONTROL",
+				"ControlType": "SelectionList",
+				"Label": "Platform and Control",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "BT",
+						"Label": "KetraNet/Clear Connect - Type X"
+					},
+					{
+						"KeyValue": "GT",
+						"Label": "Clear Connect - Type X"
+					}
+				]
+			},
+			{
+				"Variable": "LENS",
+				"ControlType": "SelectionList",
+				"Label": "Style",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": true,
+				"Column": 1,
+				"Row": 6,
+				"FeatureImage": "toolkit/LINEARS/Toolkit_Definition_Image_LENS_.png",
+				"FeatureText": "",
+				"OptionValues": [
+					{
+						"KeyValue": "DL",
+						"Label": "Dust Lens"
+					},
+					{
+						"KeyValue": "FO",
+						"Label": "Flush Opal"
+					},
+					{
+						"KeyValue": "IND",
+						"Label": "High Output"
+					},
+					{
+						"KeyValue": "LR",
+						"Label": "Long Run"
+					}
+				]
+			},
+			{
+				"Variable": "FIXTURE_COLOR",
+				"ControlType": "SelectionList",
+				"Label": "Fixture Color",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 13,
+				"OptionValues": [
+					{
+						"KeyValue": "WWW",
+						"Label": "White Fixture, White Cable, White Can"
+					},
+					{
+						"KeyValue": "WWB",
+						"Label": "White Fixt, White Cable, Black Can"
+					},
+					{
+						"KeyValue": "WBB",
+						"Label": "White Fixt, Black Cable, Black Can"
+					},
+					{
+						"KeyValue": "BWW",
+						"Label": "Black Fixt, White Cable, White Can"
+					},
+					{
+						"KeyValue": "BBB",
+						"Label": "Black Fixture, Black Cable, Black Can"
+					},
+					{
+						"KeyValue": "BBW",
+						"Label": "Black Fixt, Black Cable, White Can"
+					}
+				]
+			},
+			{
+				"Variable": "CONFIG",
+				"ControlType": "SelectionList",
+				"Label": "Configuration",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 15,
+				"OptionValues": [
+					{
+						"KeyValue": "PR1",
+						"Label": "Power Input Only"
+					},
+					{
+						"KeyValue": "PR2",
+						"Label": "Power input and Output"
+					},
+					{
+						"KeyValue": "SS1STD",
+						"Label": "Segment Start"
+					},
+					{
+						"KeyValue": "SS1",
+						"Label": "Segment Start Power Input"
+					},
+					{
+						"KeyValue": "SMN",
+						"Label": "Segment Middle"
+					},
+					{
+						"KeyValue": "SM1",
+						"Label": "Segment Middle Power Input"
+					},
+					{
+						"KeyValue": "SEN",
+						"Label": "Segment End"
+					},
+					{
+						"KeyValue": "SE2",
+						"Label": "Segment End Power Output"
+					},
+					{
+						"KeyValue": "PR1STD",
+						"Label": "Standard"
+					}
+				]
+			},
+			{
+				"Variable": "MOUNTING",
+				"ControlType": "SelectionList",
+				"Label": "Mounting",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 9,
+				"OptionValues": [
+					{
+						"KeyValue": "C1",
+						"Label": "Hard Ceiling"
+					},
+					{
+						"KeyValue": "C2",
+						"Label": "T-Bar"
+					},
+					{
+						"KeyValue": "NAC",
+						"Label": "Flangeless, Aircraft Cable"
+					},
+					{
+						"KeyValue": "NEB",
+						"Label": "Flangeless, External Mounting Bracket"
+					},
+					{
+						"KeyValue": "NTR",
+						"Label": "Flangeless, Threaded Rod"
+					},
+					{
+						"KeyValue": "FTG",
+						"Label": "Flanged, T-Grid"
+					},
+					{
+						"KeyValue": "FTR",
+						"Label": "Flanged, Threaded Rod"
+					},
+					{
+						"KeyValue": "FLT",
+						"Label": "Flat Mounting"
+					}
+				]
+			},
+			{
+				"Variable": "ProductDetails",
+				"ControlType": "ImageSelector",
+				"Label": "Product Details",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 1,
+				"OptionValues": [
+					{
+						"KeyValue": "SLRN",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_Product_Details_SLRN.png",
+						"Label": "LS0 Lightbar Slim Run"
+					},
+					{
+						"KeyValue": "SLSG",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_Product_Details_SLSG.png",
+						"Label": "LS0 Lightbar Slim Components (A la carte)"
+					},
+					{
+						"KeyValue": "LINEARG2",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_Product_Details_LINEARG2.jpg",
+						"Label": "G2 Accent Linear"
+					},
+					{
+						"KeyValue": "LINEARL3I",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_Product_Details_LINEARL3I.png",
+						"Label": "L3I Indirect Linear Pendent"
+					},
+					{
+						"KeyValue": "LINEARL4R",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_Product_Details_LINEARL4R.png",
+						"Label": "L4R Recessed Linear"
+					}
+				]
+			},
+			{
+				"Variable": "KETRA_MODEL_NUM",
+				"ControlType": "string",
+				"Label": "Model Number",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 25,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION1LENGTH",
+				"ControlType": "double",
+				"Label": "Section 1",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 1,
+				"FeatureImage": "toolkit/LINEARS/Toolkit_Definition_Image_SECTION1LENGTH_.png",
+				"FeatureText": "",
+				"OptionValues": [
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION2LENGTH",
+				"ControlType": "double",
+				"Label": "Section 2",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 2,
+				"OptionValues": [
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					},
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION3LENGTH",
+				"ControlType": "double",
+				"Label": "Section 3",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 3,
+				"OptionValues": [
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION4LENGTH",
+				"ControlType": "double",
+				"Label": "Section 4",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 4,
+				"OptionValues": [
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					},
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION5LENGTH",
+				"ControlType": "double",
+				"Label": "Section 5",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 5,
+				"OptionValues": [
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION6LENGTH",
+				"ControlType": "double",
+				"Label": "Section 6",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 6,
+				"OptionValues": [
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					},
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION7LENGTH",
+				"ControlType": "double",
+				"Label": "Section 7",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 7,
+				"OptionValues": [
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION8LENGTH",
+				"ControlType": "double",
+				"Label": "Section 8",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Row": 8,
+				"OptionValues": [
+					{
+						"KeyValue": "upperlimit",
+						"Label": "288"
+					},
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "0"
+					}
+				]
+			},
+			{
+				"Variable": "PSBUNDLE",
+				"ControlType": "SelectionList",
+				"Label": "Power Suppy Bundle",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": true,
+				"Column": 1,
+				"Row": 14,
+				"OptionValues": [
+					{
+						"KeyValue": "PS",
+						"Label": "Include X96 Controller With Order"
+					},
+					{
+						"KeyValue": "NONE",
+						"Label": "Do Not Include X96 Controller With Order"
+					}
+				]
+			},
+			{
+				"Variable": "COLOR",
+				"ControlType": "ImageSelectionList",
+				"Label": "Finish",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 8,
+				"OptionValues": [
+					{
+						"KeyValue": "WH",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_COLOR_White.jpg",
+						"Label": "White"
+					},
+					{
+						"KeyValue": "BL",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_COLOR_Black.jpg",
+						"Label": "Black"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION1SPLITS",
+				"ControlType": "string",
+				"Label": "Section 1 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 17,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTIONXLENGTH",
+				"ControlType": "Grouped",
+				"Label": "Run",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 3,
+				"MaxControls": 8,
+				"FeatureText": "",
+				"OptionValues": [],
+				"InitialControlsToShow": 1,
+				"IncrementHyperlinkText": "Add a section"
+			},
+			{
+				"Variable": "INPUT_CONNECTION",
+				"ControlType": "SelectionList",
+				"Label": "Input",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 10,
+				"FeatureImage": "toolkit/LINEARS/Toolkit_Definition_Image_INPUT_CONNECTION_.png",
+				"OptionValues": [
+					{
+						"KeyValue": "WIRE",
+						"Label": "Flexible Connector"
+					},
+					{
+						"KeyValue": "STC",
+						"Label": "Straight Connector"
+					}
+				]
+			},
+			{
+				"Variable": "OUTPUT_CONNECTION",
+				"ControlType": "SelectionList",
+				"Label": "Output",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 11,
+				"FeatureImage": "toolkit/LINEARS/Toolkit_Definition_Image_OUTPUT_CONNECTION_.png",
+				"OptionValues": [
+					{
+						"KeyValue": "NONE",
+						"Label": "End Connector Cover"
+					},
+					{
+						"KeyValue": "WIRE",
+						"Label": "Flexible Connector"
+					},
+					{
+						"KeyValue": "STC",
+						"Label": "Straight Connector"
+					}
+				]
+			},
+			{
+				"Variable": "SECTION8SPLITS",
+				"ControlType": "string",
+				"Label": "Section 8 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 24,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION3SPLITS",
+				"ControlType": "string",
+				"Label": "Section 3 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 19,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION5SPLITS",
+				"ControlType": "string",
+				"Label": "Section 5 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 21,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION7SPLITS",
+				"ControlType": "string",
+				"Label": "Section 7 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 23,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION2SPLITS",
+				"ControlType": "string",
+				"Label": "Section 2 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 18,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION4SPLITS",
+				"ControlType": "string",
+				"Label": "Section 4 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 20,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SECTION6SPLITS",
+				"ControlType": "string",
+				"Label": "Section 6 Split(s)",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 22,
+				"OptionValues": []
+			},
+			{
+				"Variable": "SEGMENTLENGTH",
+				"ControlType": "double",
+				"Label": "Segment Length",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 4,
+				"FeatureText": "",
+				"OptionValues": [
+					{
+						"KeyValue": "increment",
+						"Label": "1"
+					},
+					{
+						"KeyValue": "upperlimit",
+						"Label": "96"
+					},
+					{
+						"KeyValue": "lowerlimit",
+						"Label": "10"
+					}
+				]
+			},
+			{
+				"Variable": "RUNLENGTH",
+				"ControlType": "string",
+				"Label": "Run Length",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 16,
+				"OptionValues": []
+			},
+			{
+				"Variable": "RUN_LENGTH_USED",
+				"ControlType": "string",
+				"Label": "Run Length Used",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 26,
+				"OptionValues": []
+			},
+			{
+				"Variable": "RUN_LENGTH_REMAINING",
+				"ControlType": "string",
+				"Label": "Run Length Remaining",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 27,
+				"OptionValues": []
+			},
+			{
+				"Variable": "PRODUCT_IMAGE_CODE",
+				"ControlType": "ProductImage",
+				"Label": "",
+				"DefinitionType": "Resultant",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 28,
+				"OptionValues": [
+					{
+						"KeyValue": "LS0_Segment_Image",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_PRODUCT_IMAGE_CODE_LS0_Segment_Image.png"
+					},
+					{
+						"KeyValue": "LS0_Run_System_Image",
+						"Image": "toolkit/LINEARS/Toolkit_Definition_Value_Image_PRODUCT_IMAGE_CODE_LS0_Run_System_Image.png"
+					}
+				]
+			},
+			{
+				"Variable": "ConfigurationOptions",
+				"ControlType": "SelectionList",
+				"Label": "Configuration Options",
+				"DefinitionType": "Provided",
+				"IsDisplayed": false,
+				"IsShowSingleOptionValue": false,
+				"OptionValues": [
+					{
+						"KeyValue": "1",
+						"Label": "Level 1: Standard"
+					},
+					{
+						"KeyValue": "2",
+						"Label": "Level 2: Product Override"
+					},
+					{
+						"KeyValue": "3",
+						"Label": "Level 3: Custom Override"
+					},
+					{
+						"KeyValue": "4",
+						"Label": "Level 4: Custom Manufacturing"
+					}
+				]
+			},
+			{
+				"Variable": "COMPONENT",
+				"ControlType": "SelectionList",
+				"Label": "Component",
+				"DefinitionType": "Provided",
+				"IsDisplayed": true,
+				"IsShowSingleOptionValue": false,
+				"Column": 1,
+				"Row": 2,
+				"OptionValues": [
+					{
+						"KeyValue": "X96",
+						"Label": "X96 Ketra Controller"
+					},
+					{
+						"KeyValue": "SEG",
+						"Label": "LS0 Lightbar Slim Segment"
+					}
+				]
+			}
+		],
+		"CDNPrefix": "https://FADQAImageAkamaiCDN.azureedge.net/fadqaimages001/",
+		"ProductToolkitImageCDNUrl": "toolkit/LINEARS/Toolkit_Definition_Image_LENS_.png",
+		"LayoutManager": [
+			{
+				"Name": "Default",
+				"Containers": [
+					{
+						"Rows": [
+							{
+								"ContainerType": "Simple",
+								"Label": "Product Details",
+								"Controls": [
+									{
+										"Variable": "ProductDetails",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Grouped",
+								"Label": "Run",
+								"Variable": "SECTIONXLENGTH",
+								"Controls": [],
+								"Rows": [
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION1LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION2LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION3LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION4LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION5LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION6LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION7LENGTH",
+												"ShowLabel": true
+											}
+										]
+									},
+									{
+										"ContainerType": "Simple",
+										"Controls": [
+											{
+												"Variable": "SECTION8LENGTH",
+												"ShowLabel": true
+											}
+										]
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Segment Length",
+								"Controls": [
+									{
+										"Variable": "SEGMENTLENGTH",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Length",
+								"Controls": [
+									{
+										"Variable": "LENGTH",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Style",
+								"Controls": [
+									{
+										"Variable": "LENS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Lumens",
+								"Controls": [
+									{
+										"Variable": "LUMENS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Finish",
+								"Controls": [
+									{
+										"Variable": "COLOR",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Mounting",
+								"Controls": [
+									{
+										"Variable": "MOUNTING",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Input",
+								"Controls": [
+									{
+										"Variable": "INPUT_CONNECTION",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Output",
+								"Controls": [
+									{
+										"Variable": "OUTPUT_CONNECTION",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Beam Angle",
+								"Controls": [
+									{
+										"Variable": "BEAM_ANGLE",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Fixture Color",
+								"Controls": [
+									{
+										"Variable": "FIXTURE_COLOR",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Configuration",
+								"Controls": [
+									{
+										"Variable": "CONFIG",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Run Length",
+								"Controls": [
+									{
+										"Variable": "RUNLENGTH",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 1 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION1SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 2 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION2SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 3 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION3SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 4 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION4SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 5 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION5SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 6 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION6SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 7 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION7SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Section 8 Split(s)",
+								"Controls": [
+									{
+										"Variable": "SECTION8SPLITS",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Model Number",
+								"Controls": [
+									{
+										"Variable": "KETRA_MODEL_NUM",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Run Length Used",
+								"Controls": [
+									{
+										"Variable": "RUN_LENGTH_USED",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "Run Length Remaining",
+								"Controls": [
+									{
+										"Variable": "RUN_LENGTH_REMAINING",
+										"ShowLabel": false
+									}
+								]
+							},
+							{
+								"ContainerType": "Simple",
+								"Label": "",
+								"Controls": [
+									{
+										"Variable": "PRODUCT_IMAGE_CODE",
+										"ShowLabel": false
+									}
+								]
+							}
+						],
+						"ContainerName": "",
+						"LayoutRows": null,
+						"IsCollapsed": false
+					}
+				]
+			}
+		]
+	}
+]
