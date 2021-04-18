@@ -3,6 +3,8 @@ import { Product } from "../../product-context";
 import React, { useContext } from "react";
 import { View, Text, Picker, StyleSheet, Image } from 'react-native'
 import {Container, Row, Col} from 'react-bootstrap/DropdownButton'; 
+import { ZoomRequest, ZoomResponse } from "../../zoom-context"
+import ZoomHandler from "../../services/ZoomHandler"
 
 class NativeDropdown extends React.Component {
 
@@ -23,15 +25,7 @@ class NativeDropdown extends React.Component {
 
 }
 
-NativeDropdown = (props) => {
-
-   // Info to render the images
-   const context = useContext(Product)
-   const product = context.product
-   const cdn = product.CDNPrefix
-   const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_PSTORE_MODEL_HW-S-AB-S-00100-AB.png"
-   const link = cdn + path
-
+const displaySamples = () => {
    var base_url = "https://FADAkamaiCDN.azureedge.net/filestorage/toolkit/ALISSE/Toolkit_Definition_Value_Image_FACEPLATE_FINISH_";
 
    // Image color URLs
@@ -46,10 +40,6 @@ NativeDropdown = (props) => {
    const snow_white = base_url + "Snow_White.jpg";
    const archetectural_white_url = base_url + "Archetectural_White.jpg";
    const matte_black_url = base_url + "Matte_Black.jpg";
-   
-
-   // View that is returned
-   // TODO: When a color is selected, only display the coresponding image
    return (
       <View>
          <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: aged_brass_url}}/>
@@ -63,22 +53,31 @@ NativeDropdown = (props) => {
          <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: snow_white}}/>
          <Image square style={{width: 30, height: 20, marginTop: 2}} source={{uri: archetectural_white_url}}/>
          <Image square style={{width: 30, height: 20, marginTop: 2, marginBottom: 2}} source={{uri: matte_black_url}}/>
-
-         <Picker>
-            <Picker.Item label = "Aged Brass" value = "Aged Brass"/>
-            <Picker.Item label = "Aged Bronze" value = "Aged Bronze"/>
-            <Picker.Item label = "Brushed Brass" value = "Brushed Brass"/>
-            <Picker.Item label = "Graphite" value = "Graphite"/>
-            <Picker.Item label = "Champagne" value = "Champagne"/>
-            <Picker.Item label = "Satin Nickel" value = "Satin Nickel"/>
-            <Picker.Item label = "Bright Chrome" value = "Bright Chrome"/>
-            <Picker.Item label = "Brilliant White" value = "Brilliant White"/>
-            <Picker.Item label = "Snow White" value = "Snow White"/>
-            <Picker.Item label = "Architectural White" value = "Architectural White"/>
-            <Picker.Item label = "Matte Black" value = "Matte Black"/>
-         </Picker>
-
       </View>
+   )
+}
+
+NativeDropdown = (props) => {
+
+   const { dropdown_key, cdn, dropdown_value, dropdown_image, dropdown_selected, componentName } = props
+	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
+	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
+
+   let item
+
+   if (cdn && item) {
+		item = `${dropdown_value}`
+	} else {
+		item = "No item!"
+	}
+   
+
+   // View that is returned
+   // TODO: When a color is selected, only display the coresponding image
+   return (
+      <Picker>
+         <Picker.Item label = {item} value = {item}/>
+      </Picker>
    )
 }
 

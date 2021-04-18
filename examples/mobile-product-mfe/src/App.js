@@ -21,7 +21,7 @@ import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
 // ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
 	SelectionList: "SelectionSlider",
-	ImageSelectionList: "Icons",
+	ImageSelectionList: "NativeDropdown",
 	ImageSelector: "Icons",
 	ProductImage: "ProductImage",
 	// Engraving: "Engraving",
@@ -347,7 +347,7 @@ const App = (props) => {
 															({
 																Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
 																SelectionSlider: <SelectionSlider variable={Variable} data={UserControlsObj[Variable]} />,
-																Dropdown: <Dropdown variable={Variable} data={UserControlsObj[Variable]} />,
+																NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} />,
 															}[RenderType])
 													)}
 												</div>
