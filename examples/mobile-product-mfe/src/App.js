@@ -10,6 +10,7 @@ import { ZoomRequest, ZoomResponse } from "./zoom-context"
 // importing all the components
 import Icons from "./component/Icons/Icons"
 import NativeDropdown from "./component/Dropdowns/NativeDropdown"
+import SamplesGrid from "./component/SamplesGrid/SamplesGrid"
 import ProductImage from "./component/ProductImage/ProductImage"
 import { TestComponent } from "./component/Test-Component/TestComponent"
 import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
@@ -338,6 +339,10 @@ const App = (props) => {
 												<div className='col-4'>
 													{/* Only Product Image goes in this div */}
 													<ProductImage />
+												</div>
+												<div>
+													{/* Testing Samples Grid */}
+													<SamplesGrid />
 												</div>
 												<div className='col-6'>
 													{/* Put all other components in this div */}
