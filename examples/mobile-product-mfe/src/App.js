@@ -347,7 +347,7 @@ const App = (props) => {
 															({
 																Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
 																SelectionSlider: <SelectionSlider variable={Variable} data={UserControlsObj[Variable]} />,
-																NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} />,
+																NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
 															}[RenderType])
 													)}
 												</div>

@@ -58,26 +58,42 @@ const displaySamples = () => {
 }
 
 NativeDropdown = (props) => {
+   
+   // Setting the product context
+   const product_context = useContext(Product)
+	const product = product_context.product
 
-   const { dropdown_key, cdn, dropdown_value, dropdown_image, dropdown_selected, componentName } = props
-	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
-	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
-
-   let item
-
-   if (cdn && item) {
-		item = `${dropdown_value}`
-	} else {
-		item = "No item!"
+   // Pushing Image Selection List components onto a list structure
+   let nativeDropdown = []
+	let searchComponent = "ImageSelectionList"
+	for (let i = 0; i < product.UserControls.length; i++) {
+		if (product.UserControls[i].ControlType === searchComponent) {
+			nativeDropdown.push(product.UserControls[i])
+		}
 	}
+
+   // Setting the Zoom context
+   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
+	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
    
 
    // View that is returned
    // TODO: When a color is selected, only display the coresponding image
    return (
-      <Picker>
-         <Picker.Item label = {item} value = {item}/>
-      </Picker>
+      <div>
+			{nativeDropdown.map((list) => {
+				return (
+					<div>
+						<h3>{list.Variable}</h3>
+                  <Picker>
+                     {list.OptionValues.map((option) => {
+                        return <Picker.Item label = {option.Label}/>
+                        })}
+                  </Picker>
+					</div>
+				)
+			})}
+		</div>
    )
 }
 
