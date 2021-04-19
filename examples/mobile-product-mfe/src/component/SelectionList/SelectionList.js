@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 
 // import context api
-import { Product } from "../../product-context";
 import { ZoomRequest, ZoomResponse } from "../../zoom-context";
 import ZoomHandler from "../../services/ZoomHandler";
 
@@ -9,25 +8,16 @@ import SelectionButton from "./SelectionButton";
 
 const SelectionList = (props) => {
   console.log("[SelectionList]");
-  const { variable, data, cdn } = props;
+  const { data } = props;
 
-  console.log("[printing User Controls");
-  console.log(data);
+  //   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
+  //   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
-  // console.log("[Printing Matched Components");
-  // console.log(selectionLists);
+  //   console.log("[printing zoomReqVal");
+  //   console.log(zoomReqVal);
 
-  // console.log("[Printing Option Values]");
-  // console.log(selectionLists[0].OptionValues);
-
-  const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
-
-  // console.log("[printing zoomReqVal");
-  // console.log(zoomReqVal);
-
-  // console.log("[printing zoomResVal");
-  // console.log(zoomResVal);
+  //   console.log("[printing zoomResVal");
+  //   console.log(zoomResVal);
 
   let output;
   if (data.OptionValues.length > 7) {
@@ -35,12 +25,12 @@ const SelectionList = (props) => {
       <p>
         {" "}
         This component is {data.OptionValues.length} length so it was not
-        rendered. It will be a dropdown in the future {" "}
+        rendered. It will be a dropdown in the future{" "}
       </p>
     );
   } else {
     output = data.OptionValues.map((option) => {
-      return <SelectionButton label={option.Label} />;
+      return <SelectionButton label={option.Label} section={data.Variable} />;
     });
   }
 

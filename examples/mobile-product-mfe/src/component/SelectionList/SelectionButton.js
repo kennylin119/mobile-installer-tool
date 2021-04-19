@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
+import { ZoomRequest, ZoomResponse } from "../../zoom-context";
+import ZoomHandler from "../../services/ZoomHandler";
 
 const Button = styled.button`
   display: inline-block;
@@ -14,15 +16,43 @@ const Button = styled.button`
   text-align: center;
 `;
 
-const handleOnClick = (event) => {
-  console.log("[handleOnClick]");
+const handleOnClick = async (event, label, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes) => {
+  console.log("[handle SelectionButton click]");
 
   // prevents broswer refresh
   event.preventDefault();
+  if (prevState.ZoomInput.Selections[section] !== label) {
+    await setZoomReq((prevState) => {
+      prevState.ZoomInput.Selections[section] = label;
+      // if (section == columns) {
+      //   prevState.ZoomInput.Selections[] = label;
+      // }
+  
+      return prevState;
+    })
+
+    let _response = await ZoomHandler(zoomReqVal);
+    setZoomRes(_response);
+  }
 };
 
 const SelectionButton = (props) => {
-  return <Button> {props.label} </Button>;
+  const { label, section } = props;
+
+  const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
+  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+
+  console.log("[SelectionButton]");
+
+  // console.log("[printing zoomReqVal");
+  // console.log(zoomReqVal);
+
+  // console.log("[printing zoomResVal");
+  // console.log(zoomResVal);
+
+  return (
+    <Button onClick={(e) => handleOnClick(e, label, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes)}> {label} </Button>
+  )
 };
 
 export default SelectionButton;
