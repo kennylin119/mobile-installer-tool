@@ -31,7 +31,8 @@ const Icons = (props) => {
 	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
 	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
 
-	// console.log(zoomResVal)
+	console.log(variable)
+	console.log(data)
 
 	const zoomResComponentData = zoomResVal.Features[variable]
 
