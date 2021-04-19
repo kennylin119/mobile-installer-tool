@@ -21,12 +21,9 @@ const handleOnClick = async (event, label, section, zoomReqVal, zoomResVal, setZ
 
   // prevents broswer refresh
   event.preventDefault();
-  if (prevState.ZoomInput.Selections[section] !== label) {
+  if (zoomReqVal.ZoomInput.Selections[section] !== label) {
     await setZoomReq((prevState) => {
       prevState.ZoomInput.Selections[section] = label;
-      // if (section == columns) {
-      //   prevState.ZoomInput.Selections[] = label;
-      // }
   
       return prevState;
     })
