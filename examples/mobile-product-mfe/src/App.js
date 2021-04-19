@@ -15,17 +15,17 @@ import { TestComponent } from "./component/Test-Component/TestComponent"
 import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
 // importing routing functions
 import ZoomHandler from "./services/ZoomHandler"
-import SelectionSlider from "./component/SelectionSlider/SelectionSlider.js"
+import SelectionList from "./component/SelectionList/SelectionList.js"
 
 // Maps Lutron componentTypes to our componentTypes
 // ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
-	SelectionList: "SelectionSlider",
+	SelectionList: "SelectionList",
 	ImageSelectionList: "Icons",
 	ImageSelector: "Icons",
 	ProductImage: "ProductImage",
 	// Engraving: "Engraving",
-	MetalColor: "SelectionSlider",
+	MetalColor: "SelectionList",
 	// Number: "Double",			// Figure out what Number should be
 	Double: "Value",
 	String: "Value",
@@ -346,7 +346,7 @@ const App = (props) => {
 														({ Variable, RenderType }) =>
 															({
 																Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
-																SelectionSlider: <SelectionSlider variable={Variable} data={UserControlsObj[Variable]} />,
+																SelectionList: <SelectionList variable={Variable} data={UserControlsObj[Variable]} />,
 																Dropdown: <Dropdown variable={Variable} data={UserControlsObj[Variable]} />,
 															}[RenderType])
 													)}
