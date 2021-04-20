@@ -9,15 +9,17 @@ import default_img from "../../toolkit/default_image.jpeg"
 
 const RenderIcon = styled.div`
 	float: left;
-	width: 60px;
-	height: 60px;
+	width: 100px;
+	height: 95px;
 	background-color: white;
 `
 
 const MyIcon = styled.img`
 	float: center;
-	width: 58px;
-	height: 58px;
+	width: 60px;
+	height: 80px;
+	padding: 0.5rem 0;
+	margin: 0.5rem 1rem;
 `
 
 // ! This is where we will call updateProduct through the context. No need to pass data back anymore :)
