@@ -337,7 +337,7 @@ const App = (props) => {
 												<div className='col-1'></div>
 												<div className='col-4'>
 													{/* Only Product Image goes in this div */}
-													<ProductImage />
+													<ProductImage product={product}/>
 												</div>
 												<div className='col-6'>
 													{/* Put all other components in this div */}
