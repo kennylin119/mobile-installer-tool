@@ -26,45 +26,33 @@ class NativeDropdown extends React.Component {
 }
 
 NativeDropdown = (props) => {
-   
+   const { data } = props;
+
    // Setting the product context
-   const product_context = useContext(Product)
-	const product = product_context.product
+   // const product_context = useContext(Product)
+	// const product = product_context.product
 
    // Pushing Image Selection List components onto a list structure
-   let nativeDropdown = []
-	let searchComponent = "SelectionList"
-	for (let i = 0; i < product.UserControls.length; i++) {
-		if (product.UserControls[i].ControlType === searchComponent) {
-			nativeDropdown.push(product.UserControls[i])
-		}
-	}
+   // let nativeDropdown = []
+	// let searchComponent = "SelectionList"
+	// for (let i = 0; i < product.UserControls.length; i++) {
+	// 	if (product.UserControls[i].ControlType === searchComponent) {
+	// 		nativeDropdown.push(product.UserControls[i])
+	// 	}
+	// }
 
    // Setting the Zoom context
    const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
 	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
-   
 
    // View that is returned
    // TODO: When a color is selected, only display the coresponding image
    return (
-      <div>
-			{nativeDropdown.map((list) => {
-				return (
-					<div>
-						<h3>{list.Variable}</h3>
-                  <Picker >
-                     {list.OptionValues.map((option) => {
-                        return <Picker.Item label = {option.Label} value = {option.Label} />
-                        })}
-                  </Picker>
-                  <Button variant="secondary" size="sm">
-                     Color Samples
-                  </Button>
-					</div>
-				)
-			})}
-		</div>
+      <Picker >
+         {data.OptionValues.map((option) => {
+            return <Picker.Item label = {option.Label} value = {option.Label} />
+            })}
+      </Picker>
    )
 }
 
