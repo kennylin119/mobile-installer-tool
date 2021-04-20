@@ -33,7 +33,7 @@ NativeDropdown = (props) => {
 
    // Pushing Image Selection List components onto a list structure
    let nativeDropdown = []
-	let searchComponent = "ImageSelectionList"
+	let searchComponent = "SelectionList"
 	for (let i = 0; i < product.UserControls.length; i++) {
 		if (product.UserControls[i].ControlType === searchComponent) {
 			nativeDropdown.push(product.UserControls[i])
