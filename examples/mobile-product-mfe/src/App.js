@@ -21,9 +21,8 @@ import SelectionList from "./component/SelectionList/SelectionList.js";
 // ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
   SelectionList: "SelectionList",
-  // ImageSelectionList: "NativeDropdown",
-  ImageSelectionList: "SelectionList",
-
+//   ImageSelectionList: "NativeDropdown",
+  ImageSelectionList: "Icons",
   ImageSelector: "Icons",
   ProductImage: "ProductImage",
   // Engraving: "Engraving",
