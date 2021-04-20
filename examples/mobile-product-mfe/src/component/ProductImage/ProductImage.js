@@ -1,29 +1,34 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
 
-import { Product } from "../../product-context"
-import PropTypes from "prop-types"
-import { ZoomRequest, ZoomResponse } from "../../zoom-context"
-import ZoomHandler from "../../services/ZoomHandler"
+import { ZoomResponse } from "../../zoom-context"
 
 const RenderImage = styled.img`
-	height: 65%;
-	width: 65%;
+	//mobile first
+	height: 90%;
+	width: 90%;
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+
+	@media only screen and (min-width: 768px) {
+		// for desktop
+		margin-left: 1em;
+		height: 100%;
+		width: 100%;
+		max-width: 30em;
+		margin-top: 50%;	
+	}
 `
 
-const ProductImage = () => {
-	//product context
-	const context = useContext(Product)
-	const product = context.product
+const ProductImage = (props) => {
+	//product
+	const {product} = props;
 
 	//zoom context
-	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
-	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
+	const { zoomResVal } = useContext(ZoomResponse)
 
 	//variables
 	const name = zoomResVal?.AdditionalAttributes[0]?.Name
