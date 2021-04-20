@@ -16,14 +16,14 @@ const Button = styled.button`
   text-align: center;
 `;
 
-const handleOnClick = async (event, label, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes) => {
+const handleOnClick = async (event, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes) => {
   console.log("[handle SelectionButton click]");
 
   // prevents broswer refresh
   event.preventDefault();
-  if (zoomReqVal.ZoomInput.Selections[section] !== label) {
+  if (zoomReqVal.ZoomInput.Selections[section] !== keyValue) {
     await setZoomReq((prevState) => {
-      prevState.ZoomInput.Selections[section] = label;
+      prevState.ZoomInput.Selections[section] = keyValue;
   
       return prevState;
     })
@@ -34,7 +34,7 @@ const handleOnClick = async (event, label, section, zoomReqVal, zoomResVal, setZ
 };
 
 const SelectionButton = (props) => {
-  const { label, section } = props;
+  const { label, section, keyValue } = props;
 
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
@@ -48,7 +48,7 @@ const SelectionButton = (props) => {
   // console.log(zoomResVal);
 
   return (
-    <Button onClick={(e) => handleOnClick(e, label, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes)}> {label} </Button>
+    <Button onClick={(e) => handleOnClick(e, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes)}> {label} </Button>
   )
 };
 

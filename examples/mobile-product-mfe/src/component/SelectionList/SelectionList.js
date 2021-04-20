@@ -30,7 +30,7 @@ const SelectionList = (props) => {
     );
   } else {
     output = data.OptionValues.map((option) => {
-      return <SelectionButton label={option.Label} section={data.Variable} />;
+      return <SelectionButton label={option.Label} section={data.Variable} keyValue={option.KeyValue}/>;
     });
   }
 
