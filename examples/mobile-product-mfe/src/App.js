@@ -9,7 +9,8 @@ import { ZoomRequest, ZoomResponse } from "./zoom-context"
 
 // importing all the components
 import Icons from "./component/Icons/Icons"
-import Dropdown from "./component/Dropdowns/Dropdown"
+import NativeDropdown from "./component/Dropdowns/NativeDropdown"
+import SamplesGrid from "./component/SamplesGrid/SamplesGrid"
 import ProductImage from "./component/ProductImage/ProductImage"
 import { TestComponent } from "./component/Test-Component/TestComponent"
 import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
@@ -20,8 +21,8 @@ import SelectionList from "./component/SelectionList/SelectionList.js"
 // Maps Lutron componentTypes to our componentTypes
 // ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
-	SelectionList: "SelectionList",
-	ImageSelectionList: "Icons",
+	SelectionList: "SelectionSlider",
+	ImageSelectionList: "NativeDropdown",
 	ImageSelector: "Icons",
 	ProductImage: "ProductImage",
 	// Engraving: "Engraving",
@@ -339,6 +340,10 @@ const App = (props) => {
 													{/* Only Product Image goes in this div */}
 													<ProductImage />
 												</div>
+												<div>
+													{/* Testing Samples Grid */}
+													<SamplesGrid />
+												</div>
 												<div className='col-6'>
 													{/* Put all other components in this div */}
 
@@ -346,8 +351,8 @@ const App = (props) => {
 														({ Variable, RenderType }) =>
 															({
 																Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
-																SelectionList: <SelectionList variable={Variable} data={UserControlsObj[Variable]} />,
-																Dropdown: <Dropdown variable={Variable} data={UserControlsObj[Variable]} />,
+																SelectionSlider: <SelectionSlider variable={Variable} data={UserControlsObj[Variable]} />,
+																NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
 															}[RenderType])
 													)}
 												</div>
