@@ -4,13 +4,23 @@ import styled from "styled-components"
 import { ZoomResponse } from "../../zoom-context"
 
 const RenderImage = styled.img`
-	height: 65%;
-	width: 65%;
+	//mobile first
+	height: 90%;
+	width: 90%;
 	margin-top: auto;
 	margin-bottom: auto;
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
+
+	@media only screen and (min-width: 768px) {
+		// for desktop
+		margin-left: 1em;
+		height: 100%;
+		width: 100%;
+		max-width: 30em;
+		margin-top: 50%;	
+	}
 `
 
 const ProductImage = (props) => {
