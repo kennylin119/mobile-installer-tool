@@ -3,6 +3,7 @@ import styled from "styled-components"
 
 import { ZoomRequest, ZoomResponse } from "../../zoom-context"
 import Icon from "./Icon"
+import Grid from "../Grid/Grid"
 
 const ImageContainer = styled.div`
 	width: auto;
@@ -37,19 +38,21 @@ const Icons = (props) => {
 	const zoomResComponentData = zoomResVal.Features[variable]
 
 	let icons = data.OptionValues
-
-	// console.log(zoomResComponentData)
-	// console.log(icons)
 	const iconsObj = convertArrayToObject(icons, "KeyValue")
+	console.log(zoomResComponentData)
 
-	return (
-		<ImageContainer>
-			<div className='img-container-title'>{variable}</div>
-			{zoomResComponentData.ValidKeys.map((obj) => (
-				<Icon key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable}></Icon>
-			))}
-		</ImageContainer>
-	)
+	if (zoomResComponentData?.ValidKeys.length > 7) {
+		return <Grid variable={variable} data={data} cdn={cdn} zoomResComponentData={zoomResComponentData} iconsObj={iconsObj}></Grid>
+	} else {
+		return (
+			<ImageContainer>
+				<div className='img-container-title'>{variable}</div>
+				{zoomResComponentData?.ValidKeys.map((obj) => (
+					<Icon key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable}></Icon>
+				))}
+			</ImageContainer>
+		)
+	}
 }
 
 export default Icons
