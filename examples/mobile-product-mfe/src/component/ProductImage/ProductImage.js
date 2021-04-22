@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import styled from "styled-components"
 
 import { ZoomResponse } from "../../zoom-context"
@@ -19,13 +19,13 @@ const RenderImage = styled.img`
 		height: 100%;
 		width: 100%;
 		max-width: 30em;
-		margin-top: 50%;	
+		margin-top: 50%;
 	}
 `
 
 const ProductImage = (props) => {
 	//product
-	const {product} = props;
+	const { product } = props
 
 	//zoom context
 	const { zoomResVal } = useContext(ZoomResponse)
@@ -39,23 +39,16 @@ const ProductImage = (props) => {
 	//combine for final link
 	const link = cdn + path
 
-
-	if(name&&value){
+	if (name && value) {
 		return (
 			<div>
 				{/* This Is where ProductImage should be */}
 				<RenderImage src={link}></RenderImage>
 			</div>
 		)
-	}
-	else{
-		return(
-			<div>
-				{/* Don't load anything since we don't have zoom response yet */}
-			</div>
-		)
+	} else {
+		return <div>{/* Don't load anything since we don't have zoom response yet */}</div>
 	}
 }
 
 export default ProductImage
-

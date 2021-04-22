@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react"
+import { useState, useContext } from "react"
 
 import { ZoomRequest, ZoomResponse } from "../../zoom-context"
 import GridModal from "./GridModal"
