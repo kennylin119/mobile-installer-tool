@@ -13,7 +13,11 @@ const HScroller = styled.div`
   display: flex;
   overflow-x: auto;
   flex-direction: row;
-  flex-wrap: nowrap;
+
+  /* supposed to hide scrollbar but doesn't work */
+  &:-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const SelectionList = (props) => {

@@ -7,15 +7,20 @@ import Grid from "../Grid/Grid";
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 220px;
-  padding-top: 20px;
+  height: 175px;
+  padding-top: 10px;
   padding-left: 15px;
   padding-right: 15px;
-  
+
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   overflow-x: auto;
+
+  /* supposed to hide scrollbar but doesn't work */
+  &:-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 // Function to parse an array into an object based on a key
@@ -57,20 +62,23 @@ const Icons = (props) => {
     );
   } else {
     return (
-      <ImageContainer>
-        <div className="img-container-title">{variable}</div>
-        {zoomResComponentData?.ValidKeys.map((obj) => (
-          <Icon
-            key={obj}
-            cdn={cdn}
-            icon_key={obj}
-            icon_value={iconsObj[obj].Label}
-            icon_image={iconsObj[obj].Image}
-            icon_selected={zoomResComponentData.CurrentValue}
-            componentName={variable}
-          ></Icon>
-        ))}
-      </ImageContainer>
+      <div>
+        <h3>{variable}</h3>
+        <ImageContainer>
+          {/* <div className="img-container-title">{variable}</div> */}
+          {zoomResComponentData?.ValidKeys.map((obj) => (
+            <Icon
+              key={obj}
+              cdn={cdn}
+              icon_key={obj}
+              icon_value={iconsObj[obj].Label}
+              icon_image={iconsObj[obj].Image}
+              icon_selected={zoomResComponentData.CurrentValue}
+              componentName={variable}
+            ></Icon>
+          ))}
+        </ImageContainer>
+      </div>
     );
   }
 };
