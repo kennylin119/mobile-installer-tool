@@ -25,10 +25,6 @@ const ImageContainer = styled.div`
 	padding-right: 15px;
 `
 
-const handleOnClick = (showModal, setShowModal) => {
-	setShowModal(!showModal)
-}
-
 const GridModal = (props) => {
 	const { showModal, setShowModal, variable, data, cdn, zoomResComponentData, iconsObj } = props
 	console.log("[GridModal]")
