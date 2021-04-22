@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import styled from "styled-components";
 
 // import context api
 import { ZoomRequest, ZoomResponse } from "../../zoom-context";
@@ -7,18 +8,21 @@ import ZoomHandler from "../../services/ZoomHandler";
 import NativeDropdown from "./NativeDropdown";
 import SelectionButton from "./SelectionButton";
 
+const HScroller = styled.div`
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  flex-direction: row;
+  flex-wrap: nowrap;
+`;
+
 const SelectionList = (props) => {
   console.log("[SelectionList]");
   const { data, variable } = props;
 
   let output;
   if (data.OptionValues.length > 7) {
-    output = <NativeDropdown variable={variable} data={data} />;
-    //   <p>
-    //     {" "}
-    //     This component is {data.OptionValues.length} length so it was not
-    //     rendered. It will be a dropdown in the future{" "}
-    //   </p>
+    output = <NativeDropdown data={data} />;
   } else {
     output = data.OptionValues.map((option) => {
       return (
@@ -34,7 +38,7 @@ const SelectionList = (props) => {
   return (
     <div>
       <h3>{variable}</h3>
-      {output}
+      <HScroller>{output}</HScroller>
     </div>
   );
 };

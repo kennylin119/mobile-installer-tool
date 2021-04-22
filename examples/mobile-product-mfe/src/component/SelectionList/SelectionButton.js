@@ -6,14 +6,20 @@ import ZoomHandler from "../../services/ZoomHandler";
 
 const Button = styled.button`
   display: inline-block;
-  border-radius: 3px;
   padding: 0.5rem 0;
   margin: 0.5rem 1rem;
   width: 10rem;
-  background: light gray;
+  background: #E1DCDC;
   color: gray;
-  border: 2px solid black;
+  border: .0px #808080;
+  border-radius: 3px;
   text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background: #CECECE;
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+  }
 `;
 
 const handleOnClick = async (event, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes) => {
