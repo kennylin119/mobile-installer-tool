@@ -1,4 +1,3 @@
-import React from "react"
 import router, { fetchZoom } from "../router/router"
 
 /**

@@ -1,4 +1,3 @@
-import React from "react"
 import styled from "styled-components"
 import Icon from "../Icons/Icon"
 
@@ -24,10 +23,6 @@ const ImageContainer = styled.div`
 	padding-left: 15px;
 	padding-right: 15px;
 `
-
-const handleOnClick = (showModal, setShowModal) => {
-	setShowModal(!showModal)
-}
 
 const GridModal = (props) => {
 	const { showModal, setShowModal, variable, data, cdn, zoomResComponentData, iconsObj } = props
