@@ -18,7 +18,7 @@ const ImageContainer = styled.div`
   overflow-x: auto;
 
   /* supposed to hide scrollbar but doesn't work */
-  &:-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
 `;

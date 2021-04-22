@@ -18,6 +18,7 @@ const Button = styled.button`
 
   &:hover {
     background: #CECECE;
+    
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
   }
 `;
