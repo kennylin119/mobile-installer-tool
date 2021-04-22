@@ -336,8 +336,6 @@ const App = (props) => {
 					console.log(UserControlsObj)
 
 					if (zoomResVal) {
-						// console.log(zoomResVal)
-
 						// Render the DOM
 						return (
 							<Application>

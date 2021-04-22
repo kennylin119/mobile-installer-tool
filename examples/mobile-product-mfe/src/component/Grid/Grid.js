@@ -12,9 +12,6 @@ const Grid = (props) => {
 	const { variable, data, cdn, zoomResComponentData, iconsObj } = props
 	let [showModal, setShowModal] = useState(false)
 
-	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
-	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
-
 	return (
 		<div>
 			<input type='submit' value='Choose Fabric' onClick={(e) => handleOnClick(showModal, setShowModal)}></input>
