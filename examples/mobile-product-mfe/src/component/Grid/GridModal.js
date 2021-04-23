@@ -8,16 +8,16 @@ const Modal = styled.div`
 	top: 0;
 	right: 0;
 	bottom: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, .75);
 	display: flex;
 	align-items: center;
-	justify-content: center; 
+	justify-content: center;
 `
 
 const GridContent = styled.div`
-	width:600px;
-	/* background-color: red;
-	padding: 10px; */
+	width:95vw;
+	margin: 1rem;
+
 	display: grid;
 	grid-template-columns: auto auto auto;
 	grid-gap: .5rem;
@@ -25,9 +25,7 @@ const GridContent = styled.div`
 
 	@media only screen and (min-width: 768px) {
 		// for desktop
-		width: 500px;
-		
-
+		width: 600px;
 	}
 `
 
