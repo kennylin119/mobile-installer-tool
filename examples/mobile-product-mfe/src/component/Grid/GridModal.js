@@ -53,7 +53,7 @@ const GridModal = (props) => {
 	return (
 		<Modal onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>
 			<button className="transparent" onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>X</button>
-			<div styel={{"overflow-y":"initial"}} onClick={(e) => e.stopPropagation()}>
+			<div styel={{"overflow-y":"initial"}} >
 				<ModalContent>
 					
 					{variable}
