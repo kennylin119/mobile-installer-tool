@@ -14,6 +14,14 @@ const Modal = styled.div`
 	justify-content: center;
 `
 
+const ModalContent = styled.div`
+	overflow-y:auto;
+	height:90vh;
+	&::-webkit-scrollbar{
+		display: none;
+	}
+`;
+
 const GridContent = styled.div`
 	width:95vw;
 	margin: 1rem;
@@ -21,7 +29,6 @@ const GridContent = styled.div`
 	display: grid;
 	grid-template-columns: auto auto auto;
 	grid-gap: .5rem;
-	overflow-y: auto;
 
 	@media only screen and (min-width: 768px) {
 		// for desktop
@@ -36,13 +43,15 @@ const GridModal = (props) => {
 
 	return (
 		<Modal onClick={(e) => setShowModal(!showModal)}>
-			<div onClick={(e) => e.stopPropagation()}>
+			<div styel={{"overflow-y":"initial"}} onClick={(e) => e.stopPropagation()}>
+				<ModalContent>
 					{variable}
-				<GridContent>
-					{zoomResComponentData?.ValidKeys.map((obj) => (
-						<ModalIcon setShowModal={setShowModal}key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable}></ModalIcon>
-					))}
-				</GridContent>
+					<GridContent>
+						{zoomResComponentData?.ValidKeys.map((obj) => (
+							<ModalIcon setShowModal={setShowModal}key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable}></ModalIcon>
+						))}
+					</GridContent>
+				</ModalContent>
 			</div>
 		</Modal>
 	)
