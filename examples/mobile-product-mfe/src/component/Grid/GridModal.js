@@ -15,6 +15,7 @@ const Modal = styled.div`
 `
 
 const ModalContent = styled.div`
+	/* padding: 5rem; */
 
 	overflow-y:auto;
 	height:90vh;
@@ -41,7 +42,7 @@ const GridContent = styled.div`
 
 	@media only screen and (min-width: 768px) {
 		// for desktop
-		width: 600px;
+		width: 650px;
 	}
 `
 

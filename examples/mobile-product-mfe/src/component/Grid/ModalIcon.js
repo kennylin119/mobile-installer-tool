@@ -10,8 +10,9 @@ import default_img from "../../toolkit/default_image.jpeg";
 const IconContainer = styled.div`
   position: relative;
   text-align: center;
-  width: auto;
-  height: auto;
+  width: 30vw;
+  height: 30vw;
+  aspect-ratio: 1/1;
   cursor: pointer;
   &:hover {
 	  box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
@@ -19,6 +20,13 @@ const IconContainer = styled.div`
   &.selected {
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
   }
+  @media only screen and (min-width: 768px) {
+		// for desktop
+		font-size: 30px;
+    width: 200px;
+    height: 200px;
+	}
+
 `;
 
 const MyIcon = styled.img`
