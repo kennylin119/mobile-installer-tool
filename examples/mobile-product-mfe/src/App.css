@@ -117,3 +117,18 @@
 	
 	box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
 }
+
+.transparent{
+	position:fixed;
+	top: 0;
+	right:0;
+	background-color: #fcfcfc00;
+	border: none;
+	color:whitesmoke;
+	border-radius: 8px;
+	font-size: 25px;
+}
+.transparent:hover{
+	background-color: white;
+	color: black;
+}

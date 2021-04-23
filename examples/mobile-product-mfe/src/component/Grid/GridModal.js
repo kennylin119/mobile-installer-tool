@@ -15,10 +15,19 @@ const Modal = styled.div`
 `
 
 const ModalContent = styled.div`
+
 	overflow-y:auto;
 	height:90vh;
 	&::-webkit-scrollbar{
 		display: none;
+	}
+
+	@media only screen and (min-width: 768px) {
+		// for desktop
+		//these three styling for white modal
+		background-color: white;
+		border-radius: 8px;
+		padding: 1rem;
 	}
 `;
 
@@ -42,9 +51,11 @@ const GridModal = (props) => {
 	console.log("[GridModal]")
 
 	return (
-		<Modal onClick={(e) => setShowModal(!showModal)}>
+		<Modal onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>
+			<button className="transparent" onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>X</button>
 			<div styel={{"overflow-y":"initial"}} onClick={(e) => e.stopPropagation()}>
 				<ModalContent>
+					
 					{variable}
 					<GridContent>
 						{zoomResComponentData?.ValidKeys.map((obj) => (

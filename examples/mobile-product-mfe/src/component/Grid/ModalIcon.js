@@ -69,6 +69,7 @@ const handleOnClick = async (
   console.log(icon_selected);
 
   setShowModal();
+  document.querySelector("body").style.overflow = 'visible';
 
   if (icon_selected != icon_key) {
     // Modifying the zoom request
