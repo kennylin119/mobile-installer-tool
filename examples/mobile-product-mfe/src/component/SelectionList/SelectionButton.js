@@ -8,16 +8,17 @@ const Button = styled.button`
   display: inline-block;
   margin: 0em 1em 0em 0em;
   /* top left/right bottom*/
-  padding: 0.5em 1.5em 0.5em;
+  padding: 0.5em 2.5em 0.5em;
   /* how to add padding to text?*/
   
   height: 3em;
+  white-space: nowrap;
   vertical-align: baseline;
   background: #e0e1e2 none;
   color: rgba(0, 0, 0, 0.6);
   font-family: "HelveticaNeue Regular", sans-serif;
   border: none;
-  border-radius: 2px;
+  border-radius: 3px;
 
   line-height: 1em;
   text-align: center;
