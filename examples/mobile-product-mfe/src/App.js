@@ -44,9 +44,6 @@ const Application = styled.div`
 	bottom: 0;
 `
 
-const ApplicationFooter = styled.div`
-	padding: 10px;
-`
 
 /**
  * This function takes in product and configure and parses both objects to build out
@@ -368,14 +365,14 @@ const App = (props) => {
 										</ZoomResponse.Provider>
 									</ZoomRequest.Provider>
 								</Product.Provider>
-								<ApplicationFooter>
-									<button className='button' onClick={(e) => handleOnCancel()}>
+								<div style={{position:"fixed", bottom:"2em", right:"2em",}}>
+									<button className='fancy-button' onClick={(e) => handleOnCancel()}>
 										Cancel
 									</button>
-									<button className='button' onClick={(e) => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>
+									<button className='fancy-button' onClick={(e) => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>
 										Save
 									</button>
-								</ApplicationFooter>
+								</div>
 							</Application>
 						)
 					} else {

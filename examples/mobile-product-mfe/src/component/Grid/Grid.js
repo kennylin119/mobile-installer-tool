@@ -14,7 +14,7 @@ const Grid = (props) => {
 
 	return (
 		<div>
-			<input type='submit' value='Choose Fabric' onClick={(e) => handleOnClick(showModal, setShowModal)}></input>
+			<input className="fancy-button" type='submit' value='Choose Fabric' onClick={(e) => handleOnClick(showModal, setShowModal)}></input>
 			{showModal ? <GridModal showModal={showModal} setShowModal={setShowModal} variable={variable} data={data} cdn={cdn} zoomResComponentData={zoomResComponentData} iconsObj={iconsObj} /> : null}
 		</div>
 	)

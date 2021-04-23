@@ -98,3 +98,24 @@
 		width: 100%;
 	}
 }
+
+.fancy-button{
+	background-color: rgb(25, 130, 148);
+	color: white;
+	border: none;
+	padding: 1em;
+	text-align:center;
+	font-size: 16px;
+	display: inline-block;
+	margin: 4px 4px;
+	border-radius: 8px;
+	cursor: pointer;
+
+	
+}
+
+.fancy-button:hover {
+	background:rgb(34, 158, 180);
+	
+	box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+}
