@@ -253,215 +253,187 @@ const handleOnCancel = async () => {
 };
 
 const App = (props) => {
-  // Destructuring props
-  // data will contain the AUTHORIZATION TOKEN and a save function
-  const { data, configure, save_function } = props;
-  const configure_test = {
-    BillOfMaterialsLineItemId: 7407192,
-    ConfiguredJSON:
-      '{"Product":"Alisse","Category":null,"Details":null,"IsConfigured":true,"Selections":{"SYSTEM":"HW","WALLBOX_SHAPE":"S","COLUMNS":"2","BUTTON_ARRAY":"33","FACEPLATE_FINISH":"AZ","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"US","COMPONENTS":"KO","IS_DEMO":"N","ProductDetails":"NPKP"},"Filters":null,"AutoSelections":null,"Warnings":["The Alisse keypad requires the use of a Base Unit for installation.  \\"Keypad Only\\" should be selected for replacement keypads where a Base Unit is already present."],"ModelType":null,"ProductType":null,"ResultantValue":{"PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"SelectionValues":{"SYSTEM":"HomeWorks (QSX)","WALLBOX_SHAPE":"Square Backbox","COLUMNS":"2-Column","BUTTON_ARRAY":"3, 3 Button","FACEPLATE_FINISH":"Aged Bronze","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"United States","COMPONENTS":"Keypad Only","IS_DEMO":"No","ProductDetails":"Keypad","PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"AutoValues":null}',
-    AdditionalAttributes: null,
-    IsFullyConfigured: false,
-    VolumeDiscountEligiblePanels: null,
-    ValidationErrorType: 0,
-    ErroneousFeatures: null,
-    RowVersion: "AAAAAAHhvJs=",
-    OverrideListPrice: null,
-    OverrideLeadTime: null,
-    OverrideDiscountedPrice: null,
-    ListPriceAdjustment: null,
-    ModelNumber: "NPKP",
-    FGID: "HW-NW-KP-S2-E",
-    MinLeadTime: 20,
-    MaxLeadTime: 20,
-    DiscountedPrice: null,
-    QuotableTill: null,
-    MinPrice: 525.0,
-    MaxPrice: 525.0,
-  };
+	// Destructuring props
+	// data will contain the AUTHORIZATION TOKEN and a save function
+	const { data, configure, save_function } = props
+	const configure_test = {
+		BillOfMaterialsLineItemId: 7407192,
+		ConfiguredJSON:
+			'{"Product":"Alisse","Category":null,"Details":null,"IsConfigured":true,"Selections":{"SYSTEM":"HW","WALLBOX_SHAPE":"S","COLUMNS":"2","BUTTON_ARRAY":"33","FACEPLATE_FINISH":"AZ","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"US","COMPONENTS":"KO","IS_DEMO":"N","ProductDetails":"NPKP"},"Filters":null,"AutoSelections":null,"Warnings":["The Alisse keypad requires the use of a Base Unit for installation.  \\"Keypad Only\\" should be selected for replacement keypads where a Base Unit is already present."],"ModelType":null,"ProductType":null,"ResultantValue":{"PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"SelectionValues":{"SYSTEM":"HomeWorks (QSX)","WALLBOX_SHAPE":"Square Backbox","COLUMNS":"2-Column","BUTTON_ARRAY":"3, 3 Button","FACEPLATE_FINISH":"Aged Bronze","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"United States","COMPONENTS":"Keypad Only","IS_DEMO":"No","ProductDetails":"Keypad","PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"AutoValues":null}',
+		AdditionalAttributes: null,
+		IsFullyConfigured: false,
+		VolumeDiscountEligiblePanels: null,
+		ValidationErrorType: 0,
+		ErroneousFeatures: null,
+		RowVersion: "AAAAAAHhvJs=",
+		OverrideListPrice: null,
+		OverrideLeadTime: null,
+		OverrideDiscountedPrice: null,
+		ListPriceAdjustment: null,
+		ModelNumber: "NPKP",
+		FGID: "HW-NW-KP-S2-E",
+		MinLeadTime: 20,
+		MaxLeadTime: 20,
+		DiscountedPrice: null,
+		QuotableTill: null,
+		MinPrice: 525.0,
+		MaxPrice: 525.0,
+	}
 
-  // Hard coded product name, will be whatever data is
-  let PRODUCT_IDENTIFIER = "ALISSE";
+	// Hard coded product name, will be whatever data is
+	let PRODUCT_IDENTIFIER = "ALISSE"
 
-  // State variables for the product
-  let [product, setProduct] = useState(null);
-  let [DPM, setDPM] = useState(null);
-  let [error, setError] = useState(null);
-  let [isLoaded, setIsLoaded] = useState(false);
-  let [isLoadedDPM, setIsLoadedDPM] = useState(false);
+	// State variables for the product
+	let [product, setProduct] = useState(null)
+	let [DPM, setDPM] = useState(null)
+	let [error, setError] = useState(null)
+	let [isLoaded, setIsLoaded] = useState(false)
+	let [isLoadedDPM, setIsLoadedDPM] = useState(false)
 
-  //set up access points for the zoom contexts
-  const [zoomReqVal, setZoomReq] = useState(null);
-  const [zoomResVal, setZoomRes] = useState(null);
+	//set up access points for the zoom contexts
+	const [zoomReqVal, setZoomReq] = useState(null)
+	const [zoomResVal, setZoomRes] = useState(null)
 
-  // UITemplate UserControls converted into a hash map
-  const [UserControlsObj, setUserControlsObj] = useState(null);
-  const [RenderLayout, setRenderLayout] = useState(null);
+	// UITemplate UserControls converted into a hash map
+	const [UserControlsObj, setUserControlsObj] = useState(null)
+	const [RenderLayout, setRenderLayout] = useState(null)
 
-  // Life cycle hook to get and save the product on load
-  useEffect(() => {
-    // Gauranteed way to return a promise
-    const getProduct = async () => {
-      if (isLoaded && product) {
-        console.log("finished");
-        return;
-      }
+	// Life cycle hook to get and save the product on load
+	useEffect(() => {
+		// Gauranteed way to return a promise
+		const getProduct = async () => {
+			if (isLoaded && product) {
+				console.log("finished")
+				return
+			}
 
-      // Getting the data from fetchProduct
-      // Handling the response if result or error
+			// Getting the data from fetchProduct
+			// Handling the response if result or error
 
-      // fetch the UI template and handle response
-      await fetchUITemplate(PRODUCT_IDENTIFIER)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setProduct(result[0]);
-          },
-          (error) => {
-            setIsLoaded(true);
-            setError(error);
-          }
-        );
+			// fetch the UI template and handle response
+			await fetchUITemplate(PRODUCT_IDENTIFIER)
+				.then((res) => res.json())
+				.then(
+					(result) => {
+						setIsLoaded(true)
+						setProduct(result[0])
+					},
+					(error) => {
+						setIsLoaded(true)
+						setError(error)
+					}
+				)
 
-      // fetch the DPM and handle response
-      await fetchDPM(PRODUCT_IDENTIFIER)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoadedDPM(true);
-            setDPM(result);
-          },
-          (error) => {
-            setIsLoadedDPM(true);
-            setError(error);
-          }
-        );
-    };
+			// fetch the DPM and handle response
+			await fetchDPM(PRODUCT_IDENTIFIER)
+				.then((res) => res.json())
+				.then(
+					(result) => {
+						setIsLoadedDPM(true)
+						setDPM(result)
+					},
+					(error) => {
+						setIsLoadedDPM(true)
+						setError(error)
+					}
+				)
+		}
 
-    getProduct();
-  }, []); // [] data dependency
+		getProduct()
+	}, []) // [] data dependency
 
-  // If there was an error
-  if (error) {
-    console.log("ERROR OCCURED");
-    return <div className="container-fetch-error">Error: {error.message}</div>;
-  }
-  // If the product hasn't loaded yet
-  else if (!isLoaded || !isLoadedDPM) {
-    console.log("NOT LOADED YET");
-    return <div className="container-loading">Loading...</div>;
-  }
-  // If the product has been loaded
-  else {
-    // New method using Context API
-    if (product && DPM) {
-      // We build the context API values before rendering
+	// If there was an error
+	if (error) {
+		console.log("ERROR OCCURED")
+		return <div className='container-fetch-error'>Error: {error.message}</div>
+	}
+	// If the product hasn't loaded yet
+	else if (!isLoaded || !isLoadedDPM) {
+		console.log("NOT LOADED YET")
+		return <div className='container-loading'>Loading...</div>
+	}
+	// If the product has been loaded
+	else {
+		// New method using Context API
+		if (product && DPM) {
+			// We build the context API values before rendering
 
-      // Building input zoom object using UI template and user configurations
-      if (zoomReqVal == null) {
-        setZoomReq(initializeZoom(product, DPM, configure_test.ConfiguredJSON)); // re-render the page
-      }
-      if (zoomReqVal && zoomResVal == null) {
-        // Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
-        ZoomHandler(zoomReqVal).then((response) => {
-          console.log(response);
-          setZoomRes(response); // re-render the page
-        });
-      }
+			// Building input zoom object using UI template and user configurations
+			if (zoomReqVal == null) {
+				setZoomReq(initializeZoom(product, DPM, configure_test.ConfiguredJSON)) // re-render the page
+			}
+			if (zoomReqVal && zoomResVal == null) {
+				// Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
+				ZoomHandler(zoomReqVal).then((response) => {
+					console.log(response)
+					setZoomRes(response) // re-render the page
+				})
+			}
 
-      if (UserControlsObj == null) {
-        console.log("[product]");
-        console.log(product);
-        setUserControlsObj(
-          convertArrayToObject(product.UserControls, "Variable")
-        );
-      } else {
-        // Setup for Render
-        if (RenderLayout == null) {
-          setRenderLayout(parseUITemplate(product, UserControlsObj));
-        } else {
-          console.log(RenderLayout);
-          console.log(UserControlsObj);
+			if (UserControlsObj == null) {
+				console.log("[product]")
+				console.log(product)
+				setUserControlsObj(convertArrayToObject(product.UserControls, "Variable"))
+			} else {
+				// Setup for Render
+				if (RenderLayout == null) {
+					setRenderLayout(parseUITemplate(product, UserControlsObj))
+				} else {
+					console.log(RenderLayout)
+					console.log(UserControlsObj)
 
-          if (zoomResVal) {
-            // console.log(zoomResVal)
+					if (zoomResVal) {
+						// Render the DOM
+						return (
+							<Application>
+								{/* // Context API, passing the state in */}
+								<Product.Provider value={{ product, setProduct }}>
+									<ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
+										<ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
+											<div className='container'>
+												<div className='row'>
+													<div className='col-1'></div>
+													<div className='col-4'>
+														{/* Only Product Image goes in this div */}
+														<ProductImage product={product} />
+													</div>
+													<div className='col-6'>
+														{/* Put all other components in this div */}
 
-            // Render the DOM
-            return (
-              <Application>
-                {/* // Context API, passing the state in */}
-                <Product.Provider value={{ product, setProduct }}>
-                  <ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
-                    <ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
-                      <div className="container">
-                        <div className="row">
-                          <div className="col-1"></div>
-                          <div className="col-4">
-                            {/* Only Product Image goes in this div */}
-                            <ProductImage product={product} />
-                          </div>
-                          <div className="col-6">
-                            {/* Put all other components in this div */}
+														{RenderLayout.map(
+															({ Variable, RenderType }) =>
+																({
+																	Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
+																	SelectionList: <SelectionList variable={Variable} data={UserControlsObj[Variable]} />,
+																	// NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
+																}[RenderType])
+														)}
+													</div>
+													<div className='col-1'></div>
+												</div>
+											</div>
+										</ZoomResponse.Provider>
+									</ZoomRequest.Provider>
+								</Product.Provider>
+								<ApplicationFooter>
+									<CancelButton className='button' onClick={(e) => handleOnCancel()}>
+										Cancel
+									</CancelButton>
+									<SaveButton className='button' onClick={(e) => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>
+										Save
+									</SaveButton>
+								</ApplicationFooter>
+							</Application>
+						)
+					} else {
+						return <div>Awaiting from Configurator API...</div>
+					}
+				}
+			}
+		} else {
+			return <div className='container-product-error'>Cannot load...</div>
+		}
+	}
+}
 
-                            {RenderLayout.map(
-                              ({ Variable, RenderType }) =>
-                                ({
-                                  Icons: (
-                                    <Icons
-                                      variable={Variable}
-                                      data={UserControlsObj[Variable]}
-                                      cdn={product.CDNPrefix}
-                                    />
-                                  ),
-                                  SelectionList: (
-                                    <SelectionList
-                                      variable={Variable}
-                                      data={UserControlsObj[Variable]}
-                                    />
-                                  ),
-                                  // NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
-                                }[RenderType])
-                            )}
-                          </div>
-                          <div className="col-1"></div>
-                        </div>
-                      </div>
-                    </ZoomResponse.Provider>
-                  </ZoomRequest.Provider>
-                </Product.Provider>
-                <ApplicationFooter>
-                  <CancelButton
-                    className="button"
-                    onClick={(e) => handleOnCancel()}
-                  >
-                    Cancel
-                  </CancelButton>
-                  <SaveButton
-                    className="button"
-                    onClick={(e) =>
-                      handleOnSave(
-                        zoomResVal,
-                        zoomReqVal,
-                        configure_test,
-                        save_function
-                      )
-                    }
-                  >
-                    Save
-                  </SaveButton>
-                </ApplicationFooter>
-              </Application>
-            );
-          } else {
-            return <div>Awaiting from Configurator API...</div>;
-          }
-        }
-      }
-    } else {
-      return <div className="container-product-error">Cannot load...</div>;
-    }
-  }
-};
-
-export default App;
+export default App
