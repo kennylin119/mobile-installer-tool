@@ -7,9 +7,9 @@ import ZoomHandler from "../../services/ZoomHandler"
 const Button = styled.button`
   display: inline-block;
   margin: 0em 1em 0em 0em;
-  padding: 0.8em 1.5em 0.8em;
+  /* top left/right bottom*/
+  padding: 0.5em 1.5em 0.5em;
   /* how to add padding to text?*/
-  min-width: 10rem;
   
   height: 3em;
   vertical-align: baseline;
@@ -17,7 +17,7 @@ const Button = styled.button`
   color: rgba(0, 0, 0, 0.6);
   font-family: "HelveticaNeue Regular", sans-serif;
   border: none;
-  border-radius: 3px;
+  border-radius: 2px;
 
   line-height: 1em;
   text-align: center;
