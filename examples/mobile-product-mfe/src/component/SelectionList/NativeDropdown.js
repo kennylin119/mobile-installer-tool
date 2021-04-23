@@ -56,10 +56,3 @@ NativeDropdown = (props) => {
 
 export default NativeDropdown;
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    alignSelf: "center",
-    color: "red",
-  },
-});
