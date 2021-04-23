@@ -7,17 +7,12 @@ import { ZoomRequest, ZoomResponse } from "../../zoom-context";
 import ZoomHandler from "../../services/ZoomHandler";
 import styled from "styled-components";
 
-// const StyledPicker = styled(Picker)`
-//   -webkit-box-align: center;
-//   align-items: center;
-//   display: flex;
-//   flex: 1 1 0%;
-//   flex-wrap: wrap;
-//   padding: 2px 8px;
-//   position: relative;
-//   overflow: hidden;
-//   box-sizing: border-box;
-// `;
+
+/* i dont think this style is being used rn*/
+const StyledPicker = styled(Picker)`
+  font-family: "HelveticaNeue Regular", sans-serif;
+  border-radius: 3px;
+`;
 
 class NativeDropdown extends React.Component {
   convertArrayToObject = (array, key) => {
@@ -46,20 +41,12 @@ NativeDropdown = (props) => {
   // View that is returned
   // TODO: When a color is selected, only display the coresponding image
   return (
-    <Picker>
+    <StyledPicker>
       {data.OptionValues.map((option) => {
-        return <Picker.Item label={option.Label} value={option.Label} />;
+        return <StyledPicker.Item label={option.Label} value={option.Label} />;
       })}
-    </Picker>
+    </StyledPicker>
   );
 };
 
 export default NativeDropdown;
-
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 30,
-    alignSelf: "center",
-    color: "red",
-  },
-});

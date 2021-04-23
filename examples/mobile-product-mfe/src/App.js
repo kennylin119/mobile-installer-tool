@@ -1,48 +1,95 @@
-import "./App.css"
+import "./App.css";
 
-import React, { useState, useEffect, useContext } from "react"
-import styled from "styled-components"
+import React, { useState, useEffect, useContext } from "react";
+import styled from "styled-components";
 
 // importing the context API
-import { Product } from "./product-context"
-import { ZoomRequest, ZoomResponse } from "./zoom-context"
+import { Product } from "./product-context";
+import { ZoomRequest, ZoomResponse } from "./zoom-context";
 
 // importing all the components
-import Icons from "./component/Icons/Icons"
-import NativeDropdown from "./component/SelectionList/NativeDropdown"
-import ProductImage from "./component/ProductImage/ProductImage"
-import { TestComponent } from "./component/Test-Component/TestComponent"
-import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router" // Note: fetchProduct is a singleton
+import Icons from "./component/Icons/Icons";
+import NativeDropdown from "./component/SelectionList/NativeDropdown";
+import ProductImage from "./component/ProductImage/ProductImage";
+import { TestComponent } from "./component/Test-Component/TestComponent";
+import { router, fetchUITemplate, fetchDPM, fetchImage } from "./router/router"; // Note: fetchProduct is a singleton
 // importing routing functions
-import ZoomHandler from "./services/ZoomHandler"
-import SelectionList from "./component/SelectionList/SelectionList.js"
+import ZoomHandler from "./services/ZoomHandler";
+import SelectionList from "./component/SelectionList/SelectionList.js";
+
+const StyledButton = styled.div`
+  cursor: pointer;
+  display: inline-block;
+  min-height: 1em;
+  vertical-align: baseline;
+  background: #e0e1e2 none;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "HelveticaNeue Regular", sans-serif;
+  margin: 0em 0.25em 0em 0em;
+  padding: 0.6em 1em 0.6em;
+  font-weight: bold;
+  line-height: 1em;
+  font-style: normal;
+  text-align: center;
+  border-radius: 2px;
+
+  &:hover {
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+  }
+`;
+
+const CancelButton = styled(StyledButton)`
+  width: 6rem;
+  border: 1px solid #115b67;
+  background: #fff;
+  color: #115b67;
+  position: fixed;
+  bottom: 2.5em;
+  right: 8.5em;
+  &:hover{
+	background:rgb(211, 211, 211);
+  }
+`;
+
+const SaveButton = styled(StyledButton)`
+  width: 6rem;
+  /* this is the lutron blue */
+  background-color: #198294;
+  color: #fff;
+  position: fixed;
+  bottom: 2.5em;
+  right: 1.5em;
+  &:hover{
+	background:rgb(34, 158, 180);
+  }
+`;
 
 // Maps Lutron componentTypes to our componentTypes
 // ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
-	SelectionList: "SelectionList",
-	//   ImageSelectionList: "NativeDropdown",
-	ImageSelectionList: "Icons",
-	ImageSelector: "Icons",
-	ProductImage: "ProductImage",
-	// Engraving: "Engraving",
-	MetalColor: "SelectionList",
-	// Number: "Double",			// Figure out what Number should be
-	Double: "Value",
-	String: "Value",
-	int: "Value",
-	// Fabric: "Fabric",			// Fabric should be a grouped component that imports SelectionSlider and Icons
-	// Grouped: "Grouped",			// TBD
-	// HorizontalLine: "HorizontalLine",
-	// RowGroup: "RowGroup",
-}
+  SelectionList: "SelectionList",
+  //   ImageSelectionList: "NativeDropdown",
+  ImageSelectionList: "Icons",
+  ImageSelector: "Icons",
+  ProductImage: "ProductImage",
+  // Engraving: "Engraving",
+  MetalColor: "SelectionList",
+  // Number: "Double",			// Figure out what Number should be
+  Double: "Value",
+  String: "Value",
+  int: "Value",
+  // Fabric: "Fabric",			// Fabric should be a grouped component that imports SelectionSlider and Icons
+  // Grouped: "Grouped",			// TBD
+  // HorizontalLine: "HorizontalLine",
+  // RowGroup: "RowGroup",
+};
 
 const Application = styled.div`
-	left: 0;
-	top: 0;
-	right: 0;
-	bottom: 0;
-`
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+`;
 
 
 /**
@@ -55,134 +102,134 @@ const Application = styled.div`
  * @returns == zoom object
  */
 const initializeZoom = (uitemplate, dpm, configure) => {
-	if (uitemplate && dpm) {
-		console.log("[building initial zoom with uitemplate and DPM]")
-		console.log(uitemplate)
-		console.log(dpm)
+  if (uitemplate && dpm) {
+    console.log("[building initial zoom with uitemplate and DPM]");
+    console.log(uitemplate);
+    console.log(dpm);
 
-		if (configure) {
-			configure = JSON.parse(configure)
+    if (configure) {
+      configure = JSON.parse(configure);
 
-			console.log("[and user configurations]")
-			console.log(configure)
-		}
+      console.log("[and user configurations]");
+      console.log(configure);
+    }
 
-		// Using optional chaining ?.
-		// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-		// TODO: familiarize with what each of these attributes mean
-		// ! Not every zoom variable has all of these attributes. Are there other attributes that we missed?
+    // Using optional chaining ?.
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+    // TODO: familiarize with what each of these attributes mean
+    // ! Not every zoom variable has all of these attributes. Are there other attributes that we missed?
 
-		let _warnings = []
-		let _features = {}
-		let _additionalAttributes = []
-		let _featureDependencies = {}
+    let _warnings = [];
+    let _features = {};
+    let _additionalAttributes = [];
+    let _featureDependencies = {};
 
-		if (uitemplate?.UserControls) {
-			uitemplate.UserControls.map((obj) => {
-				let key = obj?.Variable
-				let config_key = configure?.Selections[key] // configure.Selections.SYSTEM => HW
-				// let config_label = configure.SelectionValues["SYSTEM"]
-				let obj_OptionValues = obj?.OptionValues
+    if (uitemplate?.UserControls) {
+      uitemplate.UserControls.map((obj) => {
+        let key = obj?.Variable;
+        let config_key = configure?.Selections[key]; // configure.Selections.SYSTEM => HW
+        // let config_label = configure.SelectionValues["SYSTEM"]
+        let obj_OptionValues = obj?.OptionValues;
 
-				let _validKeys = []
+        let _validKeys = [];
 
-				// obj_OptionValues.map((option) => {
-				// 	let _keyValue = option?.KeyValue
+        // obj_OptionValues.map((option) => {
+        // 	let _keyValue = option?.KeyValue
 
-				// 	if (_keyValue) {
-				// 		_validKeys.push(_keyValue)
-				// 	}
-				// })
+        // 	if (_keyValue) {
+        // 		_validKeys.push(_keyValue)
+        // 	}
+        // })
 
-				// Setting object at the key
-				// _features[key] = {
-				// 	ValidKeys: _validKeys,
-				// 	InvalidKeys: [],
-				// 	CurrentValue: config_key,
-				// }
+        // Setting object at the key
+        // _features[key] = {
+        // 	ValidKeys: _validKeys,
+        // 	InvalidKeys: [],
+        // 	CurrentValue: config_key,
+        // }
 
-				// Handle the feature dependencies if there are any
-				let tempObj = dpm.Features[key]
+        // Handle the feature dependencies if there are any
+        let tempObj = dpm.Features[key];
 
-				if (tempObj) {
-					let dependantFeatures = tempObj?.DependentFeatures
+        if (tempObj) {
+          let dependantFeatures = tempObj?.DependentFeatures;
 
-					// If a dependant feature exists
-					if (dependantFeatures && dependantFeatures.length > 0) {
-						// Map over each dependantFeature
-						{
-							dependantFeatures.map((val) => {
-								_featureDependencies[val] = [key]
-							})
-						}
-					}
-				}
-			})
-		}
+          // If a dependant feature exists
+          if (dependantFeatures && dependantFeatures.length > 0) {
+            // Map over each dependantFeature
+            {
+              dependantFeatures.map((val) => {
+                _featureDependencies[val] = [key];
+              });
+            }
+          }
+        }
+      });
+    }
 
-		// console.log("[feature dependencies]")
-		// console.log(_featureDependencies)
+    // console.log("[feature dependencies]")
+    // console.log(_featureDependencies)
 
-		// if (configure?.Warnings) {
-		// 	_warnings = configure?.Warnings
-		// }
+    // if (configure?.Warnings) {
+    // 	_warnings = configure?.Warnings
+    // }
 
-		// if (configure?.ResultantValue) {
-		// 	_additionalAttributes.push(configure?.ResultantValue)
-		// }
+    // if (configure?.ResultantValue) {
+    // 	_additionalAttributes.push(configure?.ResultantValue)
+    // }
 
-		return {
-			// REQUEST
-			ZoomInput: {
-				ShipToNumber: 709323, // Lutron account number
-				LutronSellingCompany: "00101", // Where country exists
-				Product: uitemplate?.ProductIdentifier,
-				Selections: configure?.Selections,
-				AccessLevels: 1, // Place holder (level 1: full access to all selection options)
-			},
-			OverrideSelections: configure?.ResultantValue, // there might be other additionalAttributes other than ResultantValue
-			FeatureDependencies: _featureDependencies,
-			IsQuoted: configure?.IsQuoted,
-		}
-	} else {
-		console.log("[error with UI-template or DPM]")
-	}
-}
+    return {
+      // REQUEST
+      ZoomInput: {
+        ShipToNumber: 709323, // Lutron account number
+        LutronSellingCompany: "00101", // Where country exists
+        Product: uitemplate?.ProductIdentifier,
+        Selections: configure?.Selections,
+        AccessLevels: 1, // Place holder (level 1: full access to all selection options)
+      },
+      OverrideSelections: configure?.ResultantValue, // there might be other additionalAttributes other than ResultantValue
+      FeatureDependencies: _featureDependencies,
+      IsQuoted: configure?.IsQuoted,
+    };
+  } else {
+    console.log("[error with UI-template or DPM]");
+  }
+};
 
 /**
  * This function takes in product and parses the Layout to produce an an array of objects {Variable, RenderType}
  * @param {*} uitemplate == UITempalte
  */
 const parseUITemplate = (uitemplate, UserControlsObj) => {
-	console.log("[parseUITemplate]")
-	// console.log(UserControlsObj)
-	const rows = uitemplate?.Layouts[0]?.Rows
-	let res = []
+  console.log("[parseUITemplate]");
+  // console.log(UserControlsObj)
+  const rows = uitemplate?.Layouts[0]?.Rows;
+  let res = [];
 
-	{
-		rows.map((obj) => {
-			const controls = obj?.Controls[0]
-			const controlVar = controls?.Variable
+  {
+    rows.map((obj) => {
+      const controls = obj?.Controls[0];
+      const controlVar = controls?.Variable;
 
-			res.push({
-				Variable: controlVar,
-				RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
-			})
-		})
-	}
+      res.push({
+        Variable: controlVar,
+        RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
+      });
+    });
+  }
 
-	return res
-}
+  return res;
+};
 
 const convertArrayToObject = (array, key) => {
-	const initialValue = {}
-	return array.reduce((obj, item) => {
-		return {
-			...obj,
-			[item[key]]: item,
-		}
-	}, initialValue)
-}
+  const initialValue = {};
+  return array.reduce((obj, item) => {
+    return {
+      ...obj,
+      [item[key]]: item,
+    };
+  }, initialValue);
+};
 
 /**
  * handleOnSave takes the user configurations and current zoom values to build out a final object to be passed into lutron's save function
@@ -191,16 +238,21 @@ const convertArrayToObject = (array, key) => {
  * @param {*} configure The user configuration
  * @param {*} save_function	The save function passed in my lutron's parent container
  */
-const handleOnSave = async (zoomReqVal, zoomResVal, configure, save_function) => {
-	console.log("[handleOnSave]")
-}
+const handleOnSave = async (
+  zoomReqVal,
+  zoomResVal,
+  configure,
+  save_function
+) => {
+  console.log("[handleOnSave]");
+};
 
 /**
  * handleOnCancel handles when the user clicks on cancel
  */
 const handleOnCancel = async () => {
-	console.log("[handeOnCancel]")
-}
+  console.log("[handeOnCancel]");
+};
 
 const App = (props) => {
 	// Destructuring props
@@ -366,12 +418,12 @@ const App = (props) => {
 									</ZoomRequest.Provider>
 								</Product.Provider>
 								<div style={{position:"fixed", bottom:"2em", right:"2em",}}>
-									<button className='fancy-button' onClick={(e) => handleOnCancel()}>
+									<CancelButton onClick={(e) => handleOnCancel()}>
 										Cancel
-									</button>
-									<button className='fancy-button' onClick={(e) => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>
+									</CancelButton>
+									<SaveButton onClick={(e) => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>
 										Save
-									</button>
+									</SaveButton>
 								</div>
 							</Application>
 						)

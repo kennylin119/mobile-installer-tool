@@ -6,20 +6,28 @@ import ZoomHandler from "../../services/ZoomHandler"
 
 const Button = styled.button`
   display: inline-block;
-  padding: 0.5rem 0;
-  margin: 0.5rem 1rem;
-  width: 10rem;
-  background: #E1DCDC;
-  color: gray;
-  border: .0px #808080;
+  margin: 0em 1em 0em 0em;
+  /* top left/right bottom*/
+  padding: 0.5em 2.5em 0.5em;
+  /* how to add padding to text?*/
+  
+  height: 3em;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background: #e0e1e2 none;
+  color: rgba(0, 0, 0, 0.6);
+  font-family: "HelveticaNeue Regular", sans-serif;
+  border: none;
   border-radius: 3px;
+
+  line-height: 1em;
   text-align: center;
-  cursor: pointer;
 
   &:hover {
     background: #CECECE;
-    
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+	font-weight: bold;
+	border: .5px solid #808080;
   }
 `;
 
