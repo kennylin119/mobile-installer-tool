@@ -15,34 +15,38 @@ const Modal = styled.div`
 `
 
 const ModalContent = styled.div`
-
-	overflow-y:auto;
-	height:90vh;
-	&::-webkit-scrollbar{
-		display: none;
-	}
+	height:80vh;
+	width:90vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: white;
+	border-radius: 8px;
+	padding: 1rem;
 
 	@media only screen and (min-width: 768px) {
 		// for desktop
-		//these three styling for white modal
-		background-color: white;
-		border-radius: 8px;
-		padding: 1rem;
+		height: 90vh;
+		width: 650px;
+	}
+`;
+
+const ModalBody = styled.div`
+	width: 100%;
+	height: 100%;
+	overflow-y:auto;
+	&::-webkit-scrollbar{
+		display: none;
 	}
 `;
 
 const GridContent = styled.div`
-	width:95vw;
-	margin: 1rem;
-
+	width: 100%;
+	height: 100%;
 	display: grid;
-	grid-template-columns: auto auto auto;
-	grid-gap: .5rem;
-
-	@media only screen and (min-width: 768px) {
-		// for desktop
-		width: 600px;
-	}
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: .2rem;
+	justify-content: center;
 `
 
 
@@ -51,19 +55,18 @@ const GridModal = (props) => {
 	console.log("[GridModal]")
 
 	return (
-		<Modal onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>
+		<Modal onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';document.getElementById("fixed-buttons").style.display = "block";}}>
 			<button className="transparent" onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>X</button>
-			<div styel={{"overflow-y":"initial"}} >
-				<ModalContent>
-					
-					{variable}
+			<ModalContent style={{"overflow-y":"initial"}} onClick={(e) => e.stopPropagation()}>
+				<h1>{variable}</h1>
+				<ModalBody>
 					<GridContent>
 						{zoomResComponentData?.ValidKeys.map((obj) => (
 							<ModalIcon setShowModal={setShowModal}key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable}></ModalIcon>
 						))}
 					</GridContent>
-				</ModalContent>
-			</div>
+				</ModalBody>
+			</ModalContent>
 		</Modal>
 	)
 }
