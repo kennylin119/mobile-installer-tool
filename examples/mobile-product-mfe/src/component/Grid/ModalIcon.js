@@ -126,7 +126,7 @@ const ModalIcon = (props) => {
       )
     }>
       <MyIcon src={image} alt={"Image invalid"}></MyIcon>
-      {icon_value}
+      <div style={{"text-align": "center"}}>{icon_value}</div>
     </IconContainer>
   );
 };

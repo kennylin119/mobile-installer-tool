@@ -15,7 +15,7 @@ const Modal = styled.div`
 `
 
 const ModalContent = styled.div`
-	height:90vh;
+	height:95vh;
 	width:90vw;
 	display: flex;
 	flex-direction: column;
@@ -26,6 +26,7 @@ const ModalContent = styled.div`
 
 	@media only screen and (min-width: 768px) {
 		// for desktop
+		height: 90vh;
 		width: 650px;
 	}
 `;
@@ -44,7 +45,7 @@ const GridContent = styled.div`
 	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-gap: 1rem;
+	grid-gap: .2rem;
 	justify-content: center;
 `
 
