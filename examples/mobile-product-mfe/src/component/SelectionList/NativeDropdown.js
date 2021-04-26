@@ -1,20 +1,30 @@
-import default_img from "../../toolkit/default_image.jpeg";
-import { Product } from "../../product-context";
-import React, { useContext } from "react";
-import { View, Text, Picker, StyleSheet, Image } from "react-native";
-import Button from "react-bootstrap/Button";
-import { ZoomRequest, ZoomResponse } from "../../zoom-context";
-import ZoomHandler from "../../services/ZoomHandler";
-import styled from "styled-components";
+/* eslint-disable react/state-in-constructor */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable lines-between-class-members */
+/* eslint-disable arrow-body-style */
+/* eslint-disable object-shorthand */
+/* eslint-disable no-class-assign */
+import React, { useContext } from 'react';
+import {
+  View, Text, Picker, StyleSheet, Image,
+} from 'react-native';
+import styled from 'styled-components';
 
+import Button from 'react-bootstrap/Button';
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import ZoomHandler from '../../services/ZoomHandler';
 
-/* i dont think this style is being used rn*/
+import default_img from '../../toolkit/default_image.jpeg';
+import { Product } from '../../product-context';
+
+/* i dont think this style is being used rn */
 const StyledPicker = styled(Picker)`
   font-family: "HelveticaNeue Regular", sans-serif;
   border-radius: 3px;
 `;
 
 class NativeDropdown extends React.Component {
+  state = { selection: '' };
   convertArrayToObject = (array, key) => {
     const initialValue = {};
     return array.reduce((obj, item) => {
@@ -24,8 +34,6 @@ class NativeDropdown extends React.Component {
       };
     }, initialValue);
   };
-
-  state = { selection: "" };
   updateSelection = (selection) => {
     this.setState({ selection: selection });
   };

@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
-import styled from "styled-components";
+import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
 
-import { ZoomRequest, ZoomResponse } from "../../zoom-context";
-import Icon from "./Icon";
-import Grid from "../Grid/Grid";
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import Icon from './Icon';
+import Grid from '../Grid/Grid';
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -26,16 +26,14 @@ const ImageContainer = styled.div`
 // Function to parse an array into an object based on a key
 const convertArrayToObject = (array, key) => {
   const initialValue = {};
-  return array.reduce((obj, item) => {
-    return {
-      ...obj,
-      [item[key]]: item,
-    };
-  }, initialValue);
+  return array.reduce((obj, item) => ({
+    ...obj,
+    [item[key]]: item,
+  }), initialValue);
 };
 
 const Icons = (props) => {
-  console.log("[Icons]");
+  console.log('[Icons]');
   const { variable, data, cdn } = props;
 
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
@@ -46,8 +44,8 @@ const Icons = (props) => {
 
   const zoomResComponentData = zoomResVal.Features[variable];
 
-  let icons = data.OptionValues;
-  const iconsObj = convertArrayToObject(icons, "KeyValue");
+  const icons = data.OptionValues;
+  const iconsObj = convertArrayToObject(icons, 'KeyValue');
   console.log(zoomResComponentData);
 
   if (zoomResComponentData?.ValidKeys.length > 7) {
@@ -58,29 +56,28 @@ const Icons = (props) => {
         cdn={cdn}
         zoomResComponentData={zoomResComponentData}
         iconsObj={iconsObj}
-      ></Grid>
-    );
-  } else {
-    return (
-      <div>
-        <h3>{variable}</h3>
-        <ImageContainer>
-          {/* <div className="img-container-title">{variable}</div> */}
-          {zoomResComponentData?.ValidKeys.map((obj) => (
-            <Icon
-              key={obj}
-              cdn={cdn}
-              icon_key={obj}
-              icon_value={iconsObj[obj].Label}
-              icon_image={iconsObj[obj].Image}
-              icon_selected={zoomResComponentData.CurrentValue}
-              componentName={variable}
-            ></Icon>
-          ))}
-        </ImageContainer>
-      </div>
+      />
     );
   }
+  return (
+    <div>
+      <h3>{variable}</h3>
+      <ImageContainer>
+        {/* <div className="img-container-title">{variable}</div> */}
+        {zoomResComponentData?.ValidKeys.map((obj) => (
+          <Icon
+            key={obj}
+            cdn={cdn}
+            icon_key={obj}
+            icon_value={iconsObj[obj].Label}
+            icon_image={iconsObj[obj].Image}
+            icon_selected={zoomResComponentData.CurrentValue}
+            componentName={variable}
+          />
+        ))}
+      </ImageContainer>
+    </div>
+  );
 };
 
 export default Icons;

@@ -1,7 +1,7 @@
-import { useContext } from "react"
-import styled from "styled-components"
+import { useContext } from 'react';
+import styled from 'styled-components';
 
-import { ZoomResponse } from "../../zoom-context"
+import { ZoomResponse } from '../../zoom-context';
 
 const RenderImage = styled.img`
 	//mobile first
@@ -21,34 +21,33 @@ const RenderImage = styled.img`
 		max-width: 30em;
 		margin-top: 50%;
 	}
-`
+`;
 
 const ProductImage = (props) => {
-	//product
-	const { product } = props
+  // product
+  const { product } = props;
 
-	//zoom context
-	const { zoomResVal } = useContext(ZoomResponse)
+  // zoom context
+  const { zoomResVal } = useContext(ZoomResponse);
 
-	//variables
-	const name = zoomResVal?.AdditionalAttributes[0]?.Name
-	const value = zoomResVal?.AdditionalAttributes[0]?.Value
-	const cdn = product.CDNPrefix
-	const path = "toolkit/ALISSE/Toolkit_Definition_Value_Image_" + name + "_" + value + ".png"
+  // variables
+  const name = zoomResVal?.AdditionalAttributes[0]?.Name;
+  const value = zoomResVal?.AdditionalAttributes[0]?.Value;
+  const cdn = product.CDNPrefix;
+  const path = `toolkit/ALISSE/Toolkit_Definition_Value_Image_${name}_${value}.png`;
 
-	//combine for final link
-	const link = cdn + path
+  // combine for final link
+  const link = cdn + path;
 
-	if (name && value) {
-		return (
-			<div>
-				{/* This Is where ProductImage should be */}
-				<RenderImage src={link}></RenderImage>
-			</div>
-		)
-	} else {
-		return <div>{/* Don't load anything since we don't have zoom response yet */}</div>
-	}
-}
+  if (name && value) {
+    return (
+      <div>
+        {/* This Is where ProductImage should be */}
+        <RenderImage src={link} />
+      </div>
+    );
+  }
+  return <div>{/* Don't load anything since we don't have zoom response yet */}</div>;
+};
 
-export default ProductImage
+export default ProductImage;

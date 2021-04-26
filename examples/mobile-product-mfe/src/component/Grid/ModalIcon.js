@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 
 // Import context api
-import { ZoomRequest, ZoomResponse } from "../../zoom-context";
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
 
-import ZoomHandler from "../../services/ZoomHandler";
-import default_img from "../../toolkit/default_image.jpeg";
+import ZoomHandler from '../../services/ZoomHandler';
+import default_img from '../../toolkit/default_image.jpeg';
 
 const IconContainer = styled.div`
   display: flex;
@@ -43,7 +43,6 @@ const MyIcon = styled.img`
 	}
 `;
 
-
 // ! This is where we will call updateProduct through the context. No need to pass data back anymore :)
 const handleOnClick = async (
   event,
@@ -55,20 +54,20 @@ const handleOnClick = async (
   setZoomReq,
   zoomResVal,
   setZoomRes,
-  componentName
+  componentName,
 ) => {
   event.preventDefault();
-  console.log("[handleOnClick]");
+  console.log('[handleOnClick]');
 
   console.log(icon_key);
   console.log(icon_value);
   console.log(icon_selected);
 
   setShowModal();
-  document.querySelector("body").style.overflow = 'visible';
-  document.getElementById("fixed-buttons").style.display = "block";
+  document.querySelector('body').style.overflow = 'visible';
+  document.getElementById('fixed-buttons').style.display = 'block';
 
-  if (icon_selected != icon_key) {
+  if (icon_selected !== icon_key) {
     // Modifying the zoom request
     await setZoomReq((prevState) => {
       // First, modify the prevState
@@ -80,9 +79,7 @@ const handleOnClick = async (
       };
     });
 
-    // call zoom handler and set the response
-    let _response = await ZoomHandler(zoomReqVal);
-    setZoomRes(_response);
+    setZoomRes(await ZoomHandler(zoomReqVal));
   }
 };
 
@@ -111,22 +108,21 @@ const ModalIcon = (props) => {
   }
 
   return (
-    <IconContainer onClick={(e) =>
-      handleOnClick(
-        e,
-        setShowModal,
-        icon_key,
-        icon_value,
-        icon_selected,
-        zoomReqVal,
-        setZoomReq,
-        zoomResVal,
-        setZoomRes,
-        componentName
-      )
-    }>
-      <MyIcon src={image} alt={"Image invalid"}></MyIcon>
-      <div style={{"text-align": "center"}}>{icon_value}</div>
+    <IconContainer onClick={(e) => handleOnClick(
+      e,
+      setShowModal,
+      icon_key,
+      icon_value,
+      icon_selected,
+      zoomReqVal,
+      setZoomReq,
+      zoomResVal,
+      setZoomRes,
+      componentName,
+    )}
+    >
+      <MyIcon src={image} alt="Image invalid" />
+      <div style={{ 'text-align': 'center' }}>{icon_value}</div>
     </IconContainer>
   );
 };

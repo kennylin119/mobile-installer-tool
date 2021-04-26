@@ -1,12 +1,19 @@
-import { useState, useContext } from "react";
-import styled from "styled-components";
+/* eslint-disable arrow-body-style */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable no-unused-vars */
+import { useState, useContext } from 'react';
+import styled from 'styled-components';
 
 // import context api
-import { ZoomRequest, ZoomResponse } from "../../zoom-context";
-import ZoomHandler from "../../services/ZoomHandler";
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import ZoomHandler from '../../services/ZoomHandler';
 
-import NativeDropdown from "./NativeDropdown";
-import SelectionButton from "./SelectionButton";
+import NativeDropdown from './NativeDropdown';
+import SelectionButton from './SelectionButton';
 
 const HScroller = styled.div`
   width: 100%;
@@ -21,7 +28,7 @@ const HScroller = styled.div`
 `;
 
 const SelectionList = (props) => {
-  console.log("[SelectionList]");
+  console.log('[SelectionList]');
   const { data, variable } = props;
 
   let output;

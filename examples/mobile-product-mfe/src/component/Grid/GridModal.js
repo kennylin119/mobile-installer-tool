@@ -1,6 +1,12 @@
-import styled from "styled-components"
-import ModalIcon from "../Grid/ModalIcon"
-
+/* eslint-disable react/button-has-type */
+/* eslint-disable max-len */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-tabs */
+import styled from 'styled-components';
+import ModalIcon from './ModalIcon';
 
 const Modal = styled.div`
 	position: fixed;
@@ -12,7 +18,7 @@ const Modal = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-`
+`;
 
 const ModalContent = styled.div`
 	height:80vh;
@@ -47,28 +53,29 @@ const GridContent = styled.div`
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-gap: .2rem;
 	justify-content: center;
-`
-
+`;
 
 const GridModal = (props) => {
-	const { showModal, setShowModal, variable, data, cdn, zoomResComponentData, iconsObj } = props
-	console.log("[GridModal]")
+  const {
+    showModal, setShowModal, variable, cdn, zoomResComponentData, iconsObj,
+  } = props;
+  console.log('[GridModal]');
 
-	return (
-		<Modal onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';document.getElementById("fixed-buttons").style.display = "block";}}>
-			<button className="transparent" onClick={(e) => {setShowModal(!showModal);document.querySelector("body").style.overflow = 'visible';}}>X</button>
-			<ModalContent style={{"overflow-y":"initial"}} onClick={(e) => e.stopPropagation()}>
-				<h1>{variable}</h1>
-				<ModalBody>
-					<GridContent>
-						{zoomResComponentData?.ValidKeys.map((obj) => (
-							<ModalIcon setShowModal={setShowModal}key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable}></ModalIcon>
-						))}
-					</GridContent>
-				</ModalBody>
-			</ModalContent>
-		</Modal>
-	)
-}
+  return (
+    <Modal onClick={(e) => { setShowModal(!showModal); document.querySelector('body').style.overflow = 'visible'; document.getElementById('fixed-buttons').style.display = 'block'; }}>
+      <button className="transparent" onClick={(e) => { setShowModal(!showModal); document.querySelector('body').style.overflow = 'visible'; }}>X</button>
+      <ModalContent style={{ 'overflow-y': 'initial' }} onClick={(e) => e.stopPropagation()}>
+        <h1>{variable}</h1>
+        <ModalBody>
+          <GridContent>
+            {zoomResComponentData?.ValidKeys.map((obj) => (
+              <ModalIcon setShowModal={setShowModal} key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable} />
+            ))}
+          </GridContent>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+};
 
-export default GridModal
+export default GridModal;

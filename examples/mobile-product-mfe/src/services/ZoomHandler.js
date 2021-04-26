@@ -1,4 +1,5 @@
-import router, { fetchZoom } from "../router/router"
+/* eslint-disable consistent-return */
+import { fetchZoom } from '../router/router';
 
 /**
  * Main logical layer function that:
@@ -8,17 +9,17 @@ import router, { fetchZoom } from "../router/router"
  * ! For now, we pass in the zoom instead of using the zoom-context in here
  */
 const ZoomHandler = async (zoom) => {
-	console.log("[zoomHandler]")
-	// console.log(zoom)
-	try {
-		// Make call to configurator API, passing in the input zoom object
-		var response = await fetchZoom(zoom)
-		var data = await response.json()
-		console.log("[configurator API OK response]")
-		return data
-	} catch (e) {
-		console.log("[configurator API ERR response]")
-	}
-}
+  console.log('[zoomHandler]');
+  // console.log(zoom)
+  try {
+    // Make call to configurator API, passing in the input zoom object
+    const response = await fetchZoom(zoom);
+    const data = await response.json();
+    console.log('[configurator API OK response]');
+    return data;
+  } catch (e) {
+    console.log('[configurator API ERR response]');
+  }
+};
 
-export default ZoomHandler
+export default ZoomHandler;
