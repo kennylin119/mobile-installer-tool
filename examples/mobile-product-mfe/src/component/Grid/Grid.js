@@ -6,6 +6,7 @@ import GridModal from "./GridModal"
 const handleOnClick = (showModal, setShowModal) => {
 	setShowModal(!showModal)
 	document.querySelector("body").style.overflow = "hidden";
+	document.getElementById("fixed-buttons").style.display = "none";
 }
 
 const Grid = (props) => {

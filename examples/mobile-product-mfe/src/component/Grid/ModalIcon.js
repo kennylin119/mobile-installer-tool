@@ -8,53 +8,41 @@ import ZoomHandler from "../../services/ZoomHandler";
 import default_img from "../../toolkit/default_image.jpeg";
 
 const IconContainer = styled.div`
-  position: relative;
-  text-align: center;
-  width: 30vw;
-  height: 30vw;
-  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid transparent;
+
+
   cursor: pointer;
-  &:hover {
+
+  /* &:hover {
+	  border: 1px solid rgb(115, 115, 115);
 	  box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
   }
   &.selected {
+    border: 1px solid rgb(25, 130, 148);
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
-  }
-  @media only screen and (min-width: 768px) {
-		// for desktop
-		font-size: 30px;
-    width: 200px;
-    height: 200px;
-	}
+  } */
 
 `;
 
 const MyIcon = styled.img`
-  /* float: center; */
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
+  width: 24vw;
+  height: 24vw;
   //when hover parent IconContainre, change brightness of image
-  -webkit-filter: brightness(80%);
+  -webkit-filter: brightness(100%);
   ${IconContainer}:hover &{
-    -webkit-filter: brightness(100%);
-  }
-  
-`;
-
-const IconText = styled.h1 `
-  position:absolute;
-  top:40%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  color:white;
-  font-size: 5vw;
+    -webkit-filter: brightness(120%);
+  } 
 
   @media only screen and (min-width: 768px) {
 		// for desktop
-		font-size: 30px;
+		width: 190px;
+    height: 190px;
 	}
 `;
+
 
 // ! This is where we will call updateProduct through the context. No need to pass data back anymore :)
 const handleOnClick = async (
@@ -78,6 +66,7 @@ const handleOnClick = async (
 
   setShowModal();
   document.querySelector("body").style.overflow = 'visible';
+  document.getElementById("fixed-buttons").style.display = "block";
 
   if (icon_selected != icon_key) {
     // Modifying the zoom request
@@ -137,7 +126,7 @@ const ModalIcon = (props) => {
       )
     }>
       <MyIcon src={image} alt={"Image invalid"}></MyIcon>
-      <IconText>{icon_value}</IconText>
+      {icon_value}
     </IconContainer>
   );
 };

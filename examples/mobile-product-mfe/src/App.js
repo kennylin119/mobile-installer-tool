@@ -417,7 +417,7 @@ const App = (props) => {
 										</ZoomResponse.Provider>
 									</ZoomRequest.Provider>
 								</Product.Provider>
-								<div style={{position:"fixed", bottom:"2em", right:"2em",}}>
+								<div  id = "fixed-buttons" style={{position:"fixed", bottom:"2em", right:"2em",}}>
 									<CancelButton onClick={(e) => handleOnCancel()}>
 										Cancel
 									</CancelButton>
