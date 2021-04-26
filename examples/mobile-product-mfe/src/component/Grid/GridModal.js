@@ -15,7 +15,7 @@ const Modal = styled.div`
 `
 
 const ModalContent = styled.div`
-	height:95vh;
+	height:80vh;
 	width:90vw;
 	display: flex;
 	flex-direction: column;
