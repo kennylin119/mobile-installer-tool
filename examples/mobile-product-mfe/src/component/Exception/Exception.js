@@ -58,25 +58,25 @@ const Exception = (props) => {
   const { err } = props;
   // eslint-disable-next-line prefer-const
   let [errorModalVisible, setErrorModalVisible] = useState(true);
-  const renderCount = useRef(0);
-  console.log("render count")
-  console.log(renderCount.current);
+  // const renderCount = useRef(0);
+  // console.log('render count');
+  // console.log(renderCount.current);
 
   useEffect(() => {
-    if (renderCount.current === 4) {
-      console.log("render count")
-      console.log(renderCount.current);
-    
-      renderCount.current = 0;
-      console.log("render count")
-      console.log(renderCount.current);
-    
+    if (renderCount.current === 5) {
+      // console.log('render count');
+      // console.log(renderCount.current);
+
+      // renderCount.current = 0;
+      // console.log('render count');
+      // console.log(renderCount.current);
+
       setErrorModalVisible(true);
     }
-    console.log(errorModalVisible);
-  
-    renderCount.current = renderCount.current + 1;
-  })
+    // console.log(errorModalVisible);
+
+    renderCount.current += 1;
+  });
 
   return (
     <View style={styles.centeredView}>
