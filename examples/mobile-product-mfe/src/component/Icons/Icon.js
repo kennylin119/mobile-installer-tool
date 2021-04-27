@@ -3,14 +3,14 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
-import React, { useContext } from "react";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 
 // Import context api
-import { ZoomRequest, ZoomResponse } from "../../zoom-context";
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
 
-import ZoomHandler from "../../services/ZoomHandler";
-import default_img from "../../toolkit/default_image.jpeg";
+import ZoomHandler from '../../services/ZoomHandler';
+import default_img from '../../toolkit/default_image.jpeg';
 
 const RenderIcon = styled.div`
   transition: border 0.1s ease 0s;
@@ -54,10 +54,10 @@ const handleOnClick = async (
   setZoomReq,
   zoomResVal,
   setZoomRes,
-  componentName
+  componentName,
 ) => {
   event.preventDefault();
-  console.log("[handleOnClick]");
+  console.log('[handleOnClick]');
 
   console.log(icon_key);
   console.log(icon_value);
@@ -78,26 +78,25 @@ const handleOnClick = async (
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
 
-  let selected = document.querySelectorAll(`.${componentName}.selected`);
-  let new_selected = document.getElementById(icon_value);
+  const selected = document.querySelectorAll(`.${componentName}.selected`);
+  const new_selected = document.getElementById(icon_value);
 
-  console.log('start print select')
+  console.log('start print select');
   console.log(selected);
   console.log(componentName);
   console.log(new_selected);
   console.log(icon_value);
 
-
   // if (selected && selected !== new_selected) {
   //   selected.classList.remove("selected");
   // }
-  if (selected){
+  if (selected) {
     for (let i = 0; i < selected.length; i++) {
-      selected[i].classList.remove("selected");
-    }  
+      selected[i].classList.remove('selected');
+    }
   }
-  
-  new_selected.classList.add("selected");
+
+  new_selected.classList.add('selected');
 };
 
 const Icon = ({
@@ -125,21 +124,21 @@ const Icon = ({
       <MyIcon
         src={image}
         alt="Image invalid"
-        onClick={(e) =>
-          handleOnClick(
-            e,
-            icon_key,
-            icon_value,
-            icon_selected,
-            zoomReqVal,
-            setZoomReq,
-            zoomResVal,
-            setZoomRes,
-            componentName
-          )
-        }
-      />{" "}
-      {icon_value}{" "}
+        onClick={(e) => handleOnClick(
+          e,
+          icon_key,
+          icon_value,
+          icon_selected,
+          zoomReqVal,
+          setZoomReq,
+          zoomResVal,
+          setZoomRes,
+          componentName,
+        )}
+      />
+      {' '}
+      {icon_value}
+      {' '}
     </RenderIcon>
   );
 };
