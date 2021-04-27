@@ -40,6 +40,7 @@ const Button = styled.button`
 const handleOnClick = async (
   event,
   keyValue,
+  label,
   section,
   zoomReqVal,
   zoomResVal,
@@ -58,19 +59,23 @@ const handleOnClick = async (
 
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
-  // let selected = document.querySelector(`.${section}, .selected`);
-  let selected = document.querySelectorAll(`.selected`);
-  let new_selected = document.getElementById(keyValue);
-  console.log("[Previous Selection]");
-  console.log(selected);
 
+  let selected = document.querySelectorAll(`.${section}.selected`);
+  let new_selected = document.getElementById(label);
+
+  console.log('start print select')
+  console.log(selected);
+  console.log(section);
+  console.log(new_selected);
+  console.log(label);
+  
   // if (selected && selected !== new_selected) {
-  if (selected.length > 0) {
+  //   selected.classList.remove("selected");
+  // }
+  if (selected ) {
     for (let i = 0; i < selected.length; i++) {
-      if (selected[i].classList.contains(section)) {
-        selected[i].classList.remove("selected");
-      }
-    }
+      selected[i].classList.remove("selected");
+    }  
   }
   new_selected.classList.add("selected");
 };
@@ -84,12 +89,13 @@ const SelectionButton = (props) => {
 
   return (
     <Button
-      id={keyValue}
+      id={label}
       className={section}
       onClick={(e) =>
         handleOnClick(
           e,
           keyValue,
+          label,
           section,
           zoomReqVal,
           zoomResVal,

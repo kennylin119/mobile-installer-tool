@@ -78,17 +78,25 @@ const handleOnClick = async (
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
 
-  let selected = document.querySelectorAll(`.selected`);
-  let new_selected = document.getElementById(icon_key);
-  console.log(selected);
+  let selected = document.querySelectorAll(`.${componentName}.selected`);
+  let new_selected = document.getElementById(icon_value);
 
-  if (selected.length > 0) {
+  console.log('start print select')
+  console.log(selected);
+  console.log(componentName);
+  console.log(new_selected);
+  console.log(icon_value);
+
+
+  // if (selected && selected !== new_selected) {
+  //   selected.classList.remove("selected");
+  // }
+  if (selected){
     for (let i = 0; i < selected.length; i++) {
-      if (selected[i].classList.contains(componentName)) {
-        selected[i].classList.remove("selected");
-      }
-    }
+      selected[i].classList.remove("selected");
+    }  
   }
+  
   new_selected.classList.add("selected");
 };
 
@@ -113,7 +121,7 @@ const Icon = ({
   }
 
   return (
-    <RenderIcon id={icon_key} className={componentName}>
+    <RenderIcon id={icon_value} className={componentName}>
       <MyIcon
         src={image}
         alt="Image invalid"
