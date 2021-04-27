@@ -81,11 +81,11 @@ const handleOnClick = async (
   const selected = document.querySelectorAll(`.${componentName}.selected`);
   const new_selected = document.getElementById(icon_value);
 
-  console.log('start print select');
-  console.log(selected);
-  console.log(componentName);
-  console.log(new_selected);
-  console.log(icon_value);
+  // console.log('start print select');
+  // console.log(selected);
+  // console.log(componentName);
+  // console.log(new_selected);
+  // console.log(icon_value);
 
   // if (selected && selected !== new_selected) {
   //   selected.classList.remove("selected");
