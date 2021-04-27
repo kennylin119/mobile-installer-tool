@@ -1,8 +1,8 @@
-import { useContext } from 'react';
-import styled from 'styled-components';
+import { useContext } from "react";
+import styled from "styled-components";
 
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
-import ZoomHandler from '../../services/ZoomHandler';
+import { ZoomRequest, ZoomResponse } from "../../zoom-context";
+import ZoomHandler from "../../services/ZoomHandler";
 
 const Button = styled.button`
   display: inline-block;
@@ -10,7 +10,7 @@ const Button = styled.button`
   /* top left/right bottom*/
   padding: 0.5em 2.5em 0.5em;
   /* how to add padding to text?*/
-  
+
   height: 3em;
   white-space: nowrap;
   vertical-align: baseline;
@@ -24,48 +24,82 @@ const Button = styled.button`
   text-align: center;
 
   &:hover {
-    background: #CECECE;
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
-	font-weight: bold;
-	border: .5px solid #808080;
+    font-weight: bold;
+    border: 0.5px solid #808080;
+  }
+
+  &.selected {
+    background: #cecece;
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+    font-weight: bold;
+    border: 0.5px solid #115b67;
   }
 `;
 
-const handleOnClick = async (event, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes) => {
-  console.log('[handle SelectionButton click]');
+const handleOnClick = async (
+  event,
+  keyValue,
+  section,
+  zoomReqVal,
+  zoomResVal,
+  setZoomReq,
+  setZoomRes
+) => {
+  console.log("[handle SelectionButton click]");
 
   // prevents broswer refresh
   event.preventDefault();
   if (zoomReqVal.ZoomInput.Selections[section] !== keyValue) {
     await setZoomReq((prevState) => {
       prevState.ZoomInput.Selections[section] = keyValue;
-
       return prevState;
     });
 
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
+  // let selected = document.querySelector(`.${section}, .selected`);
+  let selected = document.querySelectorAll(`.selected`);
+  let new_selected = document.getElementById(keyValue);
+  console.log("[Previous Selection]");
+  console.log(selected);
+
+  // if (selected && selected !== new_selected) {
+  if (selected.length > 0) {
+    for (let i = 0; i < selected.length; i++) {
+      if (selected[i].classList.contains(section)) {
+        selected[i].classList.remove("selected");
+      }
+    }
+  }
+  new_selected.classList.add("selected");
 };
 
 const SelectionButton = (props) => {
   const { label, section, keyValue } = props;
-
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
-  console.log('[SelectionButton]');
-
-  // console.log("[printing zoomReqVal");
-  // console.log(zoomReqVal);
-
-  // console.log("[printing zoomResVal");
-  // console.log(zoomResVal);
+  console.log("[SelectionButton]");
 
   return (
-    <Button onClick={(e) => handleOnClick(e, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes)}>
-      {' '}
-      {label}
-      {' '}
+    <Button
+      id={keyValue}
+      className={section}
+      onClick={(e) =>
+        handleOnClick(
+          e,
+          keyValue,
+          section,
+          zoomReqVal,
+          zoomResVal,
+          setZoomReq,
+          setZoomRes
+        )
+      }
+    >
+      {" "}
+      {label}{" "}
     </Button>
   );
 };
