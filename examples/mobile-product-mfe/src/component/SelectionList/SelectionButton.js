@@ -10,7 +10,7 @@ const Button = styled.button`
   /* top left/right bottom*/
   padding: 0.5em 2.5em 0.5em;
   /* how to add padding to text?*/
-  
+
   height: 3em;
   white-space: nowrap;
   vertical-align: baseline;
@@ -24,14 +24,29 @@ const Button = styled.button`
   text-align: center;
 
   &:hover {
-    background: #CECECE;
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
-	font-weight: bold;
-	border: .5px solid #808080;
+    font-weight: bold;
+    border: 0.5px solid #808080;
+  }
+
+  &.selected {
+    background: #cecece;
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+    font-weight: bold;
+    border: 0.5px solid #115b67;
   }
 `;
 
-const handleOnClick = async (event, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes) => {
+const handleOnClick = async (
+  event,
+  keyValue,
+  label,
+  section,
+  zoomReqVal,
+  zoomResVal,
+  setZoomReq,
+  setZoomRes,
+) => {
   console.log('[handle SelectionButton click]');
 
   // prevents broswer refresh
@@ -39,30 +54,54 @@ const handleOnClick = async (event, keyValue, section, zoomReqVal, zoomResVal, s
   if (zoomReqVal.ZoomInput.Selections[section] !== keyValue) {
     await setZoomReq((prevState) => {
       prevState.ZoomInput.Selections[section] = keyValue;
-
       return prevState;
     });
 
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
+
+  const selected = document.querySelectorAll(`.${section}.selected`);
+  const new_selected = document.getElementById(label);
+
+  // console.log('start print select');
+  // console.log(selected);
+  // console.log(section);
+  // console.log(new_selected);
+  // console.log(label);
+
+  // if (selected && selected !== new_selected) {
+  //   selected.classList.remove("selected");
+  // }
+  if (selected) {
+    for (let i = 0; i < selected.length; i++) {
+      selected[i].classList.remove('selected');
+    }
+  }
+  new_selected.classList.add('selected');
 };
 
 const SelectionButton = (props) => {
   const { label, section, keyValue } = props;
-
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
   console.log('[SelectionButton]');
 
-  // console.log("[printing zoomReqVal");
-  // console.log(zoomReqVal);
-
-  // console.log("[printing zoomResVal");
-  // console.log(zoomResVal);
-
   return (
-    <Button onClick={(e) => handleOnClick(e, keyValue, section, zoomReqVal, zoomResVal, setZoomReq, setZoomRes)}>
+    <Button
+      id={label}
+      className={section}
+      onClick={(e) => handleOnClick(
+        e,
+        keyValue,
+        label,
+        section,
+        zoomReqVal,
+        zoomResVal,
+        setZoomReq,
+        setZoomRes,
+      )}
+    >
       {' '}
       {label}
       {' '}

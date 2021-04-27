@@ -33,6 +33,7 @@ import {
 // importing routing functions
 import ZoomHandler from './services/ZoomHandler';
 import SelectionList from './component/SelectionList/SelectionList';
+import Header from './component/Header/Header';
 
 const StyledButton = styled.div`
 	cursor: pointer;
@@ -177,7 +178,7 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 
 /**
  * This function takes in product and parses the Layout to produce an an array of objects {Variable, RenderType}
- * @param {*} uitemplate == UITempalte
+ * @param {*} uitemplate == UITempalate
  */
 const parseUITemplate = (uitemplate, UserControlsObj) => {
   console.log('[parseUITemplate]');
@@ -189,6 +190,8 @@ const parseUITemplate = (uitemplate, UserControlsObj) => {
     rows.map((obj) => {
       const controls = obj?.Controls[0];
       const controlVar = controls?.Variable;
+
+      // Verify that the obj exists in the initial zoom response value
 
       res.push({
         Variable: controlVar,
@@ -233,7 +236,7 @@ const App = (props) => {
   const configure_test = {
     BillOfMaterialsLineItemId: 7407192,
     ConfiguredJSON:
-			'{"Product":"Alisse","Category":null,"Details":null,"IsConfigured":true,"Selections":{"SYSTEM":"HW","WALLBOX_SHAPE":"S","COLUMNS":"2","BUTTON_ARRAY":"33","FACEPLATE_FINISH":"AZ","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"US","COMPONENTS":"KO","IS_DEMO":"N","ProductDetails":"NPKP"},"Filters":null,"AutoSelections":null,"Warnings":["The Alisse keypad requires the use of a Base Unit for installation.  \\"Keypad Only\\" should be selected for replacement keypads where a Base Unit is already present."],"ModelType":null,"ProductType":null,"ResultantValue":{"PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"SelectionValues":{"SYSTEM":"HomeWorks (QSX)","WALLBOX_SHAPE":"Square Backbox","COLUMNS":"2-Column","BUTTON_ARRAY":"3, 3 Button","FACEPLATE_FINISH":"Aged Bronze","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"United States","COMPONENTS":"Keypad Only","IS_DEMO":"No","ProductDetails":"Keypad","PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"AutoValues":null}',
+  		'{"Product":"Alisse","Category":null,"Details":null,"IsConfigured":true,"Selections":{"SYSTEM":"HW","WALLBOX_SHAPE":"S","COLUMNS":"2","BUTTON_ARRAY":"33","FACEPLATE_FINISH":"AZ","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"US","COMPONENTS":"KO","IS_DEMO":"N","ProductDetails":"NPKP"},"Filters":null,"AutoSelections":null,"Warnings":["The Alisse keypad requires the use of a Base Unit for installation.  \\"Keypad Only\\" should be selected for replacement keypads where a Base Unit is already present."],"ModelType":null,"ProductType":null,"ResultantValue":{"PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"SelectionValues":{"SYSTEM":"HomeWorks (QSX)","WALLBOX_SHAPE":"Square Backbox","COLUMNS":"2-Column","BUTTON_ARRAY":"3, 3 Button","FACEPLATE_FINISH":"Aged Bronze","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"United States","COMPONENTS":"Keypad Only","IS_DEMO":"No","ProductDetails":"Keypad","PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"AutoValues":null}',
     AdditionalAttributes: null,
     IsFullyConfigured: false,
     VolumeDiscountEligiblePanels: null,
@@ -254,8 +257,32 @@ const App = (props) => {
     MaxPrice: 525.0,
   };
 
+  // const configure_test = {
+  //   AdditionalAttributes: null,
+  //   BillOfMaterialsLineItemId: 7878428,
+  //   ConfiguredJSON: '{"Product":"Drapery","Category":null,"Details":null,"IsConfigured":true,"Selections":{"WIDTH":"65","TRACKTYPE":"SINGLE","PLEAT":"PP","METALCOLOR":"BZ","CUSTCOLOR":"N","OPRPOS":"L","DRAW":"CD","MOUNT":"C","FULLNESS":"25X","SUBLINEQTY":"0","ISSUBLINE":"N","COUNTRY":"US","SUBLINETRACKTYPE":"SINGLE","BREAKAWAY":"N","SPLICE":"0.0000","ProductDetails":"QSYD4S10STR"},"Filters":null,"AutoSelections":null,"Warnings":["Maximum weight must not exceed 80 lbs"],"ModelType":null,"ProductType":null,"ResultantValue":{"ESTOPEN":"3334","STACKBACK":"833","DRAPEWTMAX":"36","BKTPERTRACK":"14","AUXCARNUM":"54","PLEATSPACING":"89","DRPTRKWIDTHSP":"5001","SNAPNUM":"0","AUXCARNUM2":"0"},"SelectionValues":{"WIDTH":"5001","TRACKTYPE":"Single","PLEAT":"Pinchpleat","METALCOLOR":"Bronze","CUSTCOLOR":"None","OPRPOS":"Left","DRAW":"Center Draw","MOUNT":"Ceiling Mount","FULLNESS":"2.5X - Non-Sheer Pinch Pleat","SUBLINEQTY":"0","ISSUBLINE":"None","COUNTRY":"United States","SUBLINETRACKTYPE":"Single","BREAKAWAY":"No","SPLICE":"None","ProductDetails":"Sivoia QS Wireless D105 Drapery Track","ESTOPEN":"3334","STACKBACK":"833","DRAPEWTMAX":"36","BKTPERTRACK":"14","AUXCARNUM":"54","PLEATSPACING":"89","DRPTRKWIDTHSP":"5001","SNAPNUM":"0","AUXCARNUM2":"0"},"AutoValues":null}',
+  //   DiscountedPrice: null,
+  //   ErroneousFeatures: null,
+  //   FGID: 'QSYD4-S10STR',
+  //   IsFullyConfigured: true,
+  //   IsLocked: false,
+  //   ListPriceAdjustment: null,
+  //   MaxLeadTime: 10,
+  //   MaxPrice: 2346.74,
+  //   MinLeadTime: 10,
+  //   MinPrice: 2346.74,
+  //   ModelNumber: 'QSYD4-S10STR',
+  //   OverrideDiscountedPrice: null,
+  //   OverrideLeadTime: null,
+  //   OverrideListPrice: null,
+  //   QuotableTill: null,
+  //   RowVersion: 'AAAAAAIA3Sg=',
+  //   ValidationErrorType: 0,
+  //   VolumeDiscountEligiblePanels: null,
+  // };
+
   // Hard coded product name, will be whatever data is
-  const PRODUCT_IDENTIFIER = 'ALISSE';
+  const PRODUCT_IDENTIFIER = 'DRAPERY';
 
   // State variables for the product
   const [product, setProduct] = useState(null);
@@ -361,6 +388,9 @@ const App = (props) => {
         console.log(RenderLayout);
         console.log(UserControlsObj);
 
+        // temporary source, will need to change
+        const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
+
         if (zoomResVal) {
           // Render the DOM
           return (
@@ -369,6 +399,7 @@ const App = (props) => {
               <Product.Provider value={{ product, setProduct }}>
                 <ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
                   <ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
+                    <Header product_name={PRODUCT_IDENTIFIER} img_src={product_icon} />
                     <div className="container">
                       <div className="row">
                         <div className="col-1" />

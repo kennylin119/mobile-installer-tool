@@ -4,7 +4,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   Alert, Modal, StyleSheet, Text, Pressable, View,
 } from 'react-native';
@@ -58,6 +58,25 @@ const Exception = (props) => {
   const { err } = props;
   // eslint-disable-next-line prefer-const
   let [errorModalVisible, setErrorModalVisible] = useState(true);
+  const renderCount = useRef(1);
+  // console.log('render count');
+  // console.log(renderCount.current);
+
+  useEffect(() => {
+    if (renderCount.current === 4) {
+      // console.log('render count');
+      // console.log(renderCount.current);
+
+      renderCount.current = 0;
+      // console.log('render count');
+      // console.log(renderCount.current);
+
+      setErrorModalVisible(true);
+    }
+    // console.log(errorModalVisible);
+
+    renderCount.current += 1;
+  });
 
   return (
     <View style={styles.centeredView}>

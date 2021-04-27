@@ -13,38 +13,49 @@ import ZoomHandler from '../../services/ZoomHandler';
 import default_img from '../../toolkit/default_image.jpeg';
 
 const RenderIcon = styled.div`
-transition: border 0.1s ease 0s;
-display: inline-block;
-margin: 0px 27px 10px 0px;
-border: 1px solid transparent;
-border-radius: 3px;
-vertical-align: top;
-width: 94px;
-text-align: center;
+  transition: border 0.1s ease 0s;
+  display: inline-block;
+  margin: 0px 27px 10px 0px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  vertical-align: top;
+  width: 94px;
+  text-align: center;
 
-cursor: pointer;
+  cursor: pointer;
 
-&:hover {
-border: 1px solid rgb(115, 115, 115);
-box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
-}
-&.selected {
-border: 1px solid rgb(25, 130, 148);
-box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
-}
+  &:hover {
+    border: 1px solid rgb(115, 115, 115);
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+  }
+
+  &.selected {
+    border: 1px solid rgb(25, 130, 148);
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+  }
 `;
 
 const MyIcon = styled.img`
-float: center;
-width: 60px;
-height: 80px;
-padding: 0.5rem 0;
-margin: 0.5rem 1rem;
+  float: center;
+  width: 60px;
+  height: 80px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
 `;
 
 // ! This is where we will call updateProduct through the context. No need to pass data back anymore
 // eslint-disable-next-line max-len
-const handleOnClick = async (event, icon_key, icon_value, icon_selected, zoomReqVal, setZoomReq, zoomResVal, setZoomRes, componentName) => {
+const handleOnClick = async (
+  event,
+  icon_key,
+  icon_value,
+  icon_selected,
+  zoomReqVal,
+  setZoomReq,
+  zoomResVal,
+  setZoomRes,
+  componentName,
+) => {
   event.preventDefault();
   console.log('[handleOnClick]');
 
@@ -66,10 +77,35 @@ const handleOnClick = async (event, icon_key, icon_value, icon_selected, zoomReq
 
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
+
+  const selected = document.querySelectorAll(`.${componentName}.selected`);
+  const new_selected = document.getElementById(icon_value);
+
+  // console.log('start print select');
+  // console.log(selected);
+  // console.log(componentName);
+  // console.log(new_selected);
+  // console.log(icon_value);
+
+  // if (selected && selected !== new_selected) {
+  //   selected.classList.remove("selected");
+  // }
+  if (selected) {
+    for (let i = 0; i < selected.length; i++) {
+      selected[i].classList.remove('selected');
+    }
+  }
+
+  new_selected.classList.add('selected');
 };
 
 const Icon = ({
-  icon_key, cdn, icon_value, icon_image, icon_selected, componentName,
+  icon_key,
+  cdn,
+  icon_value,
+  icon_image,
+  icon_selected,
+  componentName,
 }) => {
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
@@ -84,9 +120,25 @@ const Icon = ({
   }
 
   return (
-    <RenderIcon>
-      <MyIcon src={image} alt="Image invalid" onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, zoomReqVal, setZoomReq, zoomResVal, setZoomRes, componentName)} />
+    <RenderIcon id={icon_value} className={componentName}>
+      <MyIcon
+        src={image}
+        alt="Image invalid"
+        onClick={(e) => handleOnClick(
+          e,
+          icon_key,
+          icon_value,
+          icon_selected,
+          zoomReqVal,
+          setZoomReq,
+          zoomResVal,
+          setZoomRes,
+          componentName,
+        )}
+      />
+      {' '}
       {icon_value}
+      {' '}
     </RenderIcon>
   );
 };
