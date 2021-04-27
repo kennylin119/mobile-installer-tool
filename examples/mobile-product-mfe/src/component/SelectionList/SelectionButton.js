@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import styled from "styled-components";
+import { useContext } from 'react';
+import styled from 'styled-components';
 
-import { ZoomRequest, ZoomResponse } from "../../zoom-context";
-import ZoomHandler from "../../services/ZoomHandler";
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import ZoomHandler from '../../services/ZoomHandler';
 
 const Button = styled.button`
   display: inline-block;
@@ -45,9 +45,9 @@ const handleOnClick = async (
   zoomReqVal,
   zoomResVal,
   setZoomReq,
-  setZoomRes
+  setZoomRes,
 ) => {
-  console.log("[handle SelectionButton click]");
+  console.log('[handle SelectionButton click]');
 
   // prevents broswer refresh
   event.preventDefault();
@@ -60,24 +60,24 @@ const handleOnClick = async (
     setZoomRes(await ZoomHandler(zoomReqVal));
   }
 
-  let selected = document.querySelectorAll(`.${section}.selected`);
-  let new_selected = document.getElementById(label);
+  const selected = document.querySelectorAll(`.${section}.selected`);
+  const new_selected = document.getElementById(label);
 
-  console.log('start print select')
+  console.log('start print select');
   console.log(selected);
   console.log(section);
   console.log(new_selected);
   console.log(label);
-  
+
   // if (selected && selected !== new_selected) {
   //   selected.classList.remove("selected");
   // }
-  if (selected ) {
+  if (selected) {
     for (let i = 0; i < selected.length; i++) {
-      selected[i].classList.remove("selected");
-    }  
+      selected[i].classList.remove('selected');
+    }
   }
-  new_selected.classList.add("selected");
+  new_selected.classList.add('selected');
 };
 
 const SelectionButton = (props) => {
@@ -85,27 +85,26 @@ const SelectionButton = (props) => {
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
-  console.log("[SelectionButton]");
+  console.log('[SelectionButton]');
 
   return (
     <Button
       id={label}
       className={section}
-      onClick={(e) =>
-        handleOnClick(
-          e,
-          keyValue,
-          label,
-          section,
-          zoomReqVal,
-          zoomResVal,
-          setZoomReq,
-          setZoomRes
-        )
-      }
+      onClick={(e) => handleOnClick(
+        e,
+        keyValue,
+        label,
+        section,
+        zoomReqVal,
+        zoomResVal,
+        setZoomReq,
+        setZoomRes,
+      )}
     >
-      {" "}
-      {label}{" "}
+      {' '}
+      {label}
+      {' '}
     </Button>
   );
 };

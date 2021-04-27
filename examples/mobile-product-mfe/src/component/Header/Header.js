@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-const ProductHeader = styled.div `
+const ProductHeader = styled.div`
     width = 100%;
     // height = 5%;
     background: #fff;
@@ -26,21 +26,20 @@ const Icon = styled.img`
 `;
 
 function upperCaseFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + (string.slice(1)).toLowerCase();
+  return string.charAt(0).toUpperCase() + (string.slice(1)).toLowerCase();
 }
 
 const Header = (props) => {
+  const { product_name, img_src } = props;
 
-    const { product_name, img_src } = props;
+  return (
+    <ProductHeader>
+      <Icon src={img_src} />
+      <Title>
+        {upperCaseFirstLetter(product_name)}
+      </Title>
+    </ProductHeader>
+  );
+};
 
-    return (
-        <ProductHeader>
-            <Icon src={img_src} />
-            <Title>
-                {upperCaseFirstLetter(product_name)}
-            </Title>
-        </ProductHeader>
-    )
-}
-
-export default Header
+export default Header;
