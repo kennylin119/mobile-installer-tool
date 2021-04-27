@@ -33,6 +33,7 @@ import {
 // importing routing functions
 import ZoomHandler from './services/ZoomHandler';
 import SelectionList from './component/SelectionList/SelectionList';
+import Header from './component/Header/Header'
 
 const StyledButton = styled.div`
 	cursor: pointer;
@@ -361,6 +362,9 @@ const App = (props) => {
         console.log(RenderLayout);
         console.log(UserControlsObj);
 
+        // temporary source, will need to change
+        let product_icon = "https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0";
+
         if (zoomResVal) {
           // Render the DOM
           return (
@@ -369,6 +373,7 @@ const App = (props) => {
               <Product.Provider value={{ product, setProduct }}>
                 <ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
                   <ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
+                  <Header product_name={PRODUCT_IDENTIFIER} img_src={product_icon}/>
                     <div className="container">
                       <div className="row">
                         <div className="col-1" />
