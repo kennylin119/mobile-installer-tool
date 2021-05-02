@@ -1,76 +1,146 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-console */
+/* eslint-disable no-param-reassign */
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
+import React, { useContext } from 'react';
+import styled from 'styled-components';
 
 // Import context api
-import { ZoomRequest, ZoomResponse } from "../../zoom-context"
+import { ZoomRequest, ZoomResponse } from '../../zoom-context';
 
-import ZoomHandler from "../../services/ZoomHandler"
-import default_img from "../../toolkit/default_image.jpeg"
+import ZoomHandler from '../../services/ZoomHandler';
+import default_img from '../../toolkit/default_image.jpeg';
 
 const RenderIcon = styled.div`
-	float: left;
-	width: 100px;
-	height: 95px;
-	background-color: white;
-`
+  transition: border 0.1s ease 0s;
+  display: inline-block;
+  margin: 0px 27px 10px 0px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  vertical-align: top;
+  width: 94px;
+  text-align: center;
+
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid rgb(115, 115, 115);
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+  }
+
+  &.selected {
+    border: 1px solid rgb(25, 130, 148);
+    box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
+  }
+`;
 
 const MyIcon = styled.img`
-	float: center;
-	width: 60px;
-	height: 80px;
-	padding: 0.5rem 0;
-	margin: 0.5rem 1rem;
-`
+  float: center;
+  width: 60px;
+  height: 80px;
+  padding: 0.5rem 0;
+  margin: 0.5rem 1rem;
+`;
 
-// ! This is where we will call updateProduct through the context. No need to pass data back anymore :)
-const handleOnClick = async (event, icon_key, icon_value, icon_selected, zoomReqVal, setZoomReq, zoomResVal, setZoomRes, componentName) => {
-	event.preventDefault()
-	console.log("[handleOnClick]")
+// ! This is where we will call updateProduct through the context. No need to pass data back anymore
+// eslint-disable-next-line max-len
+const handleOnClick = async (
+  event,
+  icon_key,
+  icon_value,
+  icon_selected,
+  zoomReqVal,
+  setZoomReq,
+  zoomResVal,
+  setZoomRes,
+  componentName,
+) => {
+  event.preventDefault();
+  console.log('[handleOnClick]');
 
-	console.log(icon_key)
-	console.log(icon_value)
-	console.log(icon_selected)
+  console.log(icon_key);
+  console.log(icon_value);
+  console.log(icon_selected);
 
-	if (icon_selected != icon_key) {
-		// Modifying the zoom request
-		await setZoomReq((prevState) => {
-			// First, modify the prevState
-			prevState.ZoomInput.Selections[componentName] = icon_key
+  if (icon_selected !== icon_key) {
+    // Modifying the zoom request
+    await setZoomReq((prevState) => {
+      // First, modify the prevState
+      prevState.ZoomInput.Selections[componentName] = icon_key;
 
-			// Then, spread the prevState into set function
-			return {
-				...prevState,
-			}
-		})
+      // Then, spread the prevState into set function
+      return {
+        ...prevState,
+      };
+    });
 
-		// call zoom handler and set the response
-		let _response = await ZoomHandler(zoomReqVal)
-		setZoomRes(_response)
-	}
-}
+    setZoomRes(await ZoomHandler(zoomReqVal));
+  }
 
-const Icon = (props) => {
-	// destructuring the props
-	const { icon_key, cdn, icon_value, icon_image, icon_selected, componentName } = props
+  const selected = document.querySelectorAll(`.${componentName}.selected`);
+  const new_selected = document.getElementById(icon_value);
 
-	const { zoomReqVal, setZoomReq } = useContext(ZoomRequest)
-	const { zoomResVal, setZoomRes } = useContext(ZoomResponse)
+  // console.log('start print select');
+  // console.log(selected);
+  // console.log(componentName);
+  // console.log(new_selected);
+  // console.log(icon_value);
 
-	let image
+  // if (selected && selected !== new_selected) {
+  //   selected.classList.remove("selected");
+  // }
+  if (selected) {
+    for (let i = 0; i < selected.length; i++) {
+      selected[i].classList.remove('selected');
+    }
+  }
 
-	// Handle if there is an image or not
-	if (cdn && icon_image) {
-		image = `${cdn}${icon_image}`
-	} else {
-		image = default_img
-	}
+  new_selected.classList.add('selected');
+};
 
-	return (
-		<RenderIcon>
-			{<MyIcon src={image} alt={"Image invalid"} onClick={(e) => handleOnClick(e, icon_key, icon_value, icon_selected, zoomReqVal, setZoomReq, zoomResVal, setZoomRes, componentName)}></MyIcon>}
-			{icon_value}
-		</RenderIcon>
-	)
-}
+const Icon = ({
+  icon_key,
+  cdn,
+  icon_value,
+  icon_image,
+  icon_selected,
+  componentName,
+}) => {
+  const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
+  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
-export default Icon
+  let image;
+
+  // Handle if there is an image or not
+  if (cdn && icon_image) {
+    image = `${cdn}${icon_image}`;
+  } else {
+    image = default_img;
+  }
+
+  return (
+    <RenderIcon id={icon_value} className={componentName}>
+      <MyIcon
+        src={image}
+        alt="Image invalid"
+        onClick={(e) => handleOnClick(
+          e,
+          icon_key,
+          icon_value,
+          icon_selected,
+          zoomReqVal,
+          setZoomReq,
+          zoomResVal,
+          setZoomRes,
+          componentName,
+        )}
+      />
+      {' '}
+      {icon_value}
+      {' '}
+    </RenderIcon>
+  );
+};
+
+export default Icon;
