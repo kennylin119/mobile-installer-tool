@@ -420,7 +420,7 @@ const App = (props) => {
                             ({ Variable, RenderType }) => ({
                               Icons: <Icons variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
                               SelectionList: <SelectionList variable={Variable} data={UserControlsObj[Variable]} />,
-                              Number: <Number input_name={Variable} data={UserControlsObj[Variable]} />,
+                              Number: <Number input_name={Variable} data={UserControlsObj[Variable]} convertObject={convertArrayToObject} />,
                               // NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
                             }[RenderType]),
                           )}
