@@ -48,7 +48,7 @@ const SelectionList = (props) => {
 
   return (
     <div>
-      <h3>{variable}</h3>
+      <h3>{data.Label}</h3>
       <HScroller>{output}</HScroller>
     </div>
   );
