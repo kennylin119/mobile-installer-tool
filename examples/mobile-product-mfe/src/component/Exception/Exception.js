@@ -58,12 +58,13 @@ const Exception = (props) => {
   const { err } = props;
   // eslint-disable-next-line prefer-const
   let [errorModalVisible, setErrorModalVisible] = useState(true);
-  const renderCount = useRef(1);
+  const renderCount = useRef(0);
+  console.log(renderCount.current);
   // console.log('render count');
   // console.log(renderCount.current);
 
   useEffect(() => {
-    if (renderCount.current === 4) {
+    if (renderCount.current >= 1) {
       // console.log('render count');
       // console.log(renderCount.current);
 
@@ -86,7 +87,8 @@ const Exception = (props) => {
         visible={errorModalVisible}
         onRequestClose={() => {
           Alert.alert('Modal has been closed.');
-          setErrorModalVisible(!errorModalVisible);
+          renderCount.current = 0;
+          setErrorModalVisible(false);
         }}
       >
         <View style={styles.centeredView}>
@@ -102,7 +104,8 @@ const Exception = (props) => {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
-                setErrorModalVisible(!errorModalVisible);
+                renderCount.current = 0;
+                setErrorModalVisible(false);
               }}
             >
               <Text style={styles.textStyle}>OK</Text>
