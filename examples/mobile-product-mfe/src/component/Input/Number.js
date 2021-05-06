@@ -26,9 +26,7 @@ const handleBlur = async (
   setZoomReq,
   setZoomRes,
   setErrorDisplay,
-  displayError,
-  setErrMsg,
-  errMsg
+  setErrMsg
 ) => {
   console.log("inside handle Blur");
   event.preventDefault();
@@ -79,6 +77,7 @@ const Number = (props) => {
 
   let output = "";
   let header = "";
+
   if (data?.DefinitionType === "Provided") {
     if (zoomResVal.Features[input_name]) {
       header = <h3>{data.Label}</h3>;
@@ -96,9 +95,7 @@ const Number = (props) => {
             setZoomReq,
             setZoomRes,
             setErrorDisplay,
-            displayError,
-            setErrMsg,
-            errMsg
+            setErrMsg
           )}
         />
       );
@@ -110,6 +107,7 @@ const Number = (props) => {
     header = <h3>{data.Label}</h3>;
     let result_name = zoomResVal.AdditionalAttributes[0].Name;
     let result_val = zoomResVal.AdditionalAttributes[0].Value;
+
     output = (
       <p>
         {result_name}
