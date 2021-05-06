@@ -35,7 +35,7 @@ const handleBlur = async (
   zoomReqVal,
   zoomResVal,
   setZoomReq,
-  setZoomRes,
+  updateZoomAndRenderLayout,
   setErrorDisplay,
   setErrMsg
 ) => {
@@ -72,14 +72,14 @@ const handleBlur = async (
       return prevState;
     });
     setErrorDisplay(false);
-    setZoomRes(await ZoomHandler(zoomReqVal));
+    updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
 };
 
 const Number = (props) => {
   console.log("[Number]");
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+  const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
 
   let [displayError, setErrorDisplay] = useState(false);
   let [errMsg, setErrMsg] = useState("");
@@ -103,7 +103,7 @@ const Number = (props) => {
             zoomReqVal,
             zoomResVal,
             setZoomReq,
-            setZoomRes,
+            updateZoomAndRenderLayout,
             setErrorDisplay,
             setErrMsg
           )}

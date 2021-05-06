@@ -53,7 +53,7 @@ const handleOnClick = async (
   zoomReqVal,
   setZoomReq,
   zoomResVal,
-  setZoomRes,
+  updateZoomAndRenderLayout,
   componentName,
 ) => {
   event.preventDefault();
@@ -75,7 +75,7 @@ const handleOnClick = async (
       };
     });
 
-    setZoomRes(await ZoomHandler(zoomReqVal));
+    updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
 
   const selected = document.querySelectorAll(`.${componentName}.selected`);
@@ -108,7 +108,7 @@ const Icon = ({
   componentName,
 }) => {
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+  const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
 
   let image;
 
@@ -132,7 +132,7 @@ const Icon = ({
           zoomReqVal,
           setZoomReq,
           zoomResVal,
-          setZoomRes,
+          updateZoomAndRenderLayout,
           componentName,
         )}
       />
