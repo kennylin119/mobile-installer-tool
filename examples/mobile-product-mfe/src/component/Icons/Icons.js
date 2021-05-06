@@ -61,7 +61,7 @@ const Icons = (props) => {
   }
   return (
     <div>
-      <h3>{variable}</h3>
+      <h3>{data.Label}</h3>
       <ImageContainer>
         {/* <div className="img-container-title">{variable}</div> */}
         {zoomResComponentData?.ValidKeys.map((obj) => (
