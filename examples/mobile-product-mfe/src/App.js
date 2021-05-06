@@ -398,7 +398,6 @@ const App = (props) => {
           const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
 
           // Render the DOM
-          // Render the DOM
           return (
             <Application>
               {/* // Context API, passing the state in */}

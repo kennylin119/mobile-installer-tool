@@ -28,6 +28,8 @@
         "no-param-reassign": "off",
         "react/prop-types": "off",
         "no-unused-vars": "off",
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "react/jsx-wrap-multiline": "off",
+        "react/jsx-curly-newline-bracket-location": "off"
     }
 }
