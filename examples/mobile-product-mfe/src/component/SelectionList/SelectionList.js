@@ -33,7 +33,7 @@ const SelectionList = (props) => {
 
   let output;
   if (data.OptionValues.length > 7) {
-    output = <NativeDropdown data={data} />;
+    output = <NativeDropdown section={variable} data={data} />;
   } else {
     output = data.OptionValues.map((option) => {
       return (

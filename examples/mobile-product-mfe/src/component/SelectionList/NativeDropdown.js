@@ -23,35 +23,96 @@ const StyledPicker = styled(Picker)`
   border-radius: 3px;
 `;
 
-class NativeDropdown extends React.Component {
-  state = { selection: '' };
-  convertArrayToObject = (array, key) => {
-    const initialValue = {};
-    return array.reduce((obj, item) => {
-      return {
-        ...obj,
-        [item[key]]: item,
-      };
-    }, initialValue);
-  };
-  updateSelection = (selection) => {
-    this.setState({ selection: selection });
-  };
-}
+const handleOnClick = async (
+  event,
+  keyValue,
+  label,
+  section,
+  zoomReqVal,
+  zoomResVal,
+  setZoomReq,
+  setZoomRes,
+) => {
+  console.log('[handle NativeDropdown click]');
 
-NativeDropdown = (props) => {
-  const { data } = props;
+  if (zoomReqVal.ZoomInput.Selections[section] !== keyValue) {
+    await setZoomReq((prevState) => {
+      prevState.ZoomInput.Selections[section] = keyValue;
+      return prevState;
+    });
 
-  // Setting the Zoom context
+    setZoomRes(await ZoomHandler(zoomReqVal));
+  }
+
+  // const selected = document.querySelectorAll(`.${section}.selected`);
+  // const new_selected = document.getElementById(label);
+
+  // console.log('start print select');
+  // console.log(selected);
+  // console.log(section);
+  // console.log(new_selected);
+  // console.log(label);
+
+  // if (selected && selected !== new_selected) {
+  //   selected.classList.remove("selected");
+  // }
+  // if (selected) {
+  //   for (let i = 0; i < selected.length; i++) {
+  //     selected[i].classList.remove('selected');
+  //   }
+  // }
+  // new_selected.classList.add('selected');
+};
+
+// class NativeDropdown extends React.Component {
+//   state = { selection: '' };
+//   convertArrayToObject = (array, key) => {
+//     const initialValue = {};
+//     return array.reduce((obj, item) => {
+//       return {
+//         ...obj,
+//         [item[key]]: item,
+//       };
+//     }, initialValue);
+//   };
+//   updateSelection = (selection) => {
+//     this.setState({ selection: selection });
+//   };
+// }
+
+const NativeDropdown = (props) => {
+  console.log('[NativeDropdown]');
+  const { data, variable } = props;
+
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
   // View that is returned
   // TODO: When a color is selected, only display the coresponding image
   return (
-    <StyledPicker>
+    <StyledPicker
+      onValueChange={(itemValue, itemPosition) => {
+        console.log(itemValue);
+        handleOnClick(
+          null,
+          itemValue,
+          data.OptionValues.find((object) => object.KeyValue === itemValue).Label,
+          variable,
+          zoomReqVal,
+          zoomResVal,
+          setZoomReq,
+          setZoomRes,
+        );
+      }}
+    >
       {data.OptionValues.map((option) => {
-        return <StyledPicker.Item label={option.Label} value={option.Label} />;
+        console.log(option);
+        return (
+          <StyledPicker.Item
+            label={option.Label}
+            value={option.KeyValue}
+          />
+        );
       })}
     </StyledPicker>
   );
