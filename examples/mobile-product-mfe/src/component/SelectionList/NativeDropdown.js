@@ -31,7 +31,7 @@ const handleOnClick = async (
   zoomReqVal,
   zoomResVal,
   setZoomReq,
-  setZoomRes,
+  updateZoomAndRenderLayout,
 ) => {
   console.log('[handle NativeDropdown click]');
 
@@ -41,7 +41,7 @@ const handleOnClick = async (
       return prevState;
     });
 
-    setZoomRes(await ZoomHandler(zoomReqVal));
+    updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
 
   // const selected = document.querySelectorAll(`.${section}.selected`);
@@ -82,10 +82,10 @@ const handleOnClick = async (
 
 const NativeDropdown = (props) => {
   console.log('[NativeDropdown]');
-  const { data, variable } = props;
+  const { data, section } = props;
 
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+  const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
 
   // View that is returned
   // TODO: When a color is selected, only display the coresponding image
@@ -96,12 +96,12 @@ const NativeDropdown = (props) => {
         handleOnClick(
           null,
           itemValue,
-          data.OptionValues.find((object) => object.KeyValue === itemValue).Label,
-          variable,
+          data.OptionValues.find((object) => object.KeyValue === itemValue)?.Label,
+          section,
           zoomReqVal,
           zoomResVal,
           setZoomReq,
-          setZoomRes,
+          updateZoomAndRenderLayout,
         );
       }}
     >

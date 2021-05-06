@@ -45,7 +45,7 @@ const handleOnClick = async (
   zoomReqVal,
   zoomResVal,
   setZoomReq,
-  setZoomRes,
+  updateZoomAndRenderLayout,
 ) => {
   console.log('[handle SelectionButton click]');
 
@@ -57,7 +57,7 @@ const handleOnClick = async (
       return prevState;
     });
 
-    setZoomRes(await ZoomHandler(zoomReqVal));
+    updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
 
   const selected = document.querySelectorAll(`.${section}.selected`);
@@ -83,7 +83,7 @@ const handleOnClick = async (
 const SelectionButton = (props) => {
   const { label, section, keyValue } = props;
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+  const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
 
   console.log('[SelectionButton]');
 
@@ -99,7 +99,7 @@ const SelectionButton = (props) => {
         zoomReqVal,
         zoomResVal,
         setZoomReq,
-        setZoomRes,
+        updateZoomAndRenderLayout,
       )}
     >
       {' '}

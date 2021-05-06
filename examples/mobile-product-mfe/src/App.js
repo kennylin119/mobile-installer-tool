@@ -193,7 +193,12 @@ const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
   {
     rows.map((obj) => {
       console.log(obj);
-      const controls = obj?.Controls[0];
+      let controls = obj?.Controls;
+      // const controls = obj?.Controls[0];
+      if (controls) {
+        // eslint-disable-next-line prefer-destructuring
+        controls = controls[0];
+      }
       const controlVar = controls?.Variable;
 
       // Verify that the obj exists in the initial zoom response value
@@ -289,6 +294,7 @@ const App = (props) => {
   const configure_test = null;
 
   // Hard coded product name, will be whatever data is
+  // Alisse, Drapery, Woodblinds, Finire, Linears
   const PRODUCT_IDENTIFIER = 'DRAPERY';
 
   // State variables for the product
@@ -305,6 +311,12 @@ const App = (props) => {
   // UITemplate UserControls converted into a hash map
   const [UserControlsObj, setUserControlsObj] = useState(null);
   const [RenderLayout, setRenderLayout] = useState(null);
+
+  const updateZoomAndRenderLayout = (data) => {
+    // can access old zoomResVal
+    setZoomRes(data);
+    setRenderLayout(parseUITemplate(product, UserControlsObj, data));
+  };
 
   // Life cycle hook to get and save the product on load
   useEffect(() => {
@@ -404,7 +416,7 @@ const App = (props) => {
               {/* // Context API, passing the state in */}
               <Product.Provider value={{ product, setProduct }}>
                 <ZoomRequest.Provider value={{ zoomReqVal, setZoomReq }}>
-                  <ZoomResponse.Provider value={{ zoomResVal, setZoomRes }}>
+                  <ZoomResponse.Provider value={{ zoomResVal, updateZoomAndRenderLayout }}>
                     <Header product_name={PRODUCT_IDENTIFIER} img_src={product_icon} />
                     <div className="container">
                       <div className="row">
