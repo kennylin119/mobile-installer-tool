@@ -2,12 +2,23 @@
 /* eslint-disable prefer-const */
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
+import { StyleSheet, TextInput } from "react-native";
 import { useState, useContext } from "react";
 import styled from "styled-components";
 import { ZoomRequest, ZoomResponse } from "../../zoom-context";
 import ZoomHandler from "../../services/ZoomHandler";
 
-const NumberInput = styled.input`
+const styles = StyleSheet.create({
+  input: {
+    color: (115, 115, 115),
+    padding: (4, 10),
+    height: 30,
+    margin: 12,
+    borderWidth: 1,
+  },
+});
+
+const NumberInput = styled(TextInput)`
   color: rgb(115, 115, 115);
   font-size: 16px;
   background: 0px 0px;
@@ -73,7 +84,7 @@ const Number = (props) => {
   let [displayError, setErrorDisplay] = useState(false);
   let [errMsg, setErrMsg] = useState("");
 
-  const { input_name, data } = props;
+  const { input_name, data, convertObject } = props;
 
   let output = "";
   let header = "";
@@ -82,10 +93,9 @@ const Number = (props) => {
     if (zoomResVal.Features[input_name]) {
       header = <h3>{data.Label}</h3>;
       output = (
-        <NumberInput
-          type="number"
-          pattern="[0-9]*"
-          inputmode="decimal"
+        <TextInput
+          keyboardType="decimal-pad"
+          style={styles.input}
           name={input_name}
           onBlur={(e) => handleBlur(
             e,
@@ -105,8 +115,11 @@ const Number = (props) => {
     // console.log(zoomReqVal);
     console.log(zoomResVal);
     header = <h3>{data.Label}</h3>;
-    let result_name = zoomResVal.AdditionalAttributes[0].Name;
-    let result_val = zoomResVal.AdditionalAttributes[0].Value;
+
+    let result_attr = convertObject(zoomResVal.AdditionalAttributes, "Name");
+    // console.log(result_attr);
+    let result_name = result_attr[input_name].Name;
+    let result_val = result_attr[input_name].Value;
 
     output = (
       <p>
