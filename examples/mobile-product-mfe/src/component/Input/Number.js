@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 /* eslint-disable prefer-const */
 /* eslint-disable comma-dangle */
 /* eslint-disable quotes */
@@ -24,10 +25,10 @@ const handleBlur = async (
   zoomResVal,
   setZoomReq,
   setZoomRes,
-  min_value,
-  max_value,
   setErrorDisplay,
-  displayError
+  displayError,
+  setErrMsg,
+  errMsg
 ) => {
   console.log("inside handle Blur");
   event.preventDefault();
@@ -40,14 +41,23 @@ const handleBlur = async (
   const input_value = event.target.value;
 
   const curr_value = zoomResVal.Features[input_name].CurrentValue;
+  const min_value = zoomResVal.Features[input_name].From;
+  const max_value = zoomResVal.Features[input_name].To;
+  const step = zoomResVal.Features[input_name].Step;
+  const unit = zoomResVal.Features[input_name].Unit;
 
-  if (input_value < min_value || input_value > max_value) {
-    console.log("your value is too big!");
-    setErrorDisplay(true);
-    // console.log(displayError);
-  } else if (
-    zoomReqVal.ZoomInput.Selections[input_name] !== event.target.value
+  if (
+    input_value < min_value ||
+    input_value > max_value ||
+    input_value % step !== 0
   ) {
+    console.log("your value is bad!");
+    setErrorDisplay(true);
+    setErrMsg(
+      `Please provide a number in the range of ${min_value} ${unit} and ${max_value} ${unit} in steps of ${step} ${unit}`
+    );
+    // console.log(displayError);
+  } else if (curr_value !== event.target.value) {
     await setZoomReq((prevState) => {
       prevState.ZoomInput.Selections[input_name] = event.target.value;
       return prevState;
@@ -63,46 +73,63 @@ const Number = (props) => {
   const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
 
   let [displayError, setErrorDisplay] = useState(false);
+  let [errMsg, setErrMsg] = useState("");
 
   const { input_name, data } = props;
 
-  const min_value = zoomResVal.Features[input_name].From;
-  const max_value = zoomResVal.Features[input_name].To;
-  // let error_msg = `<p> Please provide a number in the range of ${min_value} and ${max_value} in steps of </p>`;
-
   let output = "";
+  let header = "";
   if (data?.DefinitionType === "Provided") {
-    output = (
-      <NumberInput
-        type="number"
-        pattern="[0-9]*"
-        inputmode="decimal"
-        name={input_name}
-        onBlur={(e) => handleBlur(
-          e,
-          input_name,
-          zoomReqVal,
-          zoomResVal,
-          setZoomReq,
-          setZoomRes,
-          min_value,
-          max_value,
-          setErrorDisplay,
-          displayError
-        )}
-      />
-    );
+    if (zoomResVal.Features[input_name]) {
+      header = <h3>{data.Label}</h3>;
+      output = (
+        <NumberInput
+          type="number"
+          pattern="[0-9]*"
+          inputmode="decimal"
+          name={input_name}
+          onBlur={(e) => handleBlur(
+            e,
+            input_name,
+            zoomReqVal,
+            zoomResVal,
+            setZoomReq,
+            setZoomRes,
+            setErrorDisplay,
+            displayError,
+            setErrMsg,
+            errMsg
+          )}
+        />
+      );
+    }
   } else if (data?.DefinitionType === "Resultant") {
     //   if (zoomReqVal)
     // console.log(zoomReqVal);
-    // console.log(zoomResVal);
-    output = <p> This is a resultant </p>;
+    console.log(zoomResVal);
+    header = <h3>{data.Label}</h3>;
+    let result_name = zoomResVal.AdditionalAttributes[0].Name;
+    let result_val = zoomResVal.AdditionalAttributes[0].Value;
+    output = (
+      <p>
+        {result_name}
+        {' '}
+        :
+        {result_val}
+      </p>
+    );
   }
   return (
     <div>
-      <h3>{data.Label}</h3>
+      {header}
       {output}
-      {/* {displayError && error_msg} */}
+      {displayError && (
+      <p>
+        {' '}
+        {errMsg}
+        {' '}
+      </p>
+      )}
     </div>
   );
 };
