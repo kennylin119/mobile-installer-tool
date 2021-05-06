@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-empty */
+/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-lonely-if */
 /* eslint-disable react/jsx-filename-extension */
@@ -83,7 +86,6 @@ const SaveButton = styled(StyledButton)`
 `;
 
 // Maps Lutron componentTypes to our componentTypes
-// ! IF YOU CHANGE THE NAME OF YOUR COMPONENT, CHANGE THE NAME ON THE RIGHT HERE
 const componentMapper = {
   SelectionList: 'SelectionList',
   //   ImageSelectionList: "NativeDropdown",
@@ -165,26 +167,27 @@ const initializeZoom = (uitemplate, dpm, configure) => {
         ShipToNumber: 709323, // Lutron account number
         LutronSellingCompany: '00101', // Where country exists
         Product: uitemplate?.ProductIdentifier,
-        Selections: configure?.Selections,
+        Selections: configure?.Selections ? configure.Selections : { COUNTRY: 'US' },
         AccessLevels: 1, // Place holder (level 1: full access to all selection options)
       },
-      OverrideSelections: configure?.ResultantValue,
+      OverrideSelections: configure?.ResultantValue ? configure.ResultantValue : { },
       FeatureDependencies: featureDependencies,
-      IsQuoted: configure?.IsQuoted,
+      IsQuoted: configure?.IsQuoted ? configure.IsQuoted : false,
     };
   }
   console.log('[error with UI-template or DPM]');
 };
 
 /**
- * This function takes in product and parses the Layout to produce an an array of objects {Variable, RenderType}
+ * This function takes in ui-template and initial zoom response and parses the Layout to produce an an array of objects {Variable, RenderType}
  * @param {*} uitemplate == UITempalate
  */
-const parseUITemplate = (uitemplate, UserControlsObj) => {
+const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
   console.log('[parseUITemplate]');
   // console.log(UserControlsObj)
   const rows = uitemplate?.Layouts[0]?.Rows;
   const res = [];
+  const zoomResValFeatures = zoomResVal.Features;
 
   {
     rows.map((obj) => {
@@ -192,11 +195,12 @@ const parseUITemplate = (uitemplate, UserControlsObj) => {
       const controlVar = controls?.Variable;
 
       // Verify that the obj exists in the initial zoom response value
-
-      res.push({
-        Variable: controlVar,
-        RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
-      });
+      if (zoomResValFeatures.hasOwnProperty(controlVar)) {
+        res.push({
+          Variable: controlVar,
+          RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
+        });
+      }
     });
   }
 
@@ -233,29 +237,29 @@ const App = (props) => {
   // Destructuring props
   // data will contain the AUTHORIZATION TOKEN and a save function
   const { save_function } = props;
-  const configure_test = {
-    BillOfMaterialsLineItemId: 7407192,
-    ConfiguredJSON:
-  		'{"Product":"Alisse","Category":null,"Details":null,"IsConfigured":true,"Selections":{"SYSTEM":"HW","WALLBOX_SHAPE":"S","COLUMNS":"2","BUTTON_ARRAY":"33","FACEPLATE_FINISH":"AZ","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"US","COMPONENTS":"KO","IS_DEMO":"N","ProductDetails":"NPKP"},"Filters":null,"AutoSelections":null,"Warnings":["The Alisse keypad requires the use of a Base Unit for installation.  \\"Keypad Only\\" should be selected for replacement keypads where a Base Unit is already present."],"ModelType":null,"ProductType":null,"ResultantValue":{"PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"SelectionValues":{"SYSTEM":"HomeWorks (QSX)","WALLBOX_SHAPE":"Square Backbox","COLUMNS":"2-Column","BUTTON_ARRAY":"3, 3 Button","FACEPLATE_FINISH":"Aged Bronze","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"United States","COMPONENTS":"Keypad Only","IS_DEMO":"No","ProductDetails":"Keypad","PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"AutoValues":null}',
-    AdditionalAttributes: null,
-    IsFullyConfigured: false,
-    VolumeDiscountEligiblePanels: null,
-    ValidationErrorType: 0,
-    ErroneousFeatures: null,
-    RowVersion: 'AAAAAAHhvJs=',
-    OverrideListPrice: null,
-    OverrideLeadTime: null,
-    OverrideDiscountedPrice: null,
-    ListPriceAdjustment: null,
-    ModelNumber: 'NPKP',
-    FGID: 'HW-NW-KP-S2-E',
-    MinLeadTime: 20,
-    MaxLeadTime: 20,
-    DiscountedPrice: null,
-    QuotableTill: null,
-    MinPrice: 525.0,
-    MaxPrice: 525.0,
-  };
+  // const configure_test = {
+  //   BillOfMaterialsLineItemId: 7407192,
+  //   ConfiguredJSON:
+  // 		'{"Product":"Alisse","Category":null,"Details":null,"IsConfigured":true,"Selections":{"SYSTEM":"HW","WALLBOX_SHAPE":"S","COLUMNS":"2","BUTTON_ARRAY":"33","FACEPLATE_FINISH":"AZ","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"US","COMPONENTS":"KO","IS_DEMO":"N","ProductDetails":"NPKP"},"Filters":null,"AutoSelections":null,"Warnings":["The Alisse keypad requires the use of a Base Unit for installation.  \\"Keypad Only\\" should be selected for replacement keypads where a Base Unit is already present."],"ModelType":null,"ProductType":null,"ResultantValue":{"PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"SelectionValues":{"SYSTEM":"HomeWorks (QSX)","WALLBOX_SHAPE":"Square Backbox","COLUMNS":"2-Column","BUTTON_ARRAY":"3, 3 Button","FACEPLATE_FINISH":"Aged Bronze","ENGRAVING_SPECIFIED":"TBD","COUNTRY":"United States","COMPONENTS":"Keypad Only","IS_DEMO":"No","ProductDetails":"Keypad","PSTORE_MODEL":"HW-S-AZ-S-10101-10101-AZ-E"},"AutoValues":null}',
+  //   AdditionalAttributes: null,
+  //   IsFullyConfigured: false,
+  //   VolumeDiscountEligiblePanels: null,
+  //   ValidationErrorType: 0,
+  //   ErroneousFeatures: null,
+  //   RowVersion: 'AAAAAAHhvJs=',
+  //   OverrideListPrice: null,
+  //   OverrideLeadTime: null,
+  //   OverrideDiscountedPrice: null,
+  //   ListPriceAdjustment: null,
+  //   ModelNumber: 'NPKP',
+  //   FGID: 'HW-NW-KP-S2-E',
+  //   MinLeadTime: 20,
+  //   MaxLeadTime: 20,
+  //   DiscountedPrice: null,
+  //   QuotableTill: null,
+  //   MinPrice: 525.0,
+  //   MaxPrice: 525.0,
+  // };
 
   // const configure_test = {
   //   AdditionalAttributes: null,
@@ -280,6 +284,8 @@ const App = (props) => {
   //   ValidationErrorType: 0,
   //   VolumeDiscountEligiblePanels: null,
   // };
+
+  const configure_test = null;
 
   // Hard coded product name, will be whatever data is
   const PRODUCT_IDENTIFIER = 'DRAPERY';
@@ -366,7 +372,7 @@ const App = (props) => {
 
     // Building input zoom object using UI template and user configurations
     if (zoomReqVal == null) {
-      setZoomReq(initializeZoom(product, DPM, configure_test.ConfiguredJSON)); // re-render the page
+      setZoomReq(initializeZoom(product, DPM, configure_test ? configure_test.ConfiguredJSON : null));
     }
     if (zoomReqVal && zoomResVal == null) {
       // Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
@@ -381,17 +387,17 @@ const App = (props) => {
       console.log(product);
       setUserControlsObj(convertArrayToObject(product.UserControls, 'Variable'));
     } else {
-      // Setup for Render
-      if (RenderLayout == null) {
-        setRenderLayout(parseUITemplate(product, UserControlsObj));
-      } else {
-        console.log(RenderLayout);
-        console.log(UserControlsObj);
+      if (zoomResVal) {
+        if (RenderLayout == null) {
+          setRenderLayout(parseUITemplate(product, UserControlsObj, zoomResVal));
+        } else {
+          console.log(RenderLayout);
+          console.log(UserControlsObj);
 
-        // temporary source, will need to change
-        const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
+          // temporary source, will need to change
+          const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
 
-        if (zoomResVal) {
+          // Render the DOM
           // Render the DOM
           return (
             <Application>
@@ -431,6 +437,7 @@ const App = (props) => {
             </Application>
           );
         }
+      } else {
         return <div>Awaiting from Configurator API...</div>;
       }
     }
