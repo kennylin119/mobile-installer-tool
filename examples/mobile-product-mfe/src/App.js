@@ -262,29 +262,31 @@ const App = (props) => {
   //   MinPrice: 525.0,
   //   MaxPrice: 525.0,
   // };
-  const configure_test = {
-    AdditionalAttributes: null,
-    BillOfMaterialsLineItemId: 7878428,
-    ConfiguredJSON: '{"Product":"Drapery","Category":null,"Details":null,"IsConfigured":true,"Selections":{"WIDTH":"65","TRACKTYPE":"SINGLE","PLEAT":"PP","METALCOLOR":"BZ","CUSTCOLOR":"N","OPRPOS":"L","DRAW":"CD","MOUNT":"C","FULLNESS":"25X","SUBLINEQTY":"0","ISSUBLINE":"N","COUNTRY":"US","SUBLINETRACKTYPE":"SINGLE","BREAKAWAY":"N","SPLICE":"0.0000","ProductDetails":"QSYD4S10STR"},"Filters":null,"AutoSelections":null,"Warnings":["Maximum weight must not exceed 80 lbs"],"ModelType":null,"ProductType":null,"ResultantValue":{"ESTOPEN":"3334","STACKBACK":"833","DRAPEWTMAX":"36","BKTPERTRACK":"14","AUXCARNUM":"54","PLEATSPACING":"89","DRPTRKWIDTHSP":"5001","SNAPNUM":"0","AUXCARNUM2":"0"},"SelectionValues":{"WIDTH":"5001","TRACKTYPE":"Single","PLEAT":"Pinchpleat","METALCOLOR":"Bronze","CUSTCOLOR":"None","OPRPOS":"Left","DRAW":"Center Draw","MOUNT":"Ceiling Mount","FULLNESS":"2.5X - Non-Sheer Pinch Pleat","SUBLINEQTY":"0","ISSUBLINE":"None","COUNTRY":"United States","SUBLINETRACKTYPE":"Single","BREAKAWAY":"No","SPLICE":"None","ProductDetails":"Sivoia QS Wireless D105 Drapery Track","ESTOPEN":"3334","STACKBACK":"833","DRAPEWTMAX":"36","BKTPERTRACK":"14","AUXCARNUM":"54","PLEATSPACING":"89","DRPTRKWIDTHSP":"5001","SNAPNUM":"0","AUXCARNUM2":"0"},"AutoValues":null}',
-    DiscountedPrice: null,
-    ErroneousFeatures: null,
-    FGID: 'QSYD4-S10STR',
-    IsFullyConfigured: true,
-    IsLocked: false,
-    ListPriceAdjustment: null,
-    MaxLeadTime: 10,
-    MaxPrice: 2346.74,
-    MinLeadTime: 10,
-    MinPrice: 2346.74,
-    ModelNumber: 'QSYD4-S10STR',
-    OverrideDiscountedPrice: null,
-    OverrideLeadTime: null,
-    OverrideListPrice: null,
-    QuotableTill: null,
-    RowVersion: 'AAAAAAIA3Sg=',
-    ValidationErrorType: 0,
-    VolumeDiscountEligiblePanels: null,
-  };
+  // const configure_test = {
+  //   AdditionalAttributes: null,
+  //   BillOfMaterialsLineItemId: 7878428,
+  //   ConfiguredJSON: '{"Product":"Drapery","Category":null,"Details":null,"IsConfigured":true,"Selections":{"WIDTH":"65","TRACKTYPE":"SINGLE","PLEAT":"PP","METALCOLOR":"BZ","CUSTCOLOR":"N","OPRPOS":"L","DRAW":"CD","MOUNT":"C","FULLNESS":"25X","SUBLINEQTY":"0","ISSUBLINE":"N","COUNTRY":"US","SUBLINETRACKTYPE":"SINGLE","BREAKAWAY":"N","SPLICE":"0.0000","ProductDetails":"QSYD4S10STR"},"Filters":null,"AutoSelections":null,"Warnings":["Maximum weight must not exceed 80 lbs"],"ModelType":null,"ProductType":null,"ResultantValue":{"ESTOPEN":"3334","STACKBACK":"833","DRAPEWTMAX":"36","BKTPERTRACK":"14","AUXCARNUM":"54","PLEATSPACING":"89","DRPTRKWIDTHSP":"5001","SNAPNUM":"0","AUXCARNUM2":"0"},"SelectionValues":{"WIDTH":"5001","TRACKTYPE":"Single","PLEAT":"Pinchpleat","METALCOLOR":"Bronze","CUSTCOLOR":"None","OPRPOS":"Left","DRAW":"Center Draw","MOUNT":"Ceiling Mount","FULLNESS":"2.5X - Non-Sheer Pinch Pleat","SUBLINEQTY":"0","ISSUBLINE":"None","COUNTRY":"United States","SUBLINETRACKTYPE":"Single","BREAKAWAY":"No","SPLICE":"None","ProductDetails":"Sivoia QS Wireless D105 Drapery Track","ESTOPEN":"3334","STACKBACK":"833","DRAPEWTMAX":"36","BKTPERTRACK":"14","AUXCARNUM":"54","PLEATSPACING":"89","DRPTRKWIDTHSP":"5001","SNAPNUM":"0","AUXCARNUM2":"0"},"AutoValues":null}',
+  //   DiscountedPrice: null,
+  //   ErroneousFeatures: null,
+  //   FGID: 'QSYD4-S10STR',
+  //   IsFullyConfigured: true,
+  //   IsLocked: false,
+  //   ListPriceAdjustment: null,
+  //   MaxLeadTime: 10,
+  //   MaxPrice: 2346.74,
+  //   MinLeadTime: 10,
+  //   MinPrice: 2346.74,
+  //   ModelNumber: 'QSYD4-S10STR',
+  //   OverrideDiscountedPrice: null,
+  //   OverrideLeadTime: null,
+  //   OverrideListPrice: null,
+  //   QuotableTill: null,
+  //   RowVersion: 'AAAAAAIA3Sg=',
+  //   ValidationErrorType: 0,
+  //   VolumeDiscountEligiblePanels: null,
+  // };
+
+  const configure_test = null;
 
   // Hard coded product name, will be whatever data is
   const PRODUCT_IDENTIFIER = 'DRAPERY';
