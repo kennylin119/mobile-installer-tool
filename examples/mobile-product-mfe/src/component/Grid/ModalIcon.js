@@ -53,7 +53,7 @@ const handleOnClick = async (
   zoomReqVal,
   setZoomReq,
   zoomResVal,
-  setZoomRes,
+  updateZoomAndRenderLayout,
   componentName,
 ) => {
   event.preventDefault();
@@ -79,7 +79,7 @@ const handleOnClick = async (
       };
     });
 
-    setZoomRes(await ZoomHandler(zoomReqVal));
+    updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
 };
 
@@ -96,7 +96,7 @@ const ModalIcon = (props) => {
   } = props;
 
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+  const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
 
   let image;
 
@@ -117,7 +117,7 @@ const ModalIcon = (props) => {
       zoomReqVal,
       setZoomReq,
       zoomResVal,
-      setZoomRes,
+      updateZoomAndRenderLayout,
       componentName,
     )}
     >
