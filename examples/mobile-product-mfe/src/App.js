@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 /* eslint-disable no-undef */
 /* eslint-disable no-empty */
 /* eslint-disable no-prototype-builtins */
@@ -105,6 +106,14 @@ const componentMapper = {
   // RowGroup: "RowGroup",
 };
 
+const convertArrayToObject = (array, key) => {
+  const initialValue = {};
+  return array.reduce((obj, item) => ({
+    ...obj,
+    [item[key]]: item,
+  }), initialValue);
+};
+
 const Application = styled.div`
 	left: 0;
 	top: 0;
@@ -184,12 +193,17 @@ const initializeZoom = (uitemplate, dpm, configure) => {
  * @param {*} uitemplate == UITempalate
  */
 const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
-  console.log('[parseUITemplate]');
-  // console.log(UserControlsObj)
+  console.log('[Inside parseUITemplate]');
+
+  // all possible control types
+  console.log('[UserControlsObj]');
+  console.log(UserControlsObj);
+
+  // this is the layout
   const rows = uitemplate?.Layouts[0]?.Rows;
   const res = [];
   const zoomResValFeatures = zoomResVal.Features;
-
+  const zoomResValAttribs = convertArrayToObject(zoomResVal.AdditionalAttributes, 'Name');
   {
     rows.map((obj) => {
       console.log(obj);
@@ -202,7 +216,8 @@ const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
       const controlVar = controls?.Variable;
 
       // Verify that the obj exists in the initial zoom response value
-      if (zoomResValFeatures.hasOwnProperty(controlVar)) {
+      if (zoomResValFeatures.hasOwnProperty(controlVar) || zoomResValAttribs.hasOwnProperty(controlVar)) {
+        console.log("regular feaure added");
         res.push({
           Variable: controlVar,
           RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
@@ -212,14 +227,6 @@ const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
   }
 
   return res;
-};
-
-const convertArrayToObject = (array, key) => {
-  const initialValue = {};
-  return array.reduce((obj, item) => ({
-    ...obj,
-    [item[key]]: item,
-  }), initialValue);
 };
 
 /**
@@ -295,7 +302,7 @@ const App = (props) => {
 
   // Hard coded product name, will be whatever data is
   // Alisse, Drapery, Woodblinds, Finire, Linears
-  const PRODUCT_IDENTIFIER = 'Woodblinds';
+  const PRODUCT_IDENTIFIER = 'Drapery';
 
   // State variables for the product
   const [product, setProduct] = useState(null);
@@ -404,8 +411,10 @@ const App = (props) => {
         if (RenderLayout == null) {
           setRenderLayout(parseUITemplate(product, UserControlsObj, zoomResVal));
         } else {
+          console.log('[Render Layout]');
           console.log(RenderLayout);
           console.log(UserControlsObj);
+          console.log('[UserControlsObj]');
 
           // temporary source, will need to change
           const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
