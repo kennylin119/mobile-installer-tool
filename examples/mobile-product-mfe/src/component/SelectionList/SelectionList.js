@@ -38,6 +38,7 @@ const SelectionList = (props) => {
     output = data.OptionValues.map((option) => {
       return (
         <SelectionButton
+          key={option.Label}
           label={option.Label}
           section={variable}
           keyValue={option.KeyValue}

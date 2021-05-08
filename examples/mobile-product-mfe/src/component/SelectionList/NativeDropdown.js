@@ -106,9 +106,10 @@ const NativeDropdown = (props) => {
       }}
     >
       {data.OptionValues.map((option) => {
-        console.log(option);
+        // console.log(option);
         return (
           <StyledPicker.Item
+            key={option.KeyValue}
             label={option.Label}
             value={option.KeyValue}
           />

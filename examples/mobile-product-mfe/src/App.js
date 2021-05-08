@@ -124,8 +124,8 @@ const Application = styled.div`
 const initializeZoom = (uitemplate, dpm, configure) => {
   if (uitemplate && dpm) {
     console.log('[building initial zoom with uitemplate and DPM]');
-    console.log(uitemplate);
-    console.log(dpm);
+    // console.log(uitemplate);
+    // console.log(dpm);
 
     if (configure) {
       configure = JSON.parse(configure);
@@ -192,7 +192,7 @@ const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
 
   {
     rows.map((obj) => {
-      console.log(obj);
+      // console.log(obj);
       let controls = obj?.Controls;
       // const controls = obj?.Controls[0];
       if (controls) {
@@ -295,7 +295,7 @@ const App = (props) => {
 
   // Hard coded product name, will be whatever data is
   // Alisse, Drapery, Woodblinds, Finire, Linears
-  const PRODUCT_IDENTIFIER = 'Woodblinds';
+  const PRODUCT_IDENTIFIER = 'DRAPERY';
 
   // State variables for the product
   const [product, setProduct] = useState(null);
@@ -390,22 +390,22 @@ const App = (props) => {
     if (zoomReqVal && zoomResVal == null) {
       // Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
       ZoomHandler(zoomReqVal).then((response) => {
-        console.log(response);
+        // console.log(response);
         setZoomRes(response); // re-render the page
       });
     }
 
     if (UserControlsObj == null) {
       console.log('[product]');
-      console.log(product);
+      // console.log(product);
       setUserControlsObj(convertArrayToObject(product.UserControls, 'Variable'));
     } else {
       if (zoomResVal) {
         if (RenderLayout == null) {
           setRenderLayout(parseUITemplate(product, UserControlsObj, zoomResVal));
         } else {
-          console.log(RenderLayout);
-          console.log(UserControlsObj);
+          // console.log(RenderLayout);
+          // console.log(UserControlsObj);
 
           // temporary source, will need to change
           const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
