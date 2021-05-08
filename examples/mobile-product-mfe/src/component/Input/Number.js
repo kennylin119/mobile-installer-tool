@@ -44,8 +44,8 @@ const handleBlur = async (
   // const input = event.target;
   // console.log(input);
   // console.log(event.target.value);
-  console.log(zoomResVal);
-  console.log(zoomReqVal);
+  // console.log(zoomResVal);
+  // console.log(zoomReqVal);
 
   const input_value = event.target.value;
 
@@ -88,7 +88,7 @@ const Number = (props) => {
 
   let output = "";
   let header = "";
-  console.log(data);
+  // console.log(data);
 
   if (data?.DefinitionType === "Provided") {
     console.log("[In Provided]");
@@ -116,13 +116,13 @@ const Number = (props) => {
     //   if (zoomReqVal)
     console.log("[In Resultant]");
     // console.log(zoomResVal);
-    console.log(data);
+    // console.log(data);
     header = <h3>{data.Label}</h3>;
 
     let result_attr = convertObject(zoomResVal.AdditionalAttributes, "Name");
     if (result_attr[input_name]) {
       console.log("[result_attr]");
-      console.log(result_attr);
+      // console.log(result_attr);
       let result_name = result_attr[input_name].Name;
       let result_val = result_attr[input_name].Value;
 
