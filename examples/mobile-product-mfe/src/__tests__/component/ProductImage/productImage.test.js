@@ -1,6 +1,6 @@
 import { hasUncaughtExceptionCaptureCallback, setUncaughtExceptionCaptureCallback } from 'process';
 import { render, screen } from '@testing-library/react';
-import ProductImage from '../component/ProductImage/ProductImage';
+import ProductImage from '../../../main/component/ProductImage/ProductImage';
 
 const { isMainThread } = require('worker_threads');
 
