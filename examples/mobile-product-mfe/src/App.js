@@ -302,7 +302,7 @@ const App = (props) => {
 
   // Hard coded product name, will be whatever data is
   // Alisse, Drapery, Woodblinds, Finire, Linears
-  const PRODUCT_IDENTIFIER = 'DRAPERY';
+  const PRODUCT_IDENTIFIER = 'ALISSE';
 
   // State variables for the product
   const [product, setProduct] = useState(null);
