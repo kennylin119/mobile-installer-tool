@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 import ZoomHandler from '../../services/ZoomHandler';
 
 const Button = styled.button`

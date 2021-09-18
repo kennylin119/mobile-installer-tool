@@ -11,11 +11,10 @@ import {
 import styled from 'styled-components';
 
 import Button from 'react-bootstrap/Button';
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 import ZoomHandler from '../../services/ZoomHandler';
 
 import default_img from '../../toolkit/default_image.jpeg';
-import { Product } from '../../product-context';
 
 /* i dont think this style is being used rn */
 const StyledPicker = styled(Picker)`

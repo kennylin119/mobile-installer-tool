@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 // Import context api
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 
 import ZoomHandler from '../../services/ZoomHandler';
 import default_img from '../../toolkit/default_image.jpeg';

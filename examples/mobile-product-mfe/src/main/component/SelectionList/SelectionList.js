@@ -9,7 +9,7 @@ import { useState, useContext } from 'react';
 import styled from 'styled-components';
 
 // import context api
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 import ZoomHandler from '../../services/ZoomHandler';
 
 import NativeDropdown from './NativeDropdown';

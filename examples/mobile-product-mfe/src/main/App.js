@@ -23,7 +23,7 @@ import styled from 'styled-components';
 
 // importing the context API
 import { Product } from './product-context';
-import { ZoomRequest, ZoomResponse } from './zoom-context';
+import { ZoomRequest, ZoomResponse } from '../zoom-context';
 
 // importing all the components
 import Icons from './component/Icons/Icons';

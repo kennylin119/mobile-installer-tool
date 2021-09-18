@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import styled from 'styled-components';
 
-import { ZoomResponse } from '../../zoom-context';
+import { ZoomResponse } from '../../../zoom-context';
 
 const RenderImage = styled.img`
 	//mobile first

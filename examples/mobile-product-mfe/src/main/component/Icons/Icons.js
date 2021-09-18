@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 import Icon from './Icon';
 import Grid from '../Grid/Grid';
 

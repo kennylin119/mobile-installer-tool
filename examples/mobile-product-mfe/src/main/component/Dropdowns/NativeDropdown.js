@@ -3,8 +3,7 @@ import {
   View, Text, Picker, StyleSheet, Image,
 } from 'react-native';
 import default_img from '../../toolkit/default_image.jpeg';
-import { Product } from '../../product-context';
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 import ZoomHandler from '../../services/ZoomHandler';
 import NativeDropdownItem from './NativeDropdownItem';
 
