@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import { Picker } from 'react-native';
-import { ZoomRequest, ZoomResponse } from '../../zoom-context';
+import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
 import ZoomHandler from '../../services/ZoomHandler';
 
 // Zoom response
