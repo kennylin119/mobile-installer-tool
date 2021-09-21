@@ -195,36 +195,29 @@ const initializeZoom = (uitemplate, dpm, configure) => {
 const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
   console.log('[Inside parseUITemplate]');
 
-  // all possible control types
-  // console.log('[UserControlsObj]');
-  // console.log(UserControlsObj);
+  const outerContainer = uitemplate.LayoutManager[0].Containers;
 
-  // this is the layout
-  const rows = uitemplate?.Layouts[0]?.Rows;
   const res = [];
   const zoomResValFeatures = zoomResVal.Features;
   const zoomResValAttribs = convertArrayToObject(zoomResVal.AdditionalAttributes, 'Name');
-  {
-    rows.map((obj) => {
-      // console.log(obj);
-      let controls = obj?.Controls;
-      // const controls = obj?.Controls[0];
-      if (controls) {
-        // eslint-disable-next-line prefer-destructuring
-        controls = controls[0];
-      }
-      const controlVar = controls?.Variable;
 
-      // Verify that the obj exists in the initial zoom response value
-      if (zoomResValFeatures.hasOwnProperty(controlVar) || zoomResValAttribs.hasOwnProperty(controlVar)) {
-        console.log("regular feaure added");
-        res.push({
-          Variable: controlVar,
-          RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
-        });
-      }
+  outerContainer.map((obj) => {
+    const container = obj.Containers;
+    container.map((containerRow) => {
+      containerRow.Rows.map((innerContainer) => {
+        const controlVar = innerContainer.Controls[0].Variable;
+
+        if (zoomResValFeatures.hasOwnProperty(controlVar) || zoomResValAttribs.hasOwnProperty(controlVar)) {
+          res.push({
+            Variable: controlVar,
+            RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
+          });
+        }
+      });
     });
-  }
+  });
+
+  console.log(res);
 
   return res;
 };
@@ -302,7 +295,7 @@ const App = (props) => {
 
   // Hard coded product name, will be whatever data is
   // Alisse, Drapery, Woodblinds, Finire, Linears
-  const PRODUCT_IDENTIFIER = 'ALISSE';
+  const PRODUCT_IDENTIFIER = 'DRAPERY';
 
   // State variables for the product
   const [product, setProduct] = useState(null);
@@ -411,9 +404,6 @@ const App = (props) => {
         if (RenderLayout == null) {
           setRenderLayout(parseUITemplate(product, UserControlsObj, zoomResVal));
         } else {
-          // console.log(RenderLayout);
-          // console.log(UserControlsObj);
-
           // temporary source, will need to change
           const product_icon = 'https://files-2.mylutron.com/Styles/images/NightParrot.svg?v=3.22.0.0';
 
@@ -456,6 +446,9 @@ const App = (props) => {
               </div>
             </Application>
           );
+        }
+        if (true) {
+          return <div>fixing bug</div>;
         }
       } else {
         return <div>Awaiting from Configurator API...</div>;
