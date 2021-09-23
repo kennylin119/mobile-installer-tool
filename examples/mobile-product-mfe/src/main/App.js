@@ -1,13 +1,11 @@
 /* eslint-disable quotes */
 /* eslint-disable no-undef */
 /* eslint-disable no-empty */
-/* eslint-disable no-prototype-builtins */
 /* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-lonely-if */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable camelcase */
 /* eslint-disable no-lone-blocks */
-/* eslint-disable array-callback-return */
 /* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
@@ -18,7 +16,7 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable no-unused-vars */
 import './App.css';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 // importing the context API
@@ -33,12 +31,18 @@ import Exception from './component/Exception/Exception';
 import { TestComponent } from './component/Test-Component/TestComponent';
 import {
   router, fetchUITemplate, fetchDPM, fetchImage,
-} from './router/router'; // Note: fetchProduct is a singleton
+} from './router/router';
+
 // importing routing functions
 import ZoomHandler from './services/ZoomHandler';
 import SelectionList from './component/SelectionList/SelectionList';
 import Header from './component/Header/Header';
 import Number from './component/Input/Number';
+
+// importing util functions
+import {
+  componentMapper, convertArrayToObject, initializeZoom, parseUITemplate,
+} from './utils/DataParser';
 
 const StyledButton = styled.div`
 	cursor: pointer;
@@ -87,140 +91,12 @@ const SaveButton = styled(StyledButton)`
 	}
 `;
 
-// Maps Lutron componentTypes to our componentTypes
-const componentMapper = {
-  SelectionList: 'SelectionList',
-  //   ImageSelectionList: "NativeDropdown",
-  ImageSelectionList: 'Icons',
-  ImageSelector: 'Icons',
-  ProductImage: 'ProductImage',
-  // Engraving: "Engraving",
-  MetalColor: 'SelectionList',
-  Number: 'Number',			// Figure out what Number should be
-  double: 'Number',
-  // String: 'Number',
-  int: 'Number',
-  // Fabric: "Fabric",			// Fabric should be a grouped component that imports SelectionSlider and Icons
-  // Grouped: "Grouped",			// TBD
-  // HorizontalLine: "HorizontalLine",
-  // RowGroup: "RowGroup",
-};
-
-const convertArrayToObject = (array, key) => {
-  const initialValue = {};
-  return array.reduce((obj, item) => ({
-    ...obj,
-    [item[key]]: item,
-  }), initialValue);
-};
-
 const Application = styled.div`
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
 `;
-
-/**
- * This function takes in product and configure and parses both objects to build out
- * a zoom object to return.
- *
- * @param {*} uitemplate == UITemplate
- * @param {*} dpm == Default product model
- * @param {*} configure == user configurations
- * @returns == zoom object
- */
-const initializeZoom = (uitemplate, dpm, configure) => {
-  if (uitemplate && dpm) {
-    console.log('[building initial zoom with uitemplate and DPM]');
-    // console.log(uitemplate);
-    // console.log(dpm);
-
-    if (configure) {
-      configure = JSON.parse(configure);
-
-      console.log('[and user configurations]');
-      console.log(configure);
-    }
-
-    // Using optional chaining ?.
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-    // TODO: familiarize with what each of these attributes mean
-    // ! Not every zoom variable has all of these attributes. Are there other attributes that we missed?
-
-    const featureDependencies = {};
-
-    if (uitemplate?.UserControls) {
-      uitemplate.UserControls.map((obj) => {
-        const key = obj?.Variable;
-
-        // Handle the feature dependencies if there are any
-        const tempObj = dpm.Features[key];
-
-        if (tempObj) {
-          const dependantFeatures = tempObj?.DependentFeatures;
-
-          // If a dependant feature exists
-          if (dependantFeatures && dependantFeatures.length > 0) {
-            // Map over each dependantFeature
-            { dependantFeatures.map((val) => {
-              featureDependencies[val] = [key];
-            }); }
-          }
-        }
-      });
-    }
-
-    return {
-      // REQUEST
-      ZoomInput: {
-        ShipToNumber: 709323, // Lutron account number
-        LutronSellingCompany: '00101', // Where country exists
-        Product: uitemplate?.ProductIdentifier,
-        Selections: configure?.Selections ? configure.Selections : { COUNTRY: 'US' },
-        AccessLevels: 1, // Place holder (level 1: full access to all selection options)
-      },
-      OverrideSelections: configure?.ResultantValue ? configure.ResultantValue : { },
-      FeatureDependencies: featureDependencies,
-      IsQuoted: configure?.IsQuoted ? configure.IsQuoted : false,
-    };
-  }
-  console.log('[error with UI-template or DPM]');
-};
-
-/**
- * This function takes in ui-template and initial zoom response and parses the Layout to produce an an array of objects {Variable, RenderType}
- * @param {*} uitemplate == UITempalate
- */
-const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
-  console.log('[Inside parseUITemplate]');
-
-  const outerContainer = uitemplate.LayoutManager[0].Containers;
-
-  const res = [];
-  const zoomResValFeatures = zoomResVal.Features;
-  const zoomResValAttribs = convertArrayToObject(zoomResVal.AdditionalAttributes, 'Name');
-
-  outerContainer.map((obj) => {
-    const container = obj.Containers;
-    container.map((containerRow) => {
-      containerRow.Rows.map((innerContainer) => {
-        const controlVar = innerContainer.Controls[0].Variable;
-
-        if (zoomResValFeatures.hasOwnProperty(controlVar) || zoomResValAttribs.hasOwnProperty(controlVar)) {
-          res.push({
-            Variable: controlVar,
-            RenderType: componentMapper[UserControlsObj[controlVar].ControlType],
-          });
-        }
-      });
-    });
-  });
-
-  console.log(res);
-
-  return res;
-};
 
 /**
  * handleOnSave takes the user configurations and current zoom values to build out a final object to be passed into lutron's save function
@@ -295,7 +171,7 @@ const App = (props) => {
 
   // Hard coded product name, will be whatever data is
   // Alisse, Drapery, Woodblinds, Finire, Linears
-  const PRODUCT_IDENTIFIER = 'DRAPERY';
+  const PRODUCT_IDENTIFIER = 'ALISSE';
 
   // State variables for the product
   const [product, setProduct] = useState(null);
@@ -446,9 +322,6 @@ const App = (props) => {
               </div>
             </Application>
           );
-        }
-        if (true) {
-          return <div>fixing bug</div>;
         }
       } else {
         return <div>Awaiting from Configurator API...</div>;
