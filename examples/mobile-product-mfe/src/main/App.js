@@ -30,7 +30,7 @@ import ProductImage from './component/ProductImage/ProductImage';
 import Exception from './component/Exception/Exception';
 import { TestComponent } from './component/Test-Component/TestComponent';
 import {
-  router, fetchUITemplate, fetchDPM, fetchImage,
+  router, fetchUITemplate, fetchDPM,
 } from './router/router';
 
 // importing routing functions
