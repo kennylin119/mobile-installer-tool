@@ -206,36 +206,6 @@ const App = (props) => {
       // Getting the data from fetchProduct
       // Handling the response if result or error
 
-      // TODO: make these fetches happen concurrently
-
-      // fetch the UI template and handle response
-      // await fetchUITemplate(PRODUCT_IDENTIFIER)
-      //   .then((res) => res.json())
-      //   .then(
-      //     (result) => {
-      //       setIsLoaded(true);
-      //       setProduct(result[0]);
-      //     },
-      //     (promiseError) => {
-      //       setIsLoaded(true);
-      //       setError(promiseError);
-      //     },
-      //   );
-
-      // // fetch the DPM and handle response
-      // await fetchDPM(PRODUCT_IDENTIFIER)
-      //   .then((res) => res.json())
-      //   .then(
-      //     (result) => {
-      //       setIsLoadedDPM(true);
-      //       setDPM(result);
-      //     },
-      //     (promiseError) => {
-      //       setIsLoadedDPM(true);
-      //       setError(promiseError);
-      //     },
-      //   );
-
       // fetch the UI template and DPM at same time, handle response
       await fetchUITemplateDPM(PRODUCT_IDENTIFIER)
         .then((body) => {
