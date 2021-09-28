@@ -30,7 +30,7 @@ import ProductImage from './component/ProductImage/ProductImage';
 import Exception from './component/Exception/Exception';
 import { TestComponent } from './component/Test-Component/TestComponent';
 import {
-  router, fetchUITemplate, fetchDPM, fetchImage,
+  router, fetchUITemplate, fetchDPM, fetchImage, fetchUITemplateDPM,
 } from './router/router';
 
 // importing routing functions
@@ -206,33 +206,55 @@ const App = (props) => {
       // Getting the data from fetchProduct
       // Handling the response if result or error
 
-      // fetch the UI template and handle response
-      await fetchUITemplate(PRODUCT_IDENTIFIER)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoaded(true);
-            setProduct(result[0]);
-          },
-          (promiseError) => {
-            setIsLoaded(true);
-            setError(promiseError);
-          },
-        );
+      // TODO: make these fetches happen concurrently
 
-      // fetch the DPM and handle response
-      await fetchDPM(PRODUCT_IDENTIFIER)
-        .then((res) => res.json())
-        .then(
-          (result) => {
-            setIsLoadedDPM(true);
-            setDPM(result);
-          },
-          (promiseError) => {
-            setIsLoadedDPM(true);
-            setError(promiseError);
-          },
-        );
+      // fetch the UI template and handle response
+      // await fetchUITemplate(PRODUCT_IDENTIFIER)
+      //   .then((res) => res.json())
+      //   .then(
+      //     (result) => {
+      //       setIsLoaded(true);
+      //       setProduct(result[0]);
+      //     },
+      //     (promiseError) => {
+      //       setIsLoaded(true);
+      //       setError(promiseError);
+      //     },
+      //   );
+
+      // // fetch the DPM and handle response
+      // await fetchDPM(PRODUCT_IDENTIFIER)
+      //   .then((res) => res.json())
+      //   .then(
+      //     (result) => {
+      //       setIsLoadedDPM(true);
+      //       setDPM(result);
+      //     },
+      //     (promiseError) => {
+      //       setIsLoadedDPM(true);
+      //       setError(promiseError);
+      //     },
+      //   );
+
+      // fetch the UI template and DPM at same time, handle response
+      await fetchUITemplateDPM(PRODUCT_IDENTIFIER)
+        .then((body) => {
+          const promises = body.map((res) => res.json());
+          Promise.all(promises)
+            .then(
+              (data) => {
+                setIsLoaded(true);
+                setIsLoadedDPM(true);
+                setProduct(data[0][0]);
+                setDPM(data[1]);
+              },
+              (promiseError) => {
+                setIsLoaded(true);
+                setIsLoadedDPM(true);
+                setError(promiseError);
+              },
+            );
+        });
     };
 
     getProduct();
