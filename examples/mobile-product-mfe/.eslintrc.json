@@ -30,6 +30,7 @@
         "no-unused-vars": "off",
         "no-plusplus": "off",
         "react/jsx-wrap-multiline": "off",
-        "react/jsx-curly-newline-bracket-location": "off"
+        "react/jsx-curly-newline-bracket-location": "off",
+        "no-multiple-empty-lines": "off"
     }
 }

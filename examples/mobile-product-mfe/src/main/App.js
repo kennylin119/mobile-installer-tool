@@ -28,7 +28,6 @@ import Icons from './component/Icons/Icons';
 import NativeDropdown from './component/SelectionList/NativeDropdown';
 import ProductImage from './component/ProductImage/ProductImage';
 import Exception from './component/Exception/Exception';
-import { TestComponent } from './component/Test-Component/TestComponent';
 import {
   router, fetchUITemplate, fetchDPM,
 } from './router/router';

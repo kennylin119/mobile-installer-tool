@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { ZoomRequest, ZoomResponse } from '../../../zoom-context';
+import { ZoomResponse } from '../../../zoom-context';
 import Icon from './Icon';
 import Grid from '../Grid/Grid';
 
@@ -36,8 +36,7 @@ const Icons = (props) => {
   console.log('[Icons]');
   const { variable, data, cdn } = props;
 
-  const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
-  const { zoomResVal, setZoomRes } = useContext(ZoomResponse);
+  const { zoomResVal } = useContext(ZoomResponse);
 
   console.log(variable);
   console.log(data);
