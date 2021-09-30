@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { hasUncaughtExceptionCaptureCallback, setUncaughtExceptionCaptureCallback } from 'process';
 import { render, screen } from '@testing-library/react';
 import ProductImage from '../../../main/component/ProductImage/ProductImage';

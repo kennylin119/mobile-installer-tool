@@ -24,7 +24,7 @@ const ImageContainer = styled.div`
 `;
 
 // Function to parse an array into an object based on a key
-const convertArrayToObject = (array, key) => {
+export const convertArrayToObject = (array, key) => {
   const initialValue = {};
   return array.reduce((obj, item) => ({
     ...obj,

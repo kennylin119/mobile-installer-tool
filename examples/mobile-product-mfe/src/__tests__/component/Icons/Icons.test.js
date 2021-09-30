@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+import { convertArrayToObject } from '../../../main/component/Icons/Icons';
+
 require('../../../main/component/Icons/Icons');
 
 const sum = (a, b) => a + b;
@@ -30,7 +32,8 @@ test('convertArrayToObject_shouldSucceed', () => {
 
   const convertedObj = convertArrayToObject(array, key);
   console.log(convertedObj);
-  // test what array is
+  expect(convertedObj['11']).toHaveProperty('Image', 'toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_1,_1_Button.png');
+  expect(convertedObj['111']).toHaveProperty('Label', '1, 1, 1 Button');
 });
 
 test('convertArrayToObject_shouldFail', () => {
