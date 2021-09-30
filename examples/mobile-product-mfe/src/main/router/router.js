@@ -1,9 +1,12 @@
 /* eslint-disable react/react-in-jsx-scope */
 const router = () => <div>router</div>;
 
-// Fetches the UI-Template
-export const fetchUITemplate = async (PRODUCT_IDENTIFIER) => {
-  const res = fetch(`https://ams-test-saltmarsh-services.azure-api.net/qa/products/metadata/v1/uitemplates/${PRODUCT_IDENTIFIER}?enableAtlasOverCFSQT=true`, {
+/**
+ * Fetches UI Template and DPM at same time
+ * @param PRODUCT_IDENTIFIER name of the product
+ */
+export const fetchUITemplateDPM = async (PRODUCT_IDENTIFIER) => {
+  const promiseUI = fetch(`https://ams-test-saltmarsh-services.azure-api.net/qa/products/metadata/v1/uitemplates/${PRODUCT_IDENTIFIER}?enableAtlasOverCFSQT=true`, {
     headers: {
       'Ocp-Apim-Subscription-Key': '601126cbdc9247a9826c7e51843e0a7a',
       Authorization:
@@ -11,12 +14,7 @@ export const fetchUITemplate = async (PRODUCT_IDENTIFIER) => {
     },
   });
 
-  return res;
-};
-
-// Fetches the DPM
-export const fetchDPM = async (PRODUCT_IDENTIFIER) => {
-  const res = fetch(`https://ams-test-saltmarsh-services.azure-api.net/qa/products/v2/${PRODUCT_IDENTIFIER}/defaultProductModel/709323/00101?accessLevel=1`, {
+  const promiseDPM = fetch(`https://ams-test-saltmarsh-services.azure-api.net/qa/products/v2/${PRODUCT_IDENTIFIER}/defaultProductModel/709323/00101?accessLevel=1`, {
     headers: {
       'Ocp-Apim-Subscription-Key': '601126cbdc9247a9826c7e51843e0a7a',
       Authorization:
@@ -24,7 +22,7 @@ export const fetchDPM = async (PRODUCT_IDENTIFIER) => {
     },
   });
 
-  return res;
+  return Promise.all([promiseUI, promiseDPM]);
 };
 
 export const fetchZoom = async (ZOOM) => {
