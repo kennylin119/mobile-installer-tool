@@ -7,7 +7,7 @@ import ProductImage from '../../../main/component/ProductImage/ProductImage';
 const { isMainThread } = require('worker_threads');
 
 describe('productImage component tests', () => {
-  it('should math work', () => {
+  it('should have math work', () => {
     const x = 45;
     expect(x).toBe(45);
   });
