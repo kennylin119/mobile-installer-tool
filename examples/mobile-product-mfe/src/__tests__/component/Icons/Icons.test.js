@@ -31,7 +31,7 @@ test('convertArrayToObject_shouldSucceed', () => {
     { KeyValue: '333', Image: 'toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_3,_3,_3_Button.png', Label: '3, 3, 3 Button' }];
 
   const convertedObj = convertArrayToObject(array, key);
-  //console.log(convertedObj);
+  // console.log(convertedObj);
   expect(convertedObj['11']).toHaveProperty('Image', 'toolkit/ALISSE/Toolkit_Definition_Value_Image_BUTTON_ARRAY_1,_1_Button.png');
   expect(convertedObj['111']).toHaveProperty('Label', '1, 1, 1 Button');
 });
@@ -41,5 +41,5 @@ test('convertArrayToObject_shouldFail', () => {
   const key = [];
 
   const convertedObj = convertArrayToObject(array, key);
-  //console.log(convertedObj);
+  // console.log(convertedObj);
 });
