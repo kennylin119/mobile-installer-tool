@@ -31,6 +31,7 @@
         "no-plusplus": "off",
         "react/jsx-wrap-multiline": "off",
         "react/jsx-curly-newline-bracket-location": "off",
-        "no-multiple-empty-lines": "off"
+        "no-multiple-empty-lines": "off",
+        "linebreak-style": "off"
     }
 }
