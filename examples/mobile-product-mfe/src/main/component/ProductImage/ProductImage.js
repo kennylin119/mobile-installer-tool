@@ -43,7 +43,7 @@ const ProductImage = (props) => {
     return (
       <div>
         {/* This Is where ProductImage should be */}
-        <RenderImage src={link} />
+        <RenderImage src={link} data-testid="prodImage" />
       </div>
     );
   }
