@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './main/App';
+import 'semantic-ui-css/semantic.min.css';
 
 import appConstants from './appConstants';
 
