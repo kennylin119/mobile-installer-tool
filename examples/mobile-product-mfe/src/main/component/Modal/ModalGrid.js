@@ -55,7 +55,7 @@ const GridContent = styled.div`
 	justify-content: center;
 `;
 
-const GridModal = (props) => {
+const ModalGrid = (props) => {
   const {
     showModal, setShowModal, variable, cdn, zoomResComponentData, iconsObj,
   } = props;
@@ -78,4 +78,4 @@ const GridModal = (props) => {
   );
 };
 
-export default GridModal;
+export default ModalGrid;

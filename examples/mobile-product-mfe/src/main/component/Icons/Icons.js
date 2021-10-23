@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { ZoomResponse } from '../../../zoom-context';
 import Icon from './Icon';
-import Grid from '../Grid/Grid';
+import ModalButton from '../Modal/ModalButton';
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -49,7 +49,7 @@ const Icons = (props) => {
 
   if (zoomResComponentData?.ValidKeys.length > 7) {
     return (
-      <Grid
+      <ModalButton
         variable={variable}
         data={data}
         cdn={cdn}

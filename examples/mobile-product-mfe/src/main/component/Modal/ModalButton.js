@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import GridModal from './GridModal';
+import ModalGrid from './ModalGrid';
 
 const handleOnClick = (showModal, setShowModal) => {
   setShowModal(!showModal);
@@ -8,7 +8,7 @@ const handleOnClick = (showModal, setShowModal) => {
   document.getElementById('fixed-buttons').style.display = 'none';
 };
 
-const Grid = (props) => {
+const ModalButton = (props) => {
   console.log('[Grid]');
   const {
     variable, data, cdn, zoomResComponentData, iconsObj,
@@ -18,9 +18,9 @@ const Grid = (props) => {
   return (
     <div>
       <button className="fancy-button" type="submit" onClick={(_e) => handleOnClick(showModal, setShowModal)}> choose fabric </button>
-      {showModal ? <GridModal showModal={showModal} setShowModal={setShowModal} variable={variable} data={data} cdn={cdn} zoomResComponentData={zoomResComponentData} iconsObj={iconsObj} /> : null}
+      {showModal ? <ModalGrid showModal={showModal} setShowModal={setShowModal} variable={variable} data={data} cdn={cdn} zoomResComponentData={zoomResComponentData} iconsObj={iconsObj} /> : null}
     </div>
   );
 };
 
-export default Grid;
+export default ModalButton;
