@@ -32,6 +32,12 @@ export const convertArrayToObject = (array, key) => {
   }), initialValue);
 };
 
+const handleOnClick = (showModal, setShowModal) => {
+  setShowModal(!showModal);
+  document.querySelector('body').style.overflow = 'hidden';
+  document.getElementById('fixed-buttons').style.display = 'none';
+};
+
 const Icons = (props) => {
   console.log('[Icons]');
   const { variable, data, cdn } = props;
@@ -55,6 +61,7 @@ const Icons = (props) => {
         cdn={cdn}
         zoomResComponentData={zoomResComponentData}
         iconsObj={iconsObj}
+        handleOnClick={handleOnClick}
       />
     );
   }
