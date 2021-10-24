@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ModalGrid from './ModalGrid';
 
 const ModalButton = (props) => {
-  console.log('[Grid]');
+  // console.log('[Grid]');
   const {
     variable, data, cdn, zoomResComponentData, iconsObj, handleOnClick,
   } = props;
