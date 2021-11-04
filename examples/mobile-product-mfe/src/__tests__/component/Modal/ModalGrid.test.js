@@ -38,7 +38,7 @@ describe('ModalGrid component tests', () => {
     };
     const zoomVal = null;
     const setZoom = null;
-    const { queryByTestId } = render(
+    render(
       <ZoomRequest.Provider value={{ zoomVal, setZoom }}>
         <ZoomResponse.Provider value={{ zoomVal, setZoom }}>
           <ModalGrid variable="test" zoomResComponentData={data} iconsObj={data2} />
@@ -47,6 +47,6 @@ describe('ModalGrid component tests', () => {
       ,
     );
 
-    expect(queryByTestId('ModalIcon')).toBeTruthy();
+    expect(screen.getByTestId('ModalIcon')).toBeTruthy();
   });
 });

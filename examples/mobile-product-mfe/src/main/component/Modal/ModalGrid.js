@@ -59,9 +59,6 @@ const ModalGrid = (props) => {
   const {
     showModal, setShowModal, variable, cdn, zoomResComponentData, iconsObj,
   } = props;
-  console.log('[GridModal]');
-  console.log(zoomResComponentData);
-  console.log(iconsObj);
 
   return (
     <Modal data-testid="Modal" onClick={(e) => { setShowModal(!showModal); document.querySelector('body').style.overflow = 'visible'; document.getElementById('fixed-buttons').style.display = 'block'; }}>
@@ -71,7 +68,7 @@ const ModalGrid = (props) => {
         <ModalBody data-testid="ModalBody">
           <GridContent data-testid="GridContent">
             {zoomResComponentData?.ValidKeys.map((obj) => (
-              <ModalIcon data-testid="ModalIcon" setShowModal={setShowModal} key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable} />
+              <ModalIcon setShowModal={setShowModal} key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable} />
             ))}
           </GridContent>
         </ModalBody>
