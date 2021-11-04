@@ -109,7 +109,7 @@ const ModalIcon = (props) => {
 
   return (
     <IconContainer
-      data-testid="ModalIcon"
+      data-testid="ModalIconContainer"
       onClick={(e) => handleOnClick(
         e,
         setShowModal,
@@ -123,7 +123,7 @@ const ModalIcon = (props) => {
         componentName,
       )}
     >
-      <MyIcon src={image} alt="Image invalid" />
+      <MyIcon data-testid="ModalIcon" src={image} alt="Image invalid" />
       <div style={{ textAlign: 'center' }}>{icon_value}</div>
     </IconContainer>
   );

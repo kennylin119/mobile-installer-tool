@@ -41,12 +41,12 @@ describe('ModalGrid component tests', () => {
     render(
       <ZoomRequest.Provider value={{ zoomVal, setZoom }}>
         <ZoomResponse.Provider value={{ zoomVal, setZoom }}>
-          <ModalGrid variable="test" zoomResComponentData={data} iconsObj={data2} />
+          <ModalGrid zoomResComponentData={data} iconsObj={data2} />
         </ZoomResponse.Provider>
       </ZoomRequest.Provider>
       ,
     );
 
-    expect(screen.getByTestId('ModalIcon')).toBeTruthy();
+    expect(screen.getByTestId('ModalIconContainer')).toBeTruthy();
   });
 });
