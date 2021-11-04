@@ -57,18 +57,18 @@ const GridContent = styled.div`
 
 const ModalGrid = (props) => {
   const {
-    showModal, setShowModal, variable, cdn, zoomResComponentData, iconsObj,
+    showModal, setShowModal, cdn, zoomResComponentData, iconsObj, componentName, data,
   } = props;
 
   return (
     <Modal data-testid="Modal" onClick={(e) => { setShowModal(!showModal); document.querySelector('body').style.overflow = 'visible'; document.getElementById('fixed-buttons').style.display = 'block'; }}>
       <button data-testid="Button" className="transparent" onClick={(e) => { setShowModal(!showModal); document.querySelector('body').style.overflow = 'visible'; }}>X</button>
       <ModalContent data-testid="ModalContent" style={{ overflowY: 'initial' }} onClick={(e) => e.stopPropagation()}>
-        <h1 data-testid="title">{variable}</h1>
+        <h1 data-testid="title">{data.Label}</h1>
         <ModalBody data-testid="ModalBody">
           <GridContent data-testid="GridContent">
             {zoomResComponentData?.ValidKeys.map((obj) => (
-              <ModalIcon setShowModal={setShowModal} key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={variable} />
+              <ModalIcon setShowModal={setShowModal} key={obj} cdn={cdn} icon_key={obj} icon_value={iconsObj[obj].Label} icon_image={iconsObj[obj].Image} icon_selected={zoomResComponentData.CurrentValue} componentName={componentName} />
             ))}
           </GridContent>
         </ModalBody>

@@ -55,14 +55,17 @@ const Icons = (props) => {
 
   if (zoomResComponentData?.ValidKeys.length > 7) {
     return (
-      <ModalButton
-        variable={variable}
-        data={data}
-        cdn={cdn}
-        zoomResComponentData={zoomResComponentData}
-        iconsObj={iconsObj}
-        handleOnClick={handleOnClick}
-      />
+      <div>
+        <h3>{data.Label}</h3>
+        <ModalButton
+          data={data}
+          cdn={cdn}
+          zoomResComponentData={zoomResComponentData}
+          iconsObj={iconsObj}
+          handleOnClick={handleOnClick}
+          componentName={variable}
+        />
+      </div>
     );
   }
   return (
