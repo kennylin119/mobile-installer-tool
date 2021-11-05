@@ -108,21 +108,23 @@ const ModalIcon = (props) => {
   }
 
   return (
-    <IconContainer onClick={(e) => handleOnClick(
-      e,
-      setShowModal,
-      icon_key,
-      icon_value,
-      icon_selected,
-      zoomReqVal,
-      setZoomReq,
-      zoomResVal,
-      updateZoomAndRenderLayout,
-      componentName,
-    )}
+    <IconContainer
+      data-testid="ModalIconContainer"
+      onClick={(e) => handleOnClick(
+        e,
+        setShowModal,
+        icon_key,
+        icon_value,
+        icon_selected,
+        zoomReqVal,
+        setZoomReq,
+        zoomResVal,
+        updateZoomAndRenderLayout,
+        componentName,
+      )}
     >
-      <MyIcon src={image} alt="Image invalid" />
-      <div style={{ 'text-align': 'center' }}>{icon_value}</div>
+      <MyIcon data-testid="ModalIcon" src={image} alt="Image invalid" />
+      <div style={{ textAlign: 'center' }}>{icon_value}</div>
     </IconContainer>
   );
 };

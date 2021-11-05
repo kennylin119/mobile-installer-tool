@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { ZoomResponse } from '../../../zoom-context';
 import Icon from './Icon';
-import Grid from '../Grid/Grid';
+import ModalButton from '../Modal/ModalButton';
 
 const ImageContainer = styled.div`
   width: 100%;
@@ -32,6 +32,12 @@ export const convertArrayToObject = (array, key) => {
   }), initialValue);
 };
 
+const handleOnClick = (showModal, setShowModal) => {
+  setShowModal(!showModal);
+  document.querySelector('body').style.overflow = 'hidden';
+  document.getElementById('fixed-buttons').style.display = 'none';
+};
+
 const Icons = (props) => {
   console.log('[Icons]');
   const { variable, data, cdn } = props;
@@ -49,13 +55,17 @@ const Icons = (props) => {
 
   if (zoomResComponentData?.ValidKeys.length > 7) {
     return (
-      <Grid
-        variable={variable}
-        data={data}
-        cdn={cdn}
-        zoomResComponentData={zoomResComponentData}
-        iconsObj={iconsObj}
-      />
+      <div>
+        <h3>{data.Label}</h3>
+        <ModalButton
+          data={data}
+          cdn={cdn}
+          zoomResComponentData={zoomResComponentData}
+          iconsObj={iconsObj}
+          handleOnClick={handleOnClick}
+          componentName={variable}
+        />
+      </div>
     );
   }
   return (
