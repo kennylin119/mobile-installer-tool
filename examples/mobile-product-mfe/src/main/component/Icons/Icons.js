@@ -56,7 +56,7 @@ const Icons = (props) => {
   if (zoomResComponentData?.ValidKeys.length > 7) {
     return (
       <div>
-        <h3>{data.Label}</h3>
+        <h3 className="sectionHeader">{data.Label}</h3>
         <ModalButton
           data={data}
           cdn={cdn}
@@ -70,7 +70,7 @@ const Icons = (props) => {
   }
   return (
     <div>
-      <h3>{data.Label}</h3>
+      <h3 className="sectionHeader">{data.Label}</h3>
       <ImageContainer>
         {/* <div className="img-container-title">{variable}</div> */}
         {zoomResComponentData?.ValidKeys.map((obj) => (
