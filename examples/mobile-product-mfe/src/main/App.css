@@ -133,3 +133,12 @@
 	color: black;
 }
 
+.fixed-button-background{
+	border-top: 1px solid #115b67;
+	position:absolute;
+	background-color:white;
+	width: 100vw;
+	height: 5em;
+	bottom: -2em;
+	right: -2em;
+}
