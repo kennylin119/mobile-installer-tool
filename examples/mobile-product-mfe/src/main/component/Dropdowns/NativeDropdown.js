@@ -19,7 +19,7 @@ const NativeDropdown = (props) => {
   // View that is returned
   return (
     <div>
-      <h3>{data.Variable}</h3>
+      <h3 className="sectionHeader">{data.Variable}</h3>
       <Picker>
         {data.OptionValues.map((option) => <NativeDropdownItem label={option.Label} section={variable} keyValue={option.keyValue} />)}
       </Picker>
