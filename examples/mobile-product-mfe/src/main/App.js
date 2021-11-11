@@ -70,7 +70,7 @@ const CancelButton = styled(StyledButton)`
 	background: #fff;
 	color: #115b67;
 	position: fixed;
-	bottom: 2.5em;
+	bottom: 1.5em;
 	right: 8.5em;
 	&:hover {
 		background: rgb(211, 211, 211);
@@ -83,7 +83,7 @@ const SaveButton = styled(StyledButton)`
 	background-color: #198294;
 	color: #fff;
 	position: fixed;
-	bottom: 2.5em;
+	bottom: 1.5em;
 	right: 1.5em;
 	&:hover {
 		background: rgb(34, 158, 180);
@@ -308,8 +308,10 @@ const App = (props) => {
                 </ZoomRequest.Provider>
               </Product.Provider>
               <div id="fixed-buttons" style={{ position: 'fixed', bottom: '2em', right: '2em' }}>
-                <CancelButton onClick={() => handleOnCancel()}>Cancel</CancelButton>
-                <SaveButton onClick={() => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>Save</SaveButton>
+                <div className="fixed-button-background">
+                  <CancelButton onClick={() => handleOnCancel()}>Cancel</CancelButton>
+                  <SaveButton onClick={() => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>Save</SaveButton>
+                </div>
               </div>
             </Application>
           );
