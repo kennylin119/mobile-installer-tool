@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable quotes */
 /* eslint-disable no-undef */
 /* eslint-disable no-empty */
@@ -104,8 +105,47 @@ const Application = styled.div`
  * @param {*} configure The user configuration
  * @param {*} save_function	The save function passed in my lutron's parent container
  */
-const handleOnSave = async () => {
+const handleOnSave = async (product, zoomResVal, zoomReqVal, configure_test, save_function) => {
   console.log('[handleOnSave]');
+
+  const features = {};
+  Object.keys(zoomResVal.Features).map((key) => {
+    features[key] = zoomResVal.Features[key].CurrentValue;
+  });
+
+  if (features.LeadTime) {
+    delete features.LeadTime;
+  }
+
+  // TODO: need to fill out the rest of these
+  const save_payload = {
+    Filters: {},
+    Product: product.ProductIdentifier,
+    RangeFilters: {},
+    Selections: features,
+    FGID: null,
+    LeadTime: {},
+    LineItemId: null,
+    ListPrice: zoomResVal.Features.LeadTime,
+    ListPriceAdjustment: 0,
+    LutronSellingCompany: "00101",
+    ModelNumber: "NPKP",
+    Name: null,
+    OverrideDiscountedPrice: null,
+    OverrideListPrice: null,
+    ProductType: null,
+    ProjectDisplayId: null,
+    ProjectId: null,
+    Quantity: 1,
+    RevisionId: null,
+    RowVersion: null,
+    ShipToNumber: zoomReqVal.ZoomInput.ShipToNumber,
+  };
+
+  console.log('final save payload');
+  console.log(save_payload);
+
+  // save_function(save_payload);
 };
 
 /**
@@ -310,7 +350,7 @@ const App = (props) => {
               <div id="fixed-buttons" style={{ position: 'fixed', bottom: '2em', right: '2em' }}>
                 <div className="fixed-button-background">
                   <CancelButton onClick={() => handleOnCancel()}>Cancel</CancelButton>
-                  <SaveButton onClick={() => handleOnSave(zoomResVal, zoomReqVal, configure_test, save_function)}>Save</SaveButton>
+                  <SaveButton onClick={() => handleOnSave(product, zoomResVal, zoomReqVal, configure_test, save_function)}>Save</SaveButton>
                 </div>
               </div>
             </Application>
