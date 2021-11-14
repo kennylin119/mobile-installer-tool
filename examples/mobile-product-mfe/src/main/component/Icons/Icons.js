@@ -53,6 +53,8 @@ const Icons = (props) => {
   const iconsObj = convertArrayToObject(icons, 'KeyValue');
   console.log(zoomResComponentData);
 
+  const children_components = data.Children;
+
   if (zoomResComponentData?.ValidKeys.length > 7) {
     return (
       <div>
@@ -64,6 +66,7 @@ const Icons = (props) => {
           iconsObj={iconsObj}
           handleOnClick={handleOnClick}
           componentName={variable}
+          children_components={children_components}
         />
       </div>
     );
@@ -82,6 +85,7 @@ const Icons = (props) => {
             icon_image={iconsObj[obj].Image}
             icon_selected={zoomResComponentData.CurrentValue}
             componentName={variable}
+            children_components={children_components}
           />
         ))}
       </ImageContainer>

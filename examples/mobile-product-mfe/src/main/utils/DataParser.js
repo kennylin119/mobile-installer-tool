@@ -93,6 +93,10 @@ export const initializeZoom = (uitemplate, dpm, configure) => {
 export const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
   console.log('[Inside parseUITemplate]');
 
+  if (zoomResVal == null) {
+    return null;
+  }
+
   const outerContainer = uitemplate.LayoutManager[0].Containers;
 
   const res = [];
@@ -116,4 +120,26 @@ export const parseUITemplate = (uitemplate, UserControlsObj, zoomResVal) => {
   });
 
   return res;
+};
+
+
+export const initializeUserControlsObjWithDependency = (UserControls, dpm) => {
+  console.log('[initializeUserControlsObjWithDependency]');
+
+  // eslint-disable-next-line prefer-const
+  let UserControlsObj = convertArrayToObject(UserControls, 'Variable');
+
+  Object.keys(dpm.Features).map((current_component_name) => {
+    if (dpm.Features[current_component_name].DependentFeatures.length > 0) {
+      dpm.Features[current_component_name].DependentFeatures.map((parent) => {
+        if (UserControlsObj[parent].Children == null) {
+          UserControlsObj[parent].Children = [current_component_name];
+        } else if (!UserControlsObj[parent].Children.includes(current_component_name)) {
+          UserControlsObj[parent].Children = [...UserControlsObj[parent].Children, current_component_name];
+        }
+      });
+    }
+  });
+
+  return UserControlsObj;
 };

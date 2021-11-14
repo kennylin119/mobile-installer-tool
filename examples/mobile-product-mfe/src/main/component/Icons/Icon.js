@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable no-console */
 /* eslint-disable no-param-reassign */
@@ -55,19 +56,26 @@ const handleOnClick = async (
   zoomResVal,
   updateZoomAndRenderLayout,
   componentName,
+  children_components,
 ) => {
   event.preventDefault();
   console.log('[handleOnClick]');
-
-  console.log(icon_key);
-  console.log(icon_value);
-  console.log(icon_selected);
 
   if (icon_selected !== icon_key) {
     // Modifying the zoom request
     await setZoomReq((prevState) => {
       // First, modify the prevState
       prevState.ZoomInput.Selections[componentName] = icon_key;
+
+      // remove any child dependencies selections
+      if (children_components) {
+        children_components.map((child) => {
+          if (prevState.ZoomInput.Selections[child]) {
+            delete prevState.ZoomInput.Selections[child];
+          }
+        });
+      }
+
 
       // Then, spread the prevState into set function
       return {
@@ -81,15 +89,6 @@ const handleOnClick = async (
   const selected = document.querySelectorAll(`.${componentName}.selected`);
   const new_selected = document.getElementById(icon_value);
 
-  // console.log('start print select');
-  // console.log(selected);
-  // console.log(componentName);
-  // console.log(new_selected);
-  // console.log(icon_value);
-
-  // if (selected && selected !== new_selected) {
-  //   selected.classList.remove("selected");
-  // }
   if (selected) {
     for (let i = 0; i < selected.length; i++) {
       selected[i].classList.remove('selected');
@@ -106,6 +105,7 @@ const Icon = ({
   icon_image,
   icon_selected,
   componentName,
+  children_components,
 }) => {
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
@@ -134,6 +134,7 @@ const Icon = ({
           zoomResVal,
           updateZoomAndRenderLayout,
           componentName,
+          children_components,
         )}
       />
       {' '}
