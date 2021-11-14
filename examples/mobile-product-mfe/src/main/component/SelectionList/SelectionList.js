@@ -42,6 +42,7 @@ const SelectionList = (props) => {
           label={option.Label}
           section={variable}
           keyValue={option.KeyValue}
+          children_components={data.Children}
         />
       );
     });

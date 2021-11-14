@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { useContext } from 'react';
 import styled from 'styled-components';
 
@@ -46,6 +47,7 @@ const handleOnClick = async (
   zoomResVal,
   setZoomReq,
   updateZoomAndRenderLayout,
+  children_components,
 ) => {
   console.log('[handle SelectionButton click]');
 
@@ -54,6 +56,16 @@ const handleOnClick = async (
   if (zoomReqVal.ZoomInput.Selections[section] !== keyValue) {
     await setZoomReq((prevState) => {
       prevState.ZoomInput.Selections[section] = keyValue;
+
+      // remove any child dependencies selections
+      if (children_components) {
+        children_components.map((child) => {
+          if (prevState.ZoomInput.Selections[child]) {
+            delete prevState.ZoomInput.Selections[child];
+          }
+        });
+      }
+
       return prevState;
     });
 
@@ -63,15 +75,6 @@ const handleOnClick = async (
   const selected = document.querySelectorAll(`.${section}.selected`);
   const new_selected = document.getElementById(label);
 
-  // console.log('start print select');
-  // console.log(selected);
-  // console.log(section);
-  // console.log(new_selected);
-  // console.log(label);
-
-  // if (selected && selected !== new_selected) {
-  //   selected.classList.remove("selected");
-  // }
   if (selected) {
     for (let i = 0; i < selected.length; i++) {
       selected[i].classList.remove('selected');
@@ -81,7 +84,9 @@ const handleOnClick = async (
 };
 
 const SelectionButton = (props) => {
-  const { label, section, keyValue } = props;
+  const {
+    label, section, keyValue, children_components,
+  } = props;
   const { zoomReqVal, setZoomReq } = useContext(ZoomRequest);
   const { zoomResVal, updateZoomAndRenderLayout } = useContext(ZoomResponse);
 
@@ -100,6 +105,7 @@ const SelectionButton = (props) => {
         zoomResVal,
         setZoomReq,
         updateZoomAndRenderLayout,
+        children_components,
       )}
     >
       {' '}

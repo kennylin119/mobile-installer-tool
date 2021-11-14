@@ -41,7 +41,7 @@ import Number from './component/Input/Number';
 
 // importing util functions
 import {
-  componentMapper, convertArrayToObject, initializeZoom, parseUITemplate,
+  convertArrayToObject, initializeZoom, parseUITemplate, initializeUserControlsObjWithDependency,
 } from './utils/DataParser';
 
 const StyledButton = styled.div`
@@ -297,7 +297,6 @@ const App = (props) => {
     if (zoomReqVal && zoomResVal == null) {
       // Call Zoom Handler which calls configurator API, then we set the response to our zoom response context
       ZoomHandler(zoomReqVal).then((response) => {
-        // console.log(response);
         setZoomRes(response); // re-render the page
       });
     }
@@ -305,8 +304,9 @@ const App = (props) => {
     if (UserControlsObj == null) {
       console.log('[product]');
       // console.log(product);
-      setUserControlsObj(convertArrayToObject(product.UserControls, 'Variable'));
+      setUserControlsObj(initializeUserControlsObjWithDependency(product.UserControls, DPM));
     } else {
+      console.log(UserControlsObj);
       if (zoomResVal) {
         if (RenderLayout == null) {
           setRenderLayout(parseUITemplate(product, UserControlsObj, zoomResVal));

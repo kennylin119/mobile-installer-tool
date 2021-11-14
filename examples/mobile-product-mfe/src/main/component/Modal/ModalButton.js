@@ -5,7 +5,7 @@ import ModalGrid from './ModalGrid';
 const ModalButton = (props) => {
   // console.log('[Grid]');
   const {
-    variable, data, cdn, zoomResComponentData, iconsObj, handleOnClick, componentName,
+    variable, data, cdn, zoomResComponentData, iconsObj, handleOnClick, componentName, children_components,
   } = props;
   const [showModal, setShowModal] = useState(false);
 
