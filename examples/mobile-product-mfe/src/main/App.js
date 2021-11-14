@@ -340,6 +340,8 @@ const App = (props) => {
                               // NativeDropdown: <NativeDropdown variable={Variable} data={UserControlsObj[Variable]} cdn={product.CDNPrefix} />,
                             }[RenderType]),
                           )}
+                          {/* Spacing to account for save and cancel buttons */}
+                          <div style={{ width: '100vw', height: '5em' }} />
                         </div>
                         <div className="col-1" />
                       </div>
