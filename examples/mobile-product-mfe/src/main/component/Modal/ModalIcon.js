@@ -16,10 +16,11 @@ const IconContainer = styled.div`
 
   cursor: pointer;
 
-  /* &:hover {
+  &:hover {
 	  border: 1px solid rgb(115, 115, 115);
 	  box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
   }
+
   &.selected {
     border: 1px solid rgb(25, 130, 148);
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
@@ -57,7 +58,7 @@ const handleOnClick = async (
   componentName,
 ) => {
   event.preventDefault();
-  console.log('[handleOnClick]');
+  console.log('[Modal handleOnClick]');
 
   console.log(icon_key);
   console.log(icon_value);
@@ -81,6 +82,20 @@ const handleOnClick = async (
 
     updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
+  // can't do it this way because modal disappears
+
+  // const selected = document.querySelectorAll(`.${componentName}.selected`);
+  // const new_selected = document.getElementById(icon_value);
+
+  // console.log(selected);
+  // console.log(new_selected);
+  // if (selected) {
+  //   for (let i = 0; i < selected.length; i++) {
+  //     selected[i].classList.remove('selected');
+  //   }
+  // }
+
+  // new_selected.classList.add('selected');
 };
 
 const ModalIcon = (props) => {
@@ -107,8 +122,15 @@ const ModalIcon = (props) => {
     image = default_img;
   }
 
+  // show if icon is selected or not
+  let selected = '';
+  if (icon_key === icon_selected) {
+    selected = 'selected';
+  }
+
   return (
     <IconContainer
+      className={selected}
       data-testid="ModalIconContainer"
       onClick={(e) => handleOnClick(
         e,
