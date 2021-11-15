@@ -119,8 +119,14 @@ const Icon = ({
     image = default_img;
   }
 
+  // show if icon is selected or not
+  let selected = '';
+  if (icon_key === icon_selected) {
+    selected = 'selected';
+  }
+
   return (
-    <RenderIcon id={icon_value} className={componentName}>
+    <RenderIcon id={icon_value} className={`${componentName} ${selected}`}>
       <MyIcon
         src={image}
         alt="Image invalid"
