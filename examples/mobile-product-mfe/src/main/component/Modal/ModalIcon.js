@@ -12,6 +12,7 @@ const IconContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border: 1px solid transparent;
+  border-radius: 3px;
 
 
   cursor: pointer;
@@ -82,20 +83,6 @@ const handleOnClick = async (
 
     updateZoomAndRenderLayout(await ZoomHandler(zoomReqVal));
   }
-  // can't do it this way because modal disappears
-
-  // const selected = document.querySelectorAll(`.${componentName}.selected`);
-  // const new_selected = document.getElementById(icon_value);
-
-  // console.log(selected);
-  // console.log(new_selected);
-  // if (selected) {
-  //   for (let i = 0; i < selected.length; i++) {
-  //     selected[i].classList.remove('selected');
-  //   }
-  // }
-
-  // new_selected.classList.add('selected');
 };
 
 const ModalIcon = (props) => {
@@ -145,6 +132,7 @@ const ModalIcon = (props) => {
         componentName,
       )}
     >
+      <div style={{ height: '1rem' }} />
       <MyIcon data-testid="ModalIcon" src={image} alt="Image invalid" />
       <div style={{ textAlign: 'center' }}>{icon_value}</div>
     </IconContainer>
