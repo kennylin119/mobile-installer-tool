@@ -92,10 +92,17 @@ const SelectionButton = (props) => {
 
   console.log('[SelectionButton]');
 
+
+  // show if icon is selected or not
+  let selected = '';
+  if (keyValue === zoomResVal.Features[section].CurrentValue) {
+    selected = 'selected';
+  }
+
   return (
     <Button
       id={label}
-      className={section}
+      className={`${section} ${selected}`}
       onClick={(e) => handleOnClick(
         e,
         keyValue,
