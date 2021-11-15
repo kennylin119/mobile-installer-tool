@@ -12,14 +12,16 @@ const IconContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border: 1px solid transparent;
+  border-radius: 3px;
 
 
   cursor: pointer;
 
-  /* &:hover {
+  &:hover {
 	  border: 1px solid rgb(115, 115, 115);
 	  box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
   }
+
   &.selected {
     border: 1px solid rgb(25, 130, 148);
     box-shadow: rgb(0 0 0 / 20%) 0px 2px 4px;
@@ -57,7 +59,7 @@ const handleOnClick = async (
   componentName,
 ) => {
   event.preventDefault();
-  console.log('[handleOnClick]');
+  console.log('[Modal handleOnClick]');
 
   console.log(icon_key);
   console.log(icon_value);
@@ -107,8 +109,15 @@ const ModalIcon = (props) => {
     image = default_img;
   }
 
+  // show if icon is selected or not
+  let selected = '';
+  if (icon_key === icon_selected) {
+    selected = 'selected';
+  }
+
   return (
     <IconContainer
+      className={selected}
       data-testid="ModalIconContainer"
       onClick={(e) => handleOnClick(
         e,
@@ -123,6 +132,7 @@ const ModalIcon = (props) => {
         componentName,
       )}
     >
+      <div style={{ height: '1rem' }} />
       <MyIcon data-testid="ModalIcon" src={image} alt="Image invalid" />
       <div style={{ textAlign: 'center' }}>{icon_value}</div>
     </IconContainer>
