@@ -16,7 +16,7 @@ describe('Basic tests', () => {
 describe('ModalButton component tests', () => {
   it('should show the button green button', () => {
     const { queryByTestId } = render(
-      <ModalButton />,
+      <ModalButton data={{ Label: 'test' }} />,
     );
 
     expect(queryByTestId('ModBut')).toBeTruthy();
@@ -24,7 +24,7 @@ describe('ModalButton component tests', () => {
 
   it('should run onclick function when button is pressed in DOM', () => {
     const mockHandleOnClick = jest.fn();
-    const wrapper = shallow(<ModalButton handleOnClick={mockHandleOnClick} />);
+    const wrapper = shallow(<ModalButton handleOnClick={mockHandleOnClick} data={{ Label: 'test' }} />);
     wrapper.find('button').at(0).simulate('click');
     expect(mockHandleOnClick).toHaveBeenCalled();
   });

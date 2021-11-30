@@ -13,7 +13,7 @@ describe('Basic tests', () => {
 describe('ModalGrid component tests', () => {
   it('should display modal,button, and modalContent', () => {
     const { queryByTestId } = render(
-      <ModalGrid variable="test" />,
+      <ModalGrid variable="test" data={{ Label: 'test' }} />,
     );
 
     expect(queryByTestId('Modal')).toBeTruthy();
@@ -41,7 +41,7 @@ describe('ModalGrid component tests', () => {
     render(
       <ZoomRequest.Provider value={{ zoomVal, setZoom }}>
         <ZoomResponse.Provider value={{ zoomVal, setZoom }}>
-          <ModalGrid zoomResComponentData={data} iconsObj={data2} />
+          <ModalGrid zoomResComponentData={data} iconsObj={data2} data={{ Label: 'test' }} />
         </ZoomResponse.Provider>
       </ZoomRequest.Provider>
       ,
